@@ -1,0 +1,82 @@
+{
+  "updated": "2026-08-24",
+  "note": "Hand-curated presentation metadata. GitHub remains the source of record.",
+  "projects": [
+    {
+      "slug": "time-integrity",
+      "title": "Time Integrity",
+      "kind": "research",
+      "repo": "k-luecke/time-integrity",
+      "status": [
+        "P1 VERIFIED",
+        "D2b FAILED"
+      ]
+    },
+    {
+      "slug": "geo",
+      "title": "Geo",
+      "kind": "research",
+      "repo": "k-luecke/Geo",
+      "status": [
+        "RESEARCH NOTEBOOK"
+      ]
+    },
+    {
+      "slug": "fincen-boi",
+      "title": "FinCEN BOI",
+      "kind": "investigation",
+      "repo": "k-luecke/FinCEN-BOI",
+      "status": [
+        "ACTIVE",
+        "PROVENANCE-FIRST"
+      ]
+    },
+    {
+      "slug": "811dog",
+      "title": "811Dog",
+      "kind": "investigation",
+      "repo": "k-luecke/811Dog",
+      "status": [
+        "WORKING",
+        "335 TESTS"
+      ]
+    },
+    {
+      "slug": "bls-verifier",
+      "title": "BLS verifier",
+      "kind": "systems",
+      "repo": "k-luecke/bls-verifier",
+      "status": [
+        "WORKING PRIMITIVE"
+      ]
+    },
+    {
+      "slug": "paxiom",
+      "title": "Paxiom",
+      "kind": "systems",
+      "repo": "k-luecke/paxiom",
+      "status": [
+        "PROTOTYPE",
+        "159 TESTS"
+      ]
+    },
+    {
+      "slug": "zkfwdbld",
+      "title": "zkfwdbld",
+      "kind": "systems",
+      "repo": "k-luecke/zkfwdbld",
+      "status": [
+        "SERIOUS PROTOTYPE"
+      ]
+    },
+    {
+      "slug": "termbrow",
+      "title": "TermBrow",
+      "kind": "systems",
+      "repo": "k-luecke/TermBrow",
+      "status": [
+        "WORKING"
+      ]
+    }
+  ]
+}

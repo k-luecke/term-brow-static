@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BLS Verifier — Kyle Luecke</title><meta name="description" content="Rust Ethereum sync-committee BLS verification primitive with explicit proof boundaries.">
+<link rel="stylesheet" href="../assets/css/site.css"><script defer src="../assets/js/site.js"></script>
+</head><body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap"><a class="brand" href="../index.html">TERMBROW</a><nav><a class="active" href="../work.html">WORK</a><a href="../method.html">METHOD</a><a href="../about.html">ABOUT</a><a href="../cv.html">CV</a></nav><button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button></header>
+<main id="main" class="wrap narrow"><section class="case-hero"><p class="eyebrow">systems / Rust / cryptography</p><h1>BLS verifier</h1><p class="lede">Ethereum sync-committee signature verification as one deliberately narrow primitive, compiled for native C-FFI or wasm32.</p><span class="status working">WORKING PRIMITIVE</span></section><section class="case-grid"><h2>Design choice</h2><p>One primitive verifies one thing. The surrounding workspace separates the cryptographic core from an integration runner, CLI wrapper, and a higher-level harness.</p><h2>Why the boundary matters</h2><p>A valid aggregate BLS signature is not by itself a complete Ethereum sync-committee verifier. Committee selection, signing-root construction, state transition context, and operational failure handling belong above the primitive.</p><h2>Targets</h2><p>Native <code>cdylib</code> for C-FFI and a <code>wasm32-unknown-unknown</code> build for the device path.</p><h2>Documentation</h2><p>The runbooks lead with return codes, failure modes, and what must not be inferred from a successful primitive call.</p></section><div class="case-links"><a href="https://github.com/k-luecke/bls-verifier">source ↗</a><a href="https://github.com/k-luecke/bls-verifier/blob/master/docs/O-700-bls-sync-committee-primitive.md">runbook ↗</a></div></main>
+<footer class="site-footer wrap"><span>termbrow.org</span><span><a href="https://github.com/k-luecke">GitHub</a></span><span>evidence under the interface</span></footer>
+</body></html>

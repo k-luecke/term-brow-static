@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>zkfwdbld — Kyle Luecke</title><meta name="description" content="Prototype trust layer for verified findings and agentic actions.">
+<link rel="stylesheet" href="../assets/css/site.css"><script defer src="../assets/js/site.js"></script>
+</head><body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap"><a class="brand" href="../index.html">TERMBROW</a><nav><a class="active" href="../work.html">WORK</a><a href="../method.html">METHOD</a><a href="../about.html">ABOUT</a><a href="../cv.html">CV</a></nav><button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button></header>
+<main id="main" class="wrap narrow"><section class="case-hero"><p class="eyebrow">systems / verification / Rust</p><h1>zkfwdbld</h1><p class="lede">A prototype trust layer that attaches evidence, derivation trace, proof artifacts, and verification state to automated findings.</p><span class="status supported">SERIOUS PROTOTYPE</span></section><section class="case-grid"><h2>Problem</h2><p>Automated findings are easy to generate and hard to trust. The project asks what additional structure is required before an engineer should act on an agent or scanner assertion.</p><h2>Core</h2><p>A Rust/Wasm path generates witnesses and verifies R1CS constraints over the Goldilocks field. AO-oriented orchestration and local evaluation tooling sit around it.</p><h2>Boundary</h2><p>The Rust prover path is real and tested; the orchestrator still contains a demo-only CNF path. Current end-to-end messages demonstrate liveness and flow, not a fully bound real-world causation proof.</p><h2>Direction</h2><p>The reusable artifact shape is the interesting part: source-aware finding, normalized claim, evidence, derivation trace, proof artifact, verification result, and a human-readable handoff.</p></section><div class="case-links"><a href="https://github.com/k-luecke/zkfwdbld">source ↗</a><a href="https://github.com/k-luecke/zkfwdbld/blob/main/docs/proof_contract.md">proof contract ↗</a></div></main>
+<footer class="site-footer wrap"><span>termbrow.org</span><span><a href="https://github.com/k-luecke">GitHub</a></span><span>evidence under the interface</span></footer>
+</body></html>

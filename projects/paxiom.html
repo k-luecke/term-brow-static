@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paxiom — Kyle Luecke</title><meta name="description" content="Cross-chain verification prototype with MPT proof verification and signed evidence envelopes.">
+<link rel="stylesheet" href="../assets/css/site.css"><script defer src="../assets/js/site.js"></script>
+</head><body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap"><a class="brand" href="../index.html">TERMBROW</a><nav><a class="active" href="../work.html">WORK</a><a href="../method.html">METHOD</a><a href="../about.html">ABOUT</a><a href="../cv.html">CV</a></nav><button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button></header>
+<main id="main" class="wrap narrow"><section class="case-hero"><p class="eyebrow">systems / cross-chain verification</p><h1>Paxiom</h1><p class="lede">A working prototype for answering historical Ethereum-state questions with Merkle-verified evidence rather than trusting whoever ran the node.</p><div class="status-row"><span class="status supported">PROTOTYPE</span><span class="status verified">159 TESTS</span></div></section><section class="case-grid"><h2>Working substrate</h2><p>Archived Ethereum account/storage proofs are checked against block-header <code>stateRoot</code> values using Merkle-Patricia verification.</p><h2>Service layer</h2><p>Node HTTP services wrap returned artifacts in signed envelopes using canonical JSON before hashing. x402 payment handling, deployment guards, and proof archives are separated into shared machinery.</p><h2>Audit</h2><p>The repository includes a deliberately unflattering audit. Fixed findings and still-open findings are kept distinct so testnet deployment or a signed response cannot be mistaken for a production guarantee.</p><h2>Not built</h2><p>Recursive zero-knowledge proofs over Ethereum consensus history are design intent, not an implemented feature. Some contracts remain untested and have known findings; a HyperBEAM device path is still a stub.</p></section><div class="case-links"><a href="https://github.com/k-luecke/paxiom">source ↗</a><a href="https://github.com/k-luecke/paxiom/blob/main/AUDIT_REPORT.md">audit ↗</a><a href="https://paxiom.org">project site ↗</a></div></main>
+<footer class="site-footer wrap"><span>termbrow.org</span><span><a href="https://github.com/k-luecke">GitHub</a></span><span>evidence under the interface</span></footer>
+</body></html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Method — Kyle Luecke</title><meta name="description" content="A reproducible research protocol for moving from uncertain question to bounded claim.">
+<link rel="stylesheet" href="assets/css/site.css"><script defer src="assets/js/site.js"></script>
+</head><body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap"><a class="brand" href="index.html">TERMBROW</a><nav><a href="work.html">WORK</a><a class="active" href="method.html">METHOD</a><a href="about.html">ABOUT</a><a href="cv.html">CV</a></nav><button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button></header>
+<main id="main" class="wrap narrow">
+<section class="hero compact"><p class="eyebrow">method / working protocol</p><h1>Make the claim smaller than the evidence, not larger.</h1><p class="lede">A cross-domain research process built around preregistration, provenance, falsification, negative results, and reproducibility.</p><p class="note">This page is the presentation layer. The canonical protocol lives in the <a href="https://github.com/k-luecke/research-method">research-method</a> repository, with templates, schemas, verification tooling, and worked examples.</p></section>
+<section class="section protocol">
+<div class="protocol-step"><b>01</b><div><h3>Question</h3><p>Turn the motivating idea into an observable distinction. State what would count as an answer.</p></div></div>
+<div class="protocol-step"><b>02</b><div><h3>Prior art</h3><p>Look for existing methods, confounds, equivalent formulations, and reasons the question may already be answered.</p></div></div>
+<div class="protocol-step"><b>03</b><div><h3>Claim boundary</h3><p>Write down the strongest claim the proposed evidence could support — and the broader claims it could not.</p></div></div>
+<div class="protocol-step"><b>04</b><div><h3>Hypotheses</h3><p>Define predictions and failure conditions before the result is known.</p></div></div>
+<div class="protocol-step"><b>05</b><div><h3>Preregistration / freeze</h3><p>Freeze sample selection, statistics, nulls, thresholds, exclusions, and stopping conditions when post-hoc freedom matters.</p></div></div>
+<div class="protocol-step"><b>06</b><div><h3>Acquisition</h3><p>Record where the bytes came from, when they were retrieved, and what transformations occur before analysis.</p></div></div>
+<div class="protocol-step"><b>07</b><div><h3>Analysis</h3><p>Run the declared procedure. Separate measured quantities from derived bounds and projections.</p></div></div>
+<div class="protocol-step"><b>08</b><div><h3>Adversarial checks</h3><p>Try to destroy the result with nulls, alternate assumptions, source-blind checks, differential tests, or explicit attack models.</p></div></div>
+<div class="protocol-step"><b>09</b><div><h3>Negative results</h3><p>Failed gates remain part of the record. A conjunction where two of three criteria pass is still a failed conjunction.</p></div></div>
+<div class="protocol-step"><b>10</b><div><h3>Provenance</h3><p>Hash artifacts, preserve lineage, and distinguish what was independently checked from what an artifact merely records.</p></div></div>
+<div class="protocol-step"><b>11</b><div><h3>Publication / reproduction</h3><p>Make the path from question to source bytes to result inspectable by someone who did not participate in the work.</p></div></div>
+</section>
+<section class="section"><div class="section-head"><h2>Status vocabulary</h2><span>epistemic state is part of the interface</span></div><div class="status-key">
+<div><span class="status verified">VERIFIED</span><p>Independently checked against the underlying artifact or computation.</p></div><div><span class="status recorded">RECORDED</span><p>Asserted by a source or artifact but not independently rerun or recomputed here.</p></div><div><span class="status derived">DERIVED</span><p>Follows from declared premises; the derivation must be inspectable.</p></div><div><span class="status failed">FAILED</span><p>A declared criterion was not met. It remains visible.</p></div><div><span class="status projected">PROJECTED</span><p>Extrapolated under an explicit, untested assumption.</p></div><div><span class="status narrowed">NARROWED</span><p>A stronger interpretation was withdrawn and replaced by what the evidence actually supports.</p></div></div></section>
+<section class="section"><div class="section-head"><h2>Method applied</h2><span>real examples</span></div><table class="claim-table"><thead><tr><th>Object</th><th>Claim state</th><th>Why it matters</th></tr></thead><tbody><tr><td><a href="projects/time-integrity.html">Time Integrity P1</a></td><td><span class="status verified">VERIFIED</span></td><td>Frozen statistic; source lineage and outputs preserved.</td></tr><tr><td><a href="projects/time-integrity.html">Time Integrity D2b</a></td><td><span class="status failed">FAILED</span></td><td>Two sub-criteria hold; scatter misses the frozen threshold by about 6.2×.</td></tr><tr><td><a href="projects/fincen-boi.html">FinCEN ownership edges</a></td><td><span class="status recorded">SOURCE-DEPENDENT</span></td><td>Edges remain traceable to separately public evidence rather than being promoted to confidential BOI facts.</td></tr><tr><td><a href="projects/811dog.html">811Dog classifications</a></td><td><span class="status derived">EXPLAINABLE</span></td><td>Every score records the rules that fired and can be rebuilt under changed rules.</td></tr></tbody></table></section>
+</main>
+<footer class="site-footer wrap"><span>termbrow.org</span><span><a href="https://github.com/k-luecke">GitHub</a></span><span>evidence under the interface</span></footer>
+</body></html>
