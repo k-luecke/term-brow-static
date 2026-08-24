@@ -77,6 +77,15 @@
       "status": [
         "WORKING"
       ]
+    },
+    {
+      "slug": "research-method",
+      "title": "research-method",
+      "kind": "method",
+      "repo": "k-luecke/research-method",
+      "status": [
+        "EXECUTABLE PROTOCOL"
+      ]
     }
   ]
 }
