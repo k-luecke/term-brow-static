@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-24",
+  "updated": "2026-09-16",
   "note": "Hand-curated presentation metadata. GitHub remains the source of record.",
   "projects": [
     {
@@ -19,6 +19,16 @@
       "repo": "k-luecke/Geo",
       "status": [
         "RESEARCH NOTEBOOK"
+      ]
+    },
+    {
+      "slug": "driftbound-labs",
+      "title": "Drift Bound Labs",
+      "kind": "research",
+      "repo": "k-luecke/driftbound-labs",
+      "status": [
+        "RESEARCH PLATFORM",
+        "IMPLEMENTED BENCHMARK"
       ]
     },
     {
