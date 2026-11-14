@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-16",
+  "updated": "2026-11-14",
   "note": "Hand-curated presentation metadata. GitHub remains the source of record.",
   "projects": [
     {
@@ -23,12 +23,22 @@
     },
     {
       "slug": "driftbound-labs",
-      "title": "Drift Bound Labs",
+      "title": "Driftbound Labs",
       "kind": "research",
       "repo": "k-luecke/driftbound-labs",
       "status": [
         "RESEARCH PLATFORM",
         "IMPLEMENTED BENCHMARK"
+      ]
+    },
+    {
+      "slug": "monad-1",
+      "title": "Monad(1) V7",
+      "kind": "research",
+      "repo": "k-luecke/monad-1-arc-agi-3",
+      "status": [
+        "100.0% COMPETITION",
+        "25/25 GAMES"
       ]
     },
     {
@@ -64,10 +74,10 @@
       "slug": "paxiom",
       "title": "Paxiom",
       "kind": "systems",
-      "repo": "k-luecke/paxiom",
+      "repo": "k-luecke/paxiom-static",
       "status": [
-        "PROTOTYPE",
-        "159 TESTS"
+        "LIVE \u00b7 v0.1.3",
+        "NPM \u00b7 PYPI \u00b7 MCP"
       ]
     },
     {
