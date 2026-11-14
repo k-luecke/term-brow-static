@@ -8,6 +8,7 @@
       "kind": "research",
       "repo": "k-luecke/time-integrity",
       "status": [
+        "v2.0.0 PREPRINT",
         "P1 VERIFIED",
         "D2b FAILED"
       ]
@@ -95,6 +96,46 @@
       "repo": "k-luecke/research-method",
       "status": [
         "EXECUTABLE PROTOCOL"
+      ]
+    },
+    {
+      "slug": "scp-typed-boundaries",
+      "title": "Typed Boundaries for Small-Model Web Agents",
+      "kind": "research",
+      "repo": "k-luecke/scp-typed-boundaries",
+      "status": [
+        "v1.0.0 PREPRINT",
+        "5/5 OTS CONFIRMED"
+      ]
+    },
+    {
+      "slug": "tonic-gating",
+      "title": "Tonic Gating (Phase Selects; It Does Not Amplify)",
+      "kind": "research",
+      "repo": "k-luecke/tonic-gating",
+      "status": [
+        "v1.0.0 PREPRINT",
+        "12/12 OTS CONFIRMED"
+      ]
+    },
+    {
+      "slug": "network-native-computation",
+      "title": "Network-Native Computation",
+      "kind": "research",
+      "repo": "k-luecke/network-native-computation",
+      "status": [
+        "v1.0.0 PREPRINT",
+        "8 EXPERIMENTS"
+      ]
+    },
+    {
+      "slug": "fnwd-v04-retraction",
+      "title": "FNWD v0.4 Retraction & Commutation",
+      "kind": "research",
+      "repo": "k-luecke/fnwd-v04-retraction",
+      "status": [
+        "v0.4.0 PREPRINT",
+        "6 GATES VERIFIED"
       ]
     }
   ]
