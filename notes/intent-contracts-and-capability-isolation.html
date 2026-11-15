@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Ring-0 Capabilities &amp; Typed Intent IR — TermBrow Technical Notes</title>
+<meta name="description" content="Partitioning T0–T4 authority across a no_std x86-64 UEFI Rust microkernel and an OCaml 5 control plane: W^X CR3 isolation, provenance-qualified AST bindings preventing EXPLORE-to-EXECUTE escalation, 6-boundary WAL crash recovery, and quarantined research lanes.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ring-0 Capabilities &amp; Typed Intent IR — TermBrow Technical Notes">
+<meta property="og:description" content="Partitioning T0–T4 authority across a no_std x86-64 UEFI Rust microkernel and an OCaml 5 control plane: W^X CR3 isolation, provenance-qualified AST bindings preventing EXPLORE-to-EXECUTE escalation, 6-boundary WAL crash recovery, and quarantined research lanes.">
+<meta property="og:url" content="https://termbrow.org/notes/intent-contracts-and-capability-isolation.html">
+<link rel="canonical" href="https://termbrow.org/notes/intent-contracts-and-capability-isolation.html">
+<link rel="alternate" type="application/atom+xml" title="TermBrow Technical Notes — Kyle Luecke" href="https://termbrow.org/feed.xml">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||'dark'}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/catalog.js"></script>
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">skip to reading column</a>
+
+<header class="tb-chrome-top">
+  <div class="tb-titlebar">
+    <div class="tb-brand-group">
+      <span class="tb-dot" aria-hidden="true">●</span>
+      <a class="tb-brand" href="/index.html">TermBrow</a>
+      <span class="tb-subtitle">— note · Ring-0 Capabilities &amp; Typed Intent IR</span>
+    </div>
+    <nav class="tb-topnav" aria-label="Primary">
+      <a class="active" href="/notes.html">NOTES</a><a href="/work.html">WORK (20)</a><a href="/method.html">METHOD</a><a href="/about.html">ABOUT</a><a href="/cv.html">CV</a>
+      <a href="https://driftboundlabs.com/ventures.html">DRIFTBOUND LABS ↗</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark or light theme" title="Toggle theme (Alt+D or :theme)">◐</button>
+    </nav>
+  </div>
+
+  <div class="tb-toolbar" role="search" aria-label="TermBrow address and command bar">
+    <button id="tb-back" class="tb-btn" type="button" title="Back" aria-label="Back">‹</button>
+    <a id="tb-home" class="tb-btn" href="/index.html" title="Home (:home)" aria-label="Home">⌂</a>
+    <form id="tb-addr-form" class="tb-addr-form">
+      <input id="addrbar" type="text" spellcheck="false" autocomplete="off"
+        aria-label="Search notes and projects or run a :command"
+        placeholder="termbrow://notes/intent-contracts-and-capability-isolation.html  —  search or type :notes :work :library :keywords :install :help  (/ or Ctrl+K)">
+    </form>
+    <button id="tb-save" class="tb-btn" type="button" title="Save to local library (Ctrl+S or :save)">☆ Save</button>
+    <button id="tb-help" class="tb-btn" type="button" title="Commands and keybindings (:help)">:help</button>
+  </div>
+
+  <div id="tb-feed-wrap" class="tb-feed-wrap" aria-label="For You and bounded discovery strip">
+    <div class="tb-feed-head">
+      <div class="tb-feed-controls">
+        <span>For You · Explore:</span>
+        <button id="tb-explore-btn" class="tb-pill-btn" type="button" title="Cycle Focus (15%) / Balanced (40%) / Discover (65%) (Alt+E)">Balanced (40%)</button>
+        <span class="tb-feed-hint">◇ = anchored cross-domain discovery (local 0.98-decay weights, zero tracking)</span>
+      </div>
+      <button id="tb-feed-toggle" class="tb-pill-btn" type="button" title="Hide or show strip (Alt+G)">Hide</button>
+    </div>
+    <div id="tb-feed" class="tb-feed-strip">
+      <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">JCS &amp; 15-State Receipt Precedence</span><span class="feed-item-meta"><span>note</span><span>RFC 8785 · Ed25519</span></span></a>
+      <a class="feed-item discover" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">◇ Schumann Canonical Coherence &amp; D2b</span><span class="feed-item-meta"><span>note</span><span>GWOSC O3 · CRLB</span></span></a>
+      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Ring-0 Capabilities &amp; Typed Intent IR</span><span class="feed-item-meta"><span>note</span><span>Rust UEFI · OCaml 5</span></span></a>
+      <a class="feed-item discover" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">◇ Kaplan–Meier Substations &amp; 811 Triage</span><span class="feed-item-meta"><span>note</span><span>N=31 Builds · 811Dog</span></span></a>
+      <a class="feed-item" href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html"><span class="feed-item-title">TermBrow TLS &amp; Bounded Curation</span><span class="feed-item-meta"><span>note</span><span>Python · curl_cffi</span></span></a>
+    </div>
+  </div>
+
+  <div id="tb-tabs" class="tb-tabs" aria-label="Open reading tabs">
+    <span class="tb-tab active"><a class="tb-tab-label" href="/notes/intent-contracts-and-capability-isolation.html" style="color:inherit;text-decoration:none;">note · Ring-0 Capabiliti</a></span>
+    <a class="tb-tab" href="/notes.html">+ Notes</a>
+  </div>
+</header>
+
+<section id="tb-inspector" class="tb-inspector" hidden aria-live="polite"></section>
+
+<div class="tb-reader">
+  <main id="main" class="tb-article">
+
+<article class="note-doc">
+  <header class="note-hero">
+    <p class="eyebrow">technical note 03 · operating systems, type systems &amp; kernel security</p>
+    <h1>Separating Semantic Inference from Ring-0 Authority: Typed Intent Contracts and Capability Confinement in INOS</h1>
+    <p class="lede">How IntentNativeOS partitions untrusted model completions (<code>T4</code>) from Ring-0 page tables and capability slots (<code>T0</code>), encodes provenance-qualified bindings in OCaml&nbsp;5 so exploratory examples cannot lower into executable authority, and tests crash-atomic WAL persistence under QEMU/OVMF.</p>
+    <div class="note-meta-bar">
+      <span>Kyle W. Luecke</span>
+      <span>2026-11-08</span>
+      <span>11 min read</span>
+      <span>Source: <a href="https://github.com/k-luecke/IntentNativeOS">k-luecke/IntentNativeOS (v0.3.0-alpha) ↗</a></span>
+    </div>
+  </header>
+
+  <h2>1. The Ambient-Authority Flaw in Agent-Assisted Desktops</h2>
+  <p>Conventional agentic shells Bolt a language model onto a POSIX user session: the model emits a bash command or Python script, and a runner executes it with the human user's full UID — inheriting read/write access to <code>$HOME</code>, SSH sockets, browser cookies, and outbound TCP. Prompt injection or a misparsed ambiguous instruction ("optimize my solver, say for latency") immediately becomes an unauthorized side effect because POSIX has no distinction between <em>what the user explicitly authorized</em> and <em>what an untrusted parser inferred</em>.</p>
+  <p><strong>IntentNativeOS (INOS)</strong> (<code>v0.3.0-alpha</code>) investigates the opposite architectural premise: treat model completions as untrusted external data (<code>T4</code>), strip Python and cloud dependencies out of the runtime entirely (<code>ADR-0001</code>), and enforce capability confinement from x86-64 Ring&nbsp;0 page tables up through an OCaml&nbsp;5 semantic compiler.</p>
+
+  <table>
+    <thead>
+      <tr><th>Trust Ring</th><th>Component</th><th>Authority &amp; Failure Containment</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>T0</code></td><td><code>kernel/</code> (<code>no_std</code> x86-64 UEFI Rust)</td><td>Physical frame allocator, 4-level <code>W^X</code> page tables, per-process <code>CR3</code> address spaces, capability table IPC, 6-boundary crash-tested WAL filesystem, VirtIO TCP/UDP + RFC&nbsp;4035 DNSSEC, <code>1280×800</code> GOP compositor. Zero model code inside <code>T0</code>.</td></tr>
+      <tr><td><code>T1</code></td><td><code>security/</code> (OCaml + C broker)</td><td>Fail-closed capability minting, CTAP2/FIDO2 step-up protocol, NIST FIPS&nbsp;203 (<code>ML-KEM-768</code>) &amp; FIPS&nbsp;204 (<code>ML-DSA-65</code>) signatures, TUF v1.0.33 repository verification.</td></tr>
+      <tr><td><code>T2</code></td><td><code>core/</code>, <code>compiler/</code> (OCaml 5)</td><td>Typed Intent IR, clarification gate state machine, deterministic DAG validator, dual-model A/B arbitration, append-only receipt journal. Bugs in <code>T2</code> cannot forge <code>T0</code>/<code>T1</code> capabilities.</td></tr>
+      <tr><td><code>T3</code></td><td><code>userspace/</code> &amp; <code>models/</code></td><td>17 native Ring&nbsp;3 <code>.inapp</code> binaries plus freestanding AVX2/FMA <code>Q8_0</code>/<code>Q4_0</code> inference (<code>quant_engine.c</code>), each confined to explicit capability descriptors.</td></tr>
+      <tr><td><code>T4</code></td><td>External inputs &amp; completions</td><td>Documents, network packets, and raw token streams — carry zero ambient authority.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>2. Provenance-Qualified AST Nodes: Preventing Example-to-Objective Escalation</h2>
+  <p>A subtle failure mode in natural-language compilation occurs when a user supplies an illustrative parameter during exploratory discussion ("suppose we optimize for minimum latency as an example") and a downstream planner promotes that example into a destructive execution constraint. In INOS's OCaml&nbsp;5 control plane, values inside an <code>intent_contract</code> are wrapped in a provenance-qualified record tracking both origin and binding strength:</p>
+
+<pre><code>type mode = Explore | Design | Simulate | Execute | Maintain
+
+type value_origin =
+  | User_explicit
+  | User_selected_example
+  | Workspace_observed
+  | Model_inferred
+  | Policy_default
+
+type binding = Example | Preference | Constraint | Authorized_action
+
+type 'a qualified = {
+  value    : 'a;
+  origin   : value_origin;
+  binding  : binding;
+  evidence : artifact_hash list;
+}</code></pre>
+
+  <p>Two deterministic compiler invariants govern lowering from <code>Intent IR</code> → <code>Plan IR</code> → <code>Operation IR</code>:</p>
+  <ol>
+    <li><strong>Mode non-escalation (<code>I-02</code>):</strong> Contracts in <code>Explore</code>, <code>Design</code>, or <code>Simulate</code> modes statically forbid lowering any operation whose declared effect set intersects <code>Write_resource</code>, <code>Network_connect</code>, or <code>Change_system_policy</code>. Transitioning to <code>Execute</code> invalidates stale revisions and routes through the clarification/authorization gate:
+      <div class="eq-box">
+        RECEIVED → CONTEXT_RESOLVED → INTENT_DRAFTED → [READY | CLARIFICATION_REQUIRED]<br>
+        READY → AWAITING_AUTHORIZATION → [AUTHORIZED | REJECTED | EXPIRED] → PLANNING → EXECUTING → VERIFYING
+      </div>
+    </li>
+    <li><strong>Binding monotonicity (<code>I-01</code>, <code>I-03</code>):</strong> No compiler pass or model handoff envelope (<code>inos.handoff.v0.2</code>) can upgrade <code>binding = Example</code> or <code>origin = Model_inferred</code> into <code>Authorized_action</code> without a fresh human challenge-response receipt from the <code>T1</code> broker:
+      <div class="eq-box">
+        UNTRUSTED_REQUEST → CANONICAL_OP_DIGEST → POLICY_CHECK → FRESH_CHALLENGE → INDEPENDENT_APPROVAL → SCOPED_CAPABILITY → ONE_OPERATION → REVOKE
+      </div>
+    </li>
+  </ol>
+
+  <h2>3. Model Independence (<code>I-04</code>) and Crash-Atomic WAL Storage</h2>
+  <p>An operating system whose file manager, compositor, or recovery shell stops working when local LLM weights are unloaded is a fragile wrapper, not an OS. System invariant <code>I-04</code> requires cold UEFI boot (<code>BOOTX64.EFI</code>), per-process <code>CR3</code> scheduling, the <code>1280×800</code> GOP spatial desktop, all 17 native Ring&nbsp;3 applications, permission enforcement, and storage recovery to operate deterministically with zero models loaded (and under 16&nbsp;GiB consumer RAM ceilings where optional local <code>Q8_0</code>/<code>Q4_0</code> weights are the first pages reclaimed under memory pressure).</p>
+  <p>Similarly, invariant <code>I-08</code> (reversibility and preservation, exposed in the UI as atomic <code>F3 Undo</code> mutation receipts) cannot rely on userland copy-on-write conventions alone; it rests on a kernel write-ahead log (WAL) verified across six explicit crash-injection boundaries (pre-header, mid-descriptor, pre-commit barrier, post-commit/pre-checkpoint, partial checkpoint, and replay idempotence). Below are two automated QEMU/OVMF qualification captures from the <code>v0.3.0-alpha</code> release artifact set demonstrating WAL crash/reboot persistence and Ring&nbsp;3 capability policy denial:</p>
+
+  <div class="media-grid">
+    <figure class="media-card">
+      <video controls preload="metadata" muted playsinline src="/assets/media/inos/capture_c_reboot_master.mp4"></video>
+      <figcaption><strong>Capture C · WAL Crash / Reboot Persistence</strong>Committed mutation state surviving forced reboot and deterministic journal replay.</figcaption>
+    </figure>
+    <figure class="media-card">
+      <video controls preload="metadata" muted playsinline src="/assets/media/inos/capture_d_denial_master.mp4"></video>
+      <figcaption><strong>Capture D · Capability Policy Denial</strong>Fail-closed broker rejecting unauthorized Ring 3 capability escalation.</figcaption>
+    </figure>
+  </div>
+
+  <h2>4. Quarantined Research Lanes and Withheld Beta Gates</h2>
+  <p>Because INOS serves as an integration testbed for ideas developed across other Driftbound Labs studies, negative internal benchmarks are recorded directly in-tree (<code>docs/research/L308_DECISION_RECORD.md</code>) rather than silently shipped:</p>
+  <ul>
+    <li><strong><code>research/tonic</code> quarantined <code>OFF</code>:</strong> When oscillatory tonic gating was benchmarked inside the control-plane router (<code>L306</code>), it required <strong>71</strong> model invocations against <strong>40</strong> in the deterministic control baseline (<code>C00</code>), failing its invocation-reduction gate. It remains compiled off by default.</li>
+    <li><strong><code>research/scp</code> quarantined <code>OFF</code>:</strong> While typed boundary projection achieved a <code>0.0%</code> false-authorization rate, it tied the existing deterministic OCaml AST verifier already enforced in <code>core/</code>, adding complexity without net security gain inside INOS's closed IR.</li>
+    <li><strong>Production Beta explicitly withheld (<code>BLK-01</code>, <code>BLK-02</code>):</strong> Although all <strong>55/55</strong> unit, property, adversarial-boundary, and Sentinel BQS suites pass under <code>dune runtest</code> in QEMU/OVMF emulation, Beta status remains gated behind bare-metal USB HID FIDO2 hardware-token passthrough validation (<code>BLK-01</code>) and an independent external cryptographic and kernel memory-safety audit (<code>BLK-02</code>).</li>
+  </ul>
+
+  <div class="case-links">
+    <a href="/projects/intentnativeos.html">← IntentNativeOS Case Study (All 4 QEMU Captures)</a>
+    <a href="https://github.com/k-luecke/IntentNativeOS">k-luecke/IntentNativeOS ↗</a>
+    <a href="https://github.com/k-luecke/IntentNativeOS/releases/tag/v0.3.0-alpha">Release v0.3.0-alpha ↗</a>
+  </div>
+</article>
+
+  </main>
+</div>
+
+<footer class="tb-bottom">
+  <div class="tb-status">
+    <span id="tb-status-msg" class="tb-status-msg">Reading /notes/intent-contracts-and-capability-isolation.html · 11 min read · Rust UEFI · OCaml 5</span>
+    <span class="tb-status-links">
+      <a href="https://driftboundlabs.com">Driftbound Labs LLC</a>
+      <a href="https://paxiom.org">paxiom.org</a>
+      <a href="/feed.xml">Atom/RSS</a>
+      <a href="https://github.com/k-luecke">GitHub</a>
+      <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+    </span>
+  </div>
+  <div class="tb-keybar" aria-label="TermBrow command shortcuts">
+    <button type="button" data-cmd=":focus-addr"><kbd>/</kbd>Address</button>
+    <button type="button" data-cmd=":notes"><kbd>:notes</kbd>Articles</button>
+    <button type="button" data-cmd=":work"><kbd>:work</kbd>20 Cases</button>
+    <button type="button" data-cmd=":save"><kbd>^S</kbd>Save</button>
+    <button type="button" data-cmd=":library"><kbd>Alt+Y</kbd>Library</button>
+    <button type="button" data-cmd=":history"><kbd>Alt+H</kbd>History</button>
+    <button type="button" data-cmd=":keywords"><kbd>:keywords</kbd>Weights</button>
+    <button type="button" data-cmd=":explore"><kbd>Alt+E</kbd>Explore</button>
+    <button type="button" data-cmd=":strip"><kbd>Alt+G</kbd>Strip</button>
+    <button type="button" data-cmd=":theme"><kbd>Alt+D</kbd>Light/Dark</button>
+    <button type="button" data-cmd=":install"><kbd>:install</kbd>CLI</button>
+  </div>
+</footer>
+</body>
+</html>

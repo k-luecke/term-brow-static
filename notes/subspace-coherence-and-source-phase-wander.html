@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Schumann Canonical Coherence &amp; D2b — TermBrow Technical Notes</title>
+<meta name="description" content="Deriving GL(2,C)-invariant whitened cross-spectral eigenvalues over horizontal vault magnetometers, translating null-subtracted coherence into a 76.6 µs Carter Cramér–Rao bound, and diagnosing why diurnal thunderstorm migration broke inter-window GCC-SCOT stationarity (Gate D2b).">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Schumann Canonical Coherence &amp; D2b — TermBrow Technical Notes">
+<meta property="og:description" content="Deriving GL(2,C)-invariant whitened cross-spectral eigenvalues over horizontal vault magnetometers, translating null-subtracted coherence into a 76.6 µs Carter Cramér–Rao bound, and diagnosing why diurnal thunderstorm migration broke inter-window GCC-SCOT stationarity (Gate D2b).">
+<meta property="og:url" content="https://termbrow.org/notes/subspace-coherence-and-source-phase-wander.html">
+<link rel="canonical" href="https://termbrow.org/notes/subspace-coherence-and-source-phase-wander.html">
+<link rel="alternate" type="application/atom+xml" title="TermBrow Technical Notes — Kyle Luecke" href="https://termbrow.org/feed.xml">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||'dark'}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/catalog.js"></script>
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">skip to reading column</a>
+
+<header class="tb-chrome-top">
+  <div class="tb-titlebar">
+    <div class="tb-brand-group">
+      <span class="tb-dot" aria-hidden="true">●</span>
+      <a class="tb-brand" href="/index.html">TermBrow</a>
+      <span class="tb-subtitle">— note · Schumann Canonical Coherence &amp; D2b</span>
+    </div>
+    <nav class="tb-topnav" aria-label="Primary">
+      <a class="active" href="/notes.html">NOTES</a><a href="/work.html">WORK (20)</a><a href="/method.html">METHOD</a><a href="/about.html">ABOUT</a><a href="/cv.html">CV</a>
+      <a href="https://driftboundlabs.com/ventures.html">DRIFTBOUND LABS ↗</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark or light theme" title="Toggle theme (Alt+D or :theme)">◐</button>
+    </nav>
+  </div>
+
+  <div class="tb-toolbar" role="search" aria-label="TermBrow address and command bar">
+    <button id="tb-back" class="tb-btn" type="button" title="Back" aria-label="Back">‹</button>
+    <a id="tb-home" class="tb-btn" href="/index.html" title="Home (:home)" aria-label="Home">⌂</a>
+    <form id="tb-addr-form" class="tb-addr-form">
+      <input id="addrbar" type="text" spellcheck="false" autocomplete="off"
+        aria-label="Search notes and projects or run a :command"
+        placeholder="termbrow://notes/subspace-coherence-and-source-phase-wander.html  —  search or type :notes :work :library :keywords :install :help  (/ or Ctrl+K)">
+    </form>
+    <button id="tb-save" class="tb-btn" type="button" title="Save to local library (Ctrl+S or :save)">☆ Save</button>
+    <button id="tb-help" class="tb-btn" type="button" title="Commands and keybindings (:help)">:help</button>
+  </div>
+
+  <div id="tb-feed-wrap" class="tb-feed-wrap" aria-label="For You and bounded discovery strip">
+    <div class="tb-feed-head">
+      <div class="tb-feed-controls">
+        <span>For You · Explore:</span>
+        <button id="tb-explore-btn" class="tb-pill-btn" type="button" title="Cycle Focus (15%) / Balanced (40%) / Discover (65%) (Alt+E)">Balanced (40%)</button>
+        <span class="tb-feed-hint">◇ = anchored cross-domain discovery (local 0.98-decay weights, zero tracking)</span>
+      </div>
+      <button id="tb-feed-toggle" class="tb-pill-btn" type="button" title="Hide or show strip (Alt+G)">Hide</button>
+    </div>
+    <div id="tb-feed" class="tb-feed-strip">
+      <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">JCS &amp; 15-State Receipt Precedence</span><span class="feed-item-meta"><span>note</span><span>RFC 8785 · Ed25519</span></span></a>
+      <a class="feed-item discover" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">◇ Schumann Canonical Coherence &amp; D2b</span><span class="feed-item-meta"><span>note</span><span>GWOSC O3 · CRLB</span></span></a>
+      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Ring-0 Capabilities &amp; Typed Intent IR</span><span class="feed-item-meta"><span>note</span><span>Rust UEFI · OCaml 5</span></span></a>
+      <a class="feed-item discover" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">◇ Kaplan–Meier Substations &amp; 811 Triage</span><span class="feed-item-meta"><span>note</span><span>N=31 Builds · 811Dog</span></span></a>
+      <a class="feed-item" href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html"><span class="feed-item-title">TermBrow TLS &amp; Bounded Curation</span><span class="feed-item-meta"><span>note</span><span>Python · curl_cffi</span></span></a>
+    </div>
+  </div>
+
+  <div id="tb-tabs" class="tb-tabs" aria-label="Open reading tabs">
+    <span class="tb-tab active"><a class="tb-tab-label" href="/notes/subspace-coherence-and-source-phase-wander.html" style="color:inherit;text-decoration:none;">note · Schumann Canonica</a></span>
+    <a class="tb-tab" href="/notes.html">+ Notes</a>
+  </div>
+</header>
+
+<section id="tb-inspector" class="tb-inspector" hidden aria-live="polite"></section>
+
+<div class="tb-reader">
+  <main id="main" class="tb-article">
+
+<article class="note-doc">
+  <header class="note-hero">
+    <p class="eyebrow">technical note 02 · signal processing, time metrology &amp; geophysics</p>
+    <h1>Two-Axis Canonical Coherence and the Source-Phase Stationarity Gap Across a 3,002 km Magnetometer Baseline</h1>
+    <p class="lede">Deriving <code>GL(2, ℂ)</code>-invariant canonical coherence over horizontal subterranean magnetometers, mapping null-subtracted cross-spectra into a 76.6 µs Carter Cramér–Rao timing floor, and analyzing why diurnal thunderstorm migration defeated unmodeled time-domain lag stationarity (Gate D2b).</p>
+    <div class="note-meta-bar">
+      <span>Kyle W. Luecke</span>
+      <span>2026-11-12</span>
+      <span>12 min read</span>
+      <span>Source: <a href="https://github.com/k-luecke/time-integrity">k-luecke/time-integrity ↗</a> · <a href="https://driftboundlabs.com/papers/Schumann_Clock_Integrity_v2.pdf">v2.0 Preprint PDF ↗</a></span>
+    </div>
+  </header>
+
+  <h2>1. The Algebraic Blind Spot of Two-Way Packet Timing</h2>
+  <p>Every two-way packet synchronization protocol between clocks at sites <em>A</em> and <em>B</em> — including NTP (RFC&nbsp;5905) and IEEE&nbsp;1588 PTP — exchanges directional timestamps to measure two scalar intervals:</p>
+
+  <div class="eq-box">
+    Δt_fwd = θ + d_fwd,&nbsp;&nbsp;&nbsp;&nbsp;Δt_rev = −θ + d_rev<br>
+    ⇒&nbsp; θ_hat = (Δt_fwd − Δt_rev) / 2 = θ + (d_fwd − d_rev) / 2,&nbsp;&nbsp;&nbsp;&nbsp;RTT = d_fwd + d_rev
+  </div>
+
+  <p>Because two linear equations cannot solve for three unknowns <code>(θ, d_fwd, d_rev)</code>, packet timing protocols must assume path symmetry (<code>d_fwd = d_rev</code>). An on-path adversary who buffers forward packets by <code>+δ</code> and accelerates reverse packets by <code>−δ</code> (for example, rerouting from a congested queue to a shorter physical path while holding the forward queue) biases the receiver's clock estimate by <code>δ / 2</code> while leaving <code>RTT</code> unchanged. Packet-layer cryptographic authentication (NTS, RFC&nbsp;8915; PTPsec) authenticates the timestamp integers written by the sender, not the physical propagation symmetry of the medium.</p>
+  <p>Detecting an asymmetric delay attack without relying on GNSS (itself vulnerable to localized RF spoofing and inaccessible inside subterranean vaults) requires an exterior physical observable visible across continental baselines. Global lightning (~50–100 strokes/s, ~10<sup>11</sup>&nbsp;W electromagnetic excitation) continuously excites the Earth–ionosphere spherical waveguide at the Schumann eigenmodes (<code>f_1 ≈ 7.8 Hz</code>, <code>f_2 ≈ 14.1 Hz</code>, <code>f_3 ≈ 20.3 Hz</code>, <code>f_4 ≈ 26.4 Hz</code>), attenuating at only ~0.2–0.5&nbsp;dB/Mm and penetrating deep underground enclosures.</p>
+
+  <h2>2. Why Scalar Coherence Fails on Elliptically Polarized Horizontal Modes</h2>
+  <p>Consider two-axis horizontal induction/fluxgate magnetometers recording <code>x_H(t) = [x_HX(t), x_HY(t)]^T</code> at LIGO Hanford (Washington) and <code>x_L(t) = [x_LX(t), x_LY(t)]^T</code> at LIGO Livingston (Louisiana), separated by a 3,002&nbsp;km baseline (10.0&nbsp;ms vacuum light-time; ~13.0&nbsp;ms ELF waveguide delay at <code>v_ph ≈ 0.77c</code>).</p>
+  <p>During a preregistered six-hour quiet epoch in Observing Run O3 (<code>2020-01-29 01:53:02–07:53:02 UTC</code>, GPS <code>1264298000–1264319600</code>, decimated from 4,096&nbsp;Hz to 128&nbsp;Hz and analyzed via 16&nbsp;s Hann Welch windows with 50% overlap, <code>Δf = 0.0625 Hz</code>, <code>N_avg = 2,699</code>), evaluating ordinary scalar magnitude-squared coherence across the fundamental band <code>[7.3, 8.3] Hz</code> produces an apparent paradox:</p>
+
+  <table>
+    <thead>
+      <tr><th>Axis Pair</th><th>Mean γ²_ij(f₁) in [7.3, 8.3] Hz</th><th>Physical Interpretation</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>H_X – L_X</code></td><td><code>0.0215</code></td><td>Near noise floor despite identical channel labels.</td></tr>
+      <tr><td><code>H_Y – L_Y</code></td><td><code>0.0974</code></td><td>Weak parallel-axis projection.</td></tr>
+      <tr><td><code>H_X – L_Y</code></td><td><code>0.1477</code></td><td>Cross-polarized coupling exceeds parallel axes.</td></tr>
+      <tr><td><code>H_Y – L_X</code></td><td><code>0.1584</code></td><td>Strongest single scalar pair, still missing orthogonal energy.</td></tr>
+      <tr><td><strong>Canonical λ₁(f₁)</strong></td><td><strong><code>0.3291</code></strong></td><td><strong>2.08× best scalar pair; captures full 2D polarization ellipse.</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p>In a spherical cavity, horizontal magnetic waves arrive elliptically polarized at site-dependent azimuths, and auxiliary facility magnetometers have differing local vault orientations and transfer gains. Picking any single scalar pair <code>(i, j)</code> discards wavefield power projected onto the orthogonal sensor axis.</p>
+  <p>Following Koopmans (1974) and Brillinger (1981), we instead form optimal frequency-dependent virtual antennas <code>u(f), v(f) ∈ ℂ²</code> maximizing inter-site coherence:</p>
+
+  <div class="eq-box">
+    λ₁(f) = max_{u,v ≠ 0}  |u† S_HL(f) v|² / [ (u† S_HH(f) u)(v† S_LL(f) v) ]  ∈ [0, 1]<br>
+    C(f)  = S_HH(f)^(-1/2) · S_HL(f) · S_LL(f)^(-1/2),&nbsp;&nbsp;&nbsp;&nbsp;λ₁(f) = σ_max²( C(f) )
+  </div>
+
+  <p><strong>Calibration and rotation invariance:</strong> Suppose the physical sensor vectors at each vault undergo arbitrary invertible linear distortions <code>x_H ↦ A_H x_H</code> and <code>x_L ↦ A_L x_L</code> for any <code>A_H, A_L ∈ GL(2, ℂ)</code> (encompassing compass rotation, unequal coil gain, axis sign flips, and frequency-dependent cross-talk). Then <code>S_HH ↦ A_H S_HH A_H†</code> and <code>S_HL ↦ A_H S_HL A_L†</code>, which merely bijectively re-parameterizes the optimization vectors <code>u ↦ A_H^(-†) u</code> and <code>v ↦ A_L^(-†) v</code>, leaving the maximum eigenvalue <code>λ₁(f)</code> identically unchanged.</p>
+
+  <h2>3. Surrogate Nulls, Vault Shielding Gain, and the 76.6 µs Carter Bound</h2>
+  <p>Because maximizing over <code>ℂ² × ℂ²</code> introduces positive finite-sample eigenvalue bias even under zero coupling, all gates were frozen in <code>preregistration/o3_vault_run.py</code> (SHA-256 <code>f45dca61...</code>) before inspecting O3 data:</p>
+  <ul>
+    <li><strong>Off-band empirical null (<code>μ₀</code>):</strong> Averaging <code>λ₁(f)</code> across inter-mode troughs yields <code>μ₀ = 0.0399 ± 0.0118</code>, placing observed fundamental coherence <code>γ²_can(f₁) = 0.3291</code> at <strong><code>z = 24.54</code></strong> (Gate <code>P1</code> supported).</li>
+    <li><strong>Vector block-permutation (<code>N1</code>) and phase-randomization (<code>N2</code>) surrogates:</strong> Permuting 64&nbsp;s two-axis L1 blocks (4× longer than the 16&nbsp;s Welch window, preserving intra-site X/Y covariance and auto-spectra) collapses fundamental coherence to <code>0.0020</code> (max <code>0.0065</code> across 20 permutations, <code>p = 1/21 = 0.0476</code>); Fourier phase randomization collapses it to <code>0.0014</code>.</li>
+    <li><strong>Subterranean vault SNR leverage (<code>P2</code>):</strong> In an earlier asymmetric GW170814 pilot where H1 used an unshielded corner-station fluxgate exposed to 60&nbsp;Hz building electronics, null-subtracted coherence was <code>0.0058</code>. Moving H1 to the isolated subterranean vault induction coil (<code>H1:PEM-VAULT_MAG_1030X195Y_COIL_X/Y_DQ</code>) raised null-subtracted coherence to <code>0.2892</code> — a <strong><code>49.9×</code></strong> like-for-like gain.</li>
+  </ul>
+
+  <p>Subtracting the empirical off-band floor <code>g(f) = max(λ₁(f) − μ₀, 0)</code> defines the conservative coherent SNR <code>SNR_eff(f) = g(f) / (1 − g(f))</code>. Substituting into Carter's (1987) Cramér–Rao lower bound across <code>[6, 25] Hz</code> bounds the minimum variance of any unbiased delay estimator over integration window <code>T = 21,600 s</code>:</p>
+
+  <div class="eq-box">
+    σ_τ(T) ≥ [ 2T ∫_{6 Hz}^{25 Hz} (2πf)² · ( g(f) / (1 − g(f)) ) df ]^(-1/2) = 76.6 µs  (45.7 µs raw)
+  </div>
+
+  <p>Scaled to a single 30-minute sub-window (<code>T_w = 1,800 s = T / 12</code>), the theoretical white-noise timing floor is <code>σ_τ,30m = 76.6 µs × √12 = 265 µs</code>, which fixed our preregistered 3σ inter-window stability threshold at <code>max(3 σ_τ,30m, 0.3 ms) = 0.796 ms</code>.</p>
+
+  <h2>4. Anatomy of a Failed Gate: Why <code>D2b</code> Wandered by 4.95 ms</h2>
+  <p>Gate <code>D2b</code> tested whether an unmodeled, orientation-free time-domain Generalized Cross-Correlation with Smoothed Coherence Transform (<code>GCC-SCOT</code>) could achieve stationary sub-millisecond lag tracking across twelve consecutive 30-minute windows:</p>
+
+  <div class="eq-box">
+    C_ij(τ) = F^(-1){ S_{H_i L_j}(f) / √( S_{H_i H_i}(f) S_{L_j L_j}(f) ) }(τ),&nbsp;&nbsp;&nbsp;&nbsp;Q(τ) = Σ_{i,j ∈ {X,Y}} C_ij²(τ),&nbsp;&nbsp;&nbsp;&nbsp;τ_hat = argmax_{|τ| ≤ 150 ms} Q(τ)
+  </div>
+
+  <p><code>D2b</code> required a three-part conjunction. Two criteria passed and the third failed decisively:</p>
+  <ol>
+    <li><strong>Per-window statistical significance (<code>&gt; 6/12</code> at <code>p ≤ 0.05</code>):</strong> <strong>11 of 12</strong> windows exceeded all 19 in-window block-permutation surrogates.</li>
+    <li><strong>Physical propagation bound (<code>|τ_med| ≤ 15 ms</code>):</strong> Observed median lag was <strong><code>−3.85 ms</code></strong>, well inside the Earth–ionosphere waveguide bound.</li>
+    <li><strong>Inter-window lag stationarity (<code>MADN(τ_hat) ≤ 0.796 ms</code>):</strong> <strong>Failed</strong> — observed normalized median absolute deviation was <strong><code>4.953 ms</code></strong> (6.2× above threshold, 18.7× the <code>0.265 ms</code> per-window CRLB), with individual 30-minute peaks spanning <code>−9.89 ms</code> to <code>+12.23 ms</code> while both LIGO observatories remained GPS-locked to sub-microsecond precision.</li>
+  </ol>
+
+  <p>Why does the spectral information bound permit <code>76.6 µs</code> (<code>D1</code>) while unmodeled time-domain lag wanders by <code>4.95 ms</code> (<code>D2b</code>)? Carter's CRLB bounds phase estimation precision <em>conditioned on a known or time-invariant inter-site transfer function</em> <code>H_HL(f)</code>. In the real Earth–ionosphere cavity, excitation is dominated by three localized tropical continental thunderstorm chimneys (Maritime Continent/Asia, Africa, Americas) whose relative intensity migrates westward across the 01:53–07:53&nbsp;UTC window. Because the Schumann field is a partially standing interference pattern rather than a single plane wave, shifting source geometry rotates the complex cross-spectral phase <code>arg S_HL(f)</code> by milliseconds of apparent group delay.</p>
+  <p>Crucially, two follow-on attempts archived in <a href="https://github.com/k-luecke/Geo"><code>k-luecke/Geo</code></a> using contemporaneous World Wide Lightning Location Network (WWLLN) stroke catalogs also failed to close this gap without full spherical-waveguide forward modeling: 30-minute WWLLN spatial energy conditioning (<code>wwlln_coherency_v12</code>) did not improve complex coherency prediction, and 128&nbsp;Hz time-only transient common-view association (<code>transient_commonview_v1</code>) yielded <code>p_emp = 0.4216</code> against a 1,000-shift circular null. Reaching the sub-100&nbsp;µs physical bound in operational clock auditing therefore requires either multi-station low-rank source-subspace projection or explicit vector waveguide transfer inversion.</p>
+
+  <div class="callout">
+    <strong>Acknowledgments &amp; Provenance:</strong> The author gratefully thanks <strong>Professor Robert H. Holzworth</strong> (University of Washington) and the <strong>World Wide Lightning Location Network (<a href="http://wwlln.net">http://wwlln.net</a>)</strong> for providing the WWLLN global lightning stroke data used in the companion <code>Geo</code> investigations, and acknowledges the <strong>Gravitational Wave Open Science Center (<a href="https://gwosc.org">gwosc.org</a>)</strong> of LIGO, Virgo, and KAGRA for public O3 vault magnetometry. Verify the two-byte post-verdict serialization diff directly via <code>cmp -l preregistration/o3_vault_run.py analysis/o3_vault_run_v4_1.py</code>.
+  </div>
+
+  <div class="case-links">
+    <a href="/projects/time-integrity.html">← Time Integrity Case Study</a>
+    <a href="https://driftboundlabs.com/papers/Schumann_Clock_Integrity_v2.pdf">v2.0 Preprint PDF (8 pp.) ↗</a>
+    <a href="https://github.com/k-luecke/time-integrity">k-luecke/time-integrity ↗</a>
+    <a href="https://github.com/k-luecke/Geo">Companion Geo Repository ↗</a>
+  </div>
+</article>
+
+  </main>
+</div>
+
+<footer class="tb-bottom">
+  <div class="tb-status">
+    <span id="tb-status-msg" class="tb-status-msg">Reading /notes/subspace-coherence-and-source-phase-wander.html · 12 min read · GWOSC O3 · CRLB</span>
+    <span class="tb-status-links">
+      <a href="https://driftboundlabs.com">Driftbound Labs LLC</a>
+      <a href="https://paxiom.org">paxiom.org</a>
+      <a href="/feed.xml">Atom/RSS</a>
+      <a href="https://github.com/k-luecke">GitHub</a>
+      <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+    </span>
+  </div>
+  <div class="tb-keybar" aria-label="TermBrow command shortcuts">
+    <button type="button" data-cmd=":focus-addr"><kbd>/</kbd>Address</button>
+    <button type="button" data-cmd=":notes"><kbd>:notes</kbd>Articles</button>
+    <button type="button" data-cmd=":work"><kbd>:work</kbd>20 Cases</button>
+    <button type="button" data-cmd=":save"><kbd>^S</kbd>Save</button>
+    <button type="button" data-cmd=":library"><kbd>Alt+Y</kbd>Library</button>
+    <button type="button" data-cmd=":history"><kbd>Alt+H</kbd>History</button>
+    <button type="button" data-cmd=":keywords"><kbd>:keywords</kbd>Weights</button>
+    <button type="button" data-cmd=":explore"><kbd>Alt+E</kbd>Explore</button>
+    <button type="button" data-cmd=":strip"><kbd>Alt+G</kbd>Strip</button>
+    <button type="button" data-cmd=":theme"><kbd>Alt+D</kbd>Light/Dark</button>
+    <button type="button" data-cmd=":install"><kbd>:install</kbd>CLI</button>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Kaplan–Meier Substations &amp; 811 Triage — TermBrow Technical Notes</title>
+<meta name="description" content="Eliminating lookahead and survivorship bias in hyperscale power/civil auditing (211-day median physical divergence lead, 112.0-week Kaplan–Meier energization median), paired with CSV export-first One-Call locate filtering and conjunctive contractor scoring.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kaplan–Meier Substations &amp; 811 Triage — TermBrow Technical Notes">
+<meta property="og:description" content="Eliminating lookahead and survivorship bias in hyperscale power/civil auditing (211-day median physical divergence lead, 112.0-week Kaplan–Meier energization median), paired with CSV export-first One-Call locate filtering and conjunctive contractor scoring.">
+<meta property="og:url" content="https://termbrow.org/notes/sovereign-telemetry-and-kaplan-meier-energization.html">
+<link rel="canonical" href="https://termbrow.org/notes/sovereign-telemetry-and-kaplan-meier-energization.html">
+<link rel="alternate" type="application/atom+xml" title="TermBrow Technical Notes — Kyle Luecke" href="https://termbrow.org/feed.xml">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||'dark'}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/catalog.js"></script>
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">skip to reading column</a>
+
+<header class="tb-chrome-top">
+  <div class="tb-titlebar">
+    <div class="tb-brand-group">
+      <span class="tb-dot" aria-hidden="true">●</span>
+      <a class="tb-brand" href="/index.html">TermBrow</a>
+      <span class="tb-subtitle">— note · Kaplan–Meier Substations &amp; 811 Triage</span>
+    </div>
+    <nav class="tb-topnav" aria-label="Primary">
+      <a class="active" href="/notes.html">NOTES</a><a href="/work.html">WORK (20)</a><a href="/method.html">METHOD</a><a href="/about.html">ABOUT</a><a href="/cv.html">CV</a>
+      <a href="https://driftboundlabs.com/ventures.html">DRIFTBOUND LABS ↗</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark or light theme" title="Toggle theme (Alt+D or :theme)">◐</button>
+    </nav>
+  </div>
+
+  <div class="tb-toolbar" role="search" aria-label="TermBrow address and command bar">
+    <button id="tb-back" class="tb-btn" type="button" title="Back" aria-label="Back">‹</button>
+    <a id="tb-home" class="tb-btn" href="/index.html" title="Home (:home)" aria-label="Home">⌂</a>
+    <form id="tb-addr-form" class="tb-addr-form">
+      <input id="addrbar" type="text" spellcheck="false" autocomplete="off"
+        aria-label="Search notes and projects or run a :command"
+        placeholder="termbrow://notes/sovereign-telemetry-and-kaplan-meier-energization.html  —  search or type :notes :work :library :keywords :install :help  (/ or Ctrl+K)">
+    </form>
+    <button id="tb-save" class="tb-btn" type="button" title="Save to local library (Ctrl+S or :save)">☆ Save</button>
+    <button id="tb-help" class="tb-btn" type="button" title="Commands and keybindings (:help)">:help</button>
+  </div>
+
+  <div id="tb-feed-wrap" class="tb-feed-wrap" aria-label="For You and bounded discovery strip">
+    <div class="tb-feed-head">
+      <div class="tb-feed-controls">
+        <span>For You · Explore:</span>
+        <button id="tb-explore-btn" class="tb-pill-btn" type="button" title="Cycle Focus (15%) / Balanced (40%) / Discover (65%) (Alt+E)">Balanced (40%)</button>
+        <span class="tb-feed-hint">◇ = anchored cross-domain discovery (local 0.98-decay weights, zero tracking)</span>
+      </div>
+      <button id="tb-feed-toggle" class="tb-pill-btn" type="button" title="Hide or show strip (Alt+G)">Hide</button>
+    </div>
+    <div id="tb-feed" class="tb-feed-strip">
+      <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">JCS &amp; 15-State Receipt Precedence</span><span class="feed-item-meta"><span>note</span><span>RFC 8785 · Ed25519</span></span></a>
+      <a class="feed-item discover" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">◇ Schumann Canonical Coherence &amp; D2b</span><span class="feed-item-meta"><span>note</span><span>GWOSC O3 · CRLB</span></span></a>
+      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Ring-0 Capabilities &amp; Typed Intent IR</span><span class="feed-item-meta"><span>note</span><span>Rust UEFI · OCaml 5</span></span></a>
+      <a class="feed-item discover" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">◇ Kaplan–Meier Substations &amp; 811 Triage</span><span class="feed-item-meta"><span>note</span><span>N=31 Builds · 811Dog</span></span></a>
+      <a class="feed-item" href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html"><span class="feed-item-title">TermBrow TLS &amp; Bounded Curation</span><span class="feed-item-meta"><span>note</span><span>Python · curl_cffi</span></span></a>
+    </div>
+  </div>
+
+  <div id="tb-tabs" class="tb-tabs" aria-label="Open reading tabs">
+    <span class="tb-tab active"><a class="tb-tab-label" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html" style="color:inherit;text-decoration:none;">note · Kaplan–Meier Subs</a></span>
+    <a class="tb-tab" href="/notes.html">+ Notes</a>
+  </div>
+</header>
+
+<section id="tb-inspector" class="tb-inspector" hidden aria-live="polite"></section>
+
+<div class="tb-reader">
+  <main id="main" class="tb-article">
+
+<article class="note-doc">
+  <header class="note-hero">
+    <p class="eyebrow">technical note 04 · infrastructure analytics, survival modeling &amp; field systems</p>
+    <h1>Point-in-Time Sovereign Telemetry, Right-Censored Energization Survival, and Export-First 811 Triage</h1>
+    <p class="lede">Eliminating lookahead contamination and complete-case survivorship bias in hyperscale power/civil schedule auditing (<code>N = 31</code> North American builds, <code>211</code>-day median physical divergence lead, <code>112.0</code>-week Kaplan–Meier substation energization median), paired with CSV export-first One-Call locate triage in <code>811Dog</code>.</p>
+    <div class="note-meta-bar">
+      <span>Kyle W. Luecke</span>
+      <span>2026-11-03</span>
+      <span>10 min read</span>
+      <span>Sources: <a href="https://driftboundlabs.com/papers/AI_Infrastructure_Buildout_Whitepaper.pdf">AI Buildout Whitepaper (PDF) ↗</a> · <a href="https://github.com/k-luecke/811Dog">811Dog ↗</a></span>
+    </div>
+  </header>
+
+  <h2>1. Two Structural Biases in Infrastructure Delivery Estimation</h2>
+  <p>Public timelines for multi-hundred-megawatt compute campuses, semiconductor fabs, and regional fiber backbones suffer from two systematic estimation errors whenever analysts rely on corporate press releases or naive historical averages:</p>
+  <ol>
+    <li><strong>Retrospective lookahead contamination:</strong> Regulatory dockets (air-quality permits, army corps wetlands filings, regional transmission organization interconnection queues, municipal building permits) are mutable databases. If an analyst queries a utility queue today and joins current status fields against a build announced eighteen months ago, post-announcement amendments leak into the feature vector. Auditing whether physical-layer records lead public schedule revisions requires strict <em>point-in-time</em> reconstruction: every permit, substation study, and civil inspection must be evaluated solely at timestamps $t \le T_{\text{eval}}$.</li>
+    <li><strong>Complete-case survivorship bias under right censoring:</strong> High-voltage substation energization queues contain both completed interconnections and active builds still stalled in facilities studies or transformer procurement. Computing the sample median over <em>completed</em> interconnections alone systematically discards the slowest, highest-friction builds still in flight, biasing timeline estimates downward.</li>
+  </ol>
+
+  <h2>2. Model-Free Divergence Lead Time and the Three-Condition Physical Gate</h2>
+  <p>In the Driftbound Labs North American cohort study (<a href="https://driftboundlabs.com/papers/AI_Infrastructure_Buildout_Whitepaper.pdf"><em>The Physical Layer of the AI Infrastructure Buildout</em></a>; frozen manifest SHA-256 <code>a2202685...</code> covering <code>31</code> evaluable builds totaling <code>2,184 MW</code> of announced capacity across hyperscale data centers, AI clusters, and semiconductor facilities), each project was tracked across sovereign primary records: RTO/ISO interconnection dockets, state environmental air/water permits, county structural/electrical permits, and civil mobilization records.</p>
+  <p>Before fitting any statistical model, define the purely observational divergence lead time for any project $i$ that eventually disclosed a material schedule slip:</p>
+
+  <div class="eq-box">
+    Lead_i = T_public,i − T_physical,i
+  </div>
+
+  <p>where $T_{\text{physical},i}$ is the timestamp at which a primary sovereign filing recorded a binding blocker (such as an air-permit suspension, an unexecuted facilities-study restudy trigger, or a foundation/subfab structural hold) and $T_{\text{public},i}$ is the earliest subsequent earnings call, SEC filing, or press update acknowledging the delay.</p>
+  <p>Across all <code>9/9</code> resolved material delay cases in the cohort, primary physical/regulatory divergence preceded public guidance revisions, yielding a median lead time of <strong><code>211</code> calendar days</strong> (interquartile range <code>200–225</code> days; full range <code>105–339</code> days — including a <code>339</code>-day lead on a TCEQ air-permit docket suspension, a <code>324</code>-day lead on a subfab pier permit hold, and a <code>211</code>-day lead on an Oncor switchyard interconnection docket).</p>
+
+  <table>
+    <thead>
+      <tr><th>Utility Interconnection Tier</th><th>Builds</th><th>Observed &gt;90 d Slip Rate</th><th>Median Schedule Slip</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Tier 1 · Cleared / Existing Substation</strong></td><td>14</td><td><code>0 / 14</code> (0.0%)</td><td><code>0 d</code></td></tr>
+      <tr><td><strong>Tier 2 · Active Queue / Facilities Study</strong></td><td>8</td><td><code>3 / 8</code> (37.5%)</td><td><code>60 d</code></td></tr>
+      <tr><td><strong>Tier 3 · Major Network / Substation Upgrade</strong></td><td>5</td><td><code>5 / 5</code> (100.0%)</td><td><code>195 d</code></td></tr>
+      <tr><td><strong>Tier 4 · Stalled / Moratorium / Restudy</strong></td><td>4</td><td><code>4 / 4</code> (100.0%)</td><td><code>408 d</code></td></tr>
+    </tbody>
+  </table>
+
+  <p>Applying a conjunctive three-condition physical readiness gate — <code>Utility Pathway Cleared ∧ Structural Permits Issued ∧ Civil Site Mobilization Verified</code> — partitions the <code>2,184 MW</code> announced headline capacity into <strong><code>1,128 MW</code> (<code>51.6%</code>)</strong> physically cleared on baseline schedule, <code>680 MW</code> gated on high-voltage power delivery, and <code>376 MW</code> gated on civil permitting or site stalls.</p>
+
+  <h2>3. Right-Censored Kaplan–Meier Energization Survival and Holdout Calibration</h2>
+  <p>To estimate high-voltage substation energization duration without dropping active multi-year queues, let $t_1 &lt; t_2 &lt; \dots &lt; t_k$ denote the distinct elapsed weeks at which observed energizations occur, $d_j$ the number of substations energized at $t_j$, and $n_j$ the risk set (all tracked substation builds neither energized nor censored prior to $t_j$, retaining active queues censored after $t_j$). The standard product-limit survival estimator is:</p>
+
+  <div class="eq-box">
+    Ŝ(t) = ∏_{t_j ≤ t} (1 − d_j / n_j),     t_median = inf { t : Ŝ(t) ≤ 0.50 }
+  </div>
+
+  <p>Across the <code>18</code> substation interconnection transitions in the cohort (<code>12</code> completed energizations and <code>6</code> right-censored active builds still awaiting energization at freeze):</p>
+  <ul>
+    <li><strong>Naive complete-case median (dropping the 6 right-censored builds):</strong> <code>100.0</code> weeks (~23.0 months).</li>
+    <li><strong>Kaplan–Meier product-limit step median (retaining all 18 at-risk transitions):</strong> <strong><code>112.0</code> weeks</strong> (~25.8 months; linearly interpolated median <code>106.8</code> weeks; IQR <code>82.0–142.0</code> weeks).</li>
+  </ul>
+  <p>Discarding right-censored active queues understates median energization time by three months precisely when queue congestion is worsening. On the pre-specified held-out test split (<code>N = 8</code> builds), scoring physical-gate probability forecasts against realized status achieved a Brier score of <strong><code>0.0383</code></strong> versus <strong><code>0.2476</code></strong> for the public-guidance baseline (an <strong><code>84.5%</code></strong> error reduction, improving <code>8/8</code> held-out assets, surviving <code>8/8</code> leave-one-program-out refits and <code>4/4</code> label-permutation / timestamp-shift placebos). Equally important is the explicit evidentiary boundary stated in the paper: because retrospective point-in-time freezes can still harbor subtle universe-selection effects, <strong>zero prospective post-freeze resolutions</strong> were claimed at initial publication; live prospective vintages are tracked separately.</p>
+
+  <h2>4. Field-Scale Ingestion Without Portal Exhaustion: <code>811Dog</code></h2>
+  <p>At regional telecommunications construction scale, One-Call (<code>811</code>) utility locate portals expose a related engineering tension: tens of thousands of daily locate tickets cover residential landscaping, fence posts, water service repairs, and sewer laterals, while an outside-plant fiber team cares about directional boring, conduit placement, vault installations, and competing fiber overbuilds along specific corridors.</p>
+  <p>Fetching full HTML/PDF ticket detail envelopes for every county-wide locate request is slow, brittle, and abusive to public portal infrastructure. <a href="https://github.com/k-luecke/811Dog"><code>811Dog</code></a> resolves this with a four-stage local pipeline verified by <code>335</code> offline <code>pytest</code> tests:</p>
+
+<pre><code>def _worth_detail_fetch(summary_row: dict, config: ScoringConfig) -&gt; bool:
+    # Stage 1: CSV export-first pre-filter before any detail/PDF HTTP fetch.
+    work_for = norm_token(summary_row.get("WorkDoneFor", ""))
+    excavator = norm_token(summary_row.get("ExcavatorName", ""))
+    remarks = norm_token(summary_row.get("Remarks", ""))
+
+    if matches_telecom_owner(work_for, config.telecom_owners):
+        return True
+    if matches_utility_keyword(remarks, config.infrastructure_terms):
+        return True
+    # Conjunctive contractor gate: known utility contractors also dig water/gas;
+    # require either telecom owner context or non-excluded excavation remarks.
+    if matches_contractor(excavator, config.tracked_contractors):
+        return not matches_excluded_utility(remarks, config.non_telecom_exclusions)
+    return False</code></pre>
+
+  <ol>
+    <li><strong>Export-first CSV triage:</strong> Bulk tabular summaries are downloaded in a single request and filtered in memory via <code>_worth_detail_fetch</code>, shrinking detail/PDF fetches by roughly two orders of magnitude before touching individual ticket endpoints.</li>
+    <li><strong>Conjunctive two-sided contractor scoring:</strong> Multi-utility underground contractors routinely bore both fiber conduit and municipal water/gas mains. Scoring contractor identity alone floods operators with water-main false positives; scoring explicit <code>"FIBER"</code> strings alone misses terse subcontractor tickets labeled simply <code>"BORE 2 INCH CONDUIT"</code>. Requiring <code>tracked_contractor ∧ compatible_work_type</code> while emitting an explicit JSON array of <code>relevance_reasons</code> keeps precision high and makes every alert auditable.</li>
+    <li><strong>Append-only SQLite history and offline rescoring (<code>tn811 rescore</code>):</strong> Raw normalized ticket states are stored locally in SQLite so threshold or rule adjustments replay deterministically against historical snapshots without re-scraping the upstream portal.</li>
+    <li><strong>Deterministic PII redaction boundary (<code>data_boundary.py</code>):</strong> Raw locate tickets contain field-caller names, direct cell numbers, and dispatch emails. Before generating static JSON payloads for dashboard viewing, <code>data_boundary.py</code> strips contact PII at the serialization boundary so static views expose corridor, street, utility-type, and scoring provenance without leaking personal contact records.</li>
+  </ol>
+
+  <div class="case-links">
+    <a href="/projects/811dog.html">← 811Dog Case Study</a>
+    <a href="https://driftboundlabs.com/papers/AI_Infrastructure_Buildout_Whitepaper.pdf">AI Infrastructure Buildout Whitepaper (PDF) ↗</a>
+    <a href="https://github.com/k-luecke/811Dog">k-luecke/811Dog ↗</a>
+  </div>
+</article>
+
+  </main>
+</div>
+
+<footer class="tb-bottom">
+  <div class="tb-status">
+    <span id="tb-status-msg" class="tb-status-msg">Reading /notes/sovereign-telemetry-and-kaplan-meier-energization.html · 10 min read · N=31 Builds · 811Dog</span>
+    <span class="tb-status-links">
+      <a href="https://driftboundlabs.com">Driftbound Labs LLC</a>
+      <a href="https://paxiom.org">paxiom.org</a>
+      <a href="/feed.xml">Atom/RSS</a>
+      <a href="https://github.com/k-luecke">GitHub</a>
+      <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+    </span>
+  </div>
+  <div class="tb-keybar" aria-label="TermBrow command shortcuts">
+    <button type="button" data-cmd=":focus-addr"><kbd>/</kbd>Address</button>
+    <button type="button" data-cmd=":notes"><kbd>:notes</kbd>Articles</button>
+    <button type="button" data-cmd=":work"><kbd>:work</kbd>20 Cases</button>
+    <button type="button" data-cmd=":save"><kbd>^S</kbd>Save</button>
+    <button type="button" data-cmd=":library"><kbd>Alt+Y</kbd>Library</button>
+    <button type="button" data-cmd=":history"><kbd>Alt+H</kbd>History</button>
+    <button type="button" data-cmd=":keywords"><kbd>:keywords</kbd>Weights</button>
+    <button type="button" data-cmd=":explore"><kbd>Alt+E</kbd>Explore</button>
+    <button type="button" data-cmd=":strip"><kbd>Alt+G</kbd>Strip</button>
+    <button type="button" data-cmd=":theme"><kbd>Alt+D</kbd>Light/Dark</button>
+    <button type="button" data-cmd=":install"><kbd>:install</kbd>CLI</button>
+  </div>
+</footer>
+</body>
+</html>

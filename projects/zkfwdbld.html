@@ -1,39 +1,108 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>zkfwdbld — Kyle Luecke</title>
+<meta name="color-scheme" content="dark light">
+<title>zkfwdbld — Kyle Luecke · TermBrow</title>
 <meta name="description" content="Prototype trust layer for verified findings and agentic actions.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zkfwdbld — Kyle Luecke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zkfwdbld — Kyle Luecke · TermBrow">
 <meta property="og:description" content="Prototype trust layer for verified findings and agentic actions.">
 <meta property="og:url" content="https://termbrow.org/projects/zkfwdbld.html">
 <link rel="canonical" href="https://termbrow.org/projects/zkfwdbld.html">
+<link rel="alternate" type="application/atom+xml" title="TermBrow Technical Notes — Kyle Luecke" href="https://termbrow.org/feed.xml">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||'dark'}catch(e){}</script>
 <link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/catalog.js"></script>
 <script defer src="../assets/js/site.js"></script>
 </head>
 <body>
-<a class="skip" href="#main">skip to content</a>
-<header class="site-header wrap">
-  <a class="brand" href="../index.html">TERMBROW</a>
-  <nav aria-label="Primary"><a class="active" href="../work.html">WORK</a><a href="../method.html">METHOD</a><a href="../about.html">ABOUT</a><a href="../cv.html">CV</a></nav>
-  <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+<a class="skip" href="#main">skip to reading column</a>
+
+<header class="tb-chrome-top">
+  <div class="tb-titlebar">
+    <div class="tb-brand-group">
+      <span class="tb-dot" aria-hidden="true">●</span>
+      <a class="tb-brand" href="/index.html">TermBrow</a>
+      <span class="tb-subtitle">— case · zkfwdbld</span>
+    </div>
+    <nav class="tb-topnav" aria-label="Primary">
+      <a href="/notes.html">NOTES</a><a class="active" href="/work.html">WORK (20)</a><a href="/method.html">METHOD</a><a href="/about.html">ABOUT</a><a href="/cv.html">CV</a>
+      <a href="https://driftboundlabs.com/ventures.html">DRIFTBOUND LABS ↗</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark or light theme" title="Toggle theme (Alt+D or :theme)">◐</button>
+    </nav>
+  </div>
+
+  <div class="tb-toolbar" role="search" aria-label="TermBrow address and command bar">
+    <button id="tb-back" class="tb-btn" type="button" title="Back" aria-label="Back">‹</button>
+    <a id="tb-home" class="tb-btn" href="/index.html" title="Home (:home)" aria-label="Home">⌂</a>
+    <form id="tb-addr-form" class="tb-addr-form">
+      <input id="addrbar" type="text" spellcheck="false" autocomplete="off"
+        aria-label="Search notes and projects or run a :command"
+        placeholder="termbrow://projects/zkfwdbld.html  —  search or type :notes :work :library :keywords :install :help  (/ or Ctrl+K)">
+    </form>
+    <button id="tb-save" class="tb-btn" type="button" title="Save to local library (Ctrl+S or :save)">☆ Save</button>
+    <button id="tb-help" class="tb-btn" type="button" title="Commands and keybindings (:help)">:help</button>
+  </div>
+
+  <div id="tb-feed-wrap" class="tb-feed-wrap" aria-label="For You and bounded discovery strip">
+    <div class="tb-feed-head">
+      <div class="tb-feed-controls">
+        <span>For You · Explore:</span>
+        <button id="tb-explore-btn" class="tb-pill-btn" type="button" title="Cycle Focus (15%) / Balanced (40%) / Discover (65%) (Alt+E)">Balanced (40%)</button>
+        <span class="tb-feed-hint">◇ = anchored cross-domain discovery (local 0.98-decay weights, zero tracking)</span>
+      </div>
+      <button id="tb-feed-toggle" class="tb-pill-btn" type="button" title="Hide or show strip (Alt+G)">Hide</button>
+    </div>
+    <div id="tb-feed" class="tb-feed-strip">
+      <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">JCS &amp; 15-State Receipt Precedence</span><span class="feed-item-meta"><span>note</span><span>RFC 8785 · Ed25519</span></span></a>
+      <a class="feed-item discover" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">◇ Schumann Canonical Coherence &amp; D2b</span><span class="feed-item-meta"><span>note</span><span>GWOSC O3 · CRLB</span></span></a>
+      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Ring-0 Capabilities &amp; Typed Intent IR</span><span class="feed-item-meta"><span>note</span><span>Rust UEFI · OCaml 5</span></span></a>
+      <a class="feed-item discover" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">◇ Kaplan–Meier Substations &amp; 811 Triage</span><span class="feed-item-meta"><span>note</span><span>N=31 Builds · 811Dog</span></span></a>
+      <a class="feed-item" href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html"><span class="feed-item-title">TermBrow TLS &amp; Bounded Curation</span><span class="feed-item-meta"><span>note</span><span>Python · curl_cffi</span></span></a>
+    </div>
+  </div>
+
+  <div id="tb-tabs" class="tb-tabs" aria-label="Open reading tabs">
+    <span class="tb-tab active"><a class="tb-tab-label" href="/projects/zkfwdbld.html" style="color:inherit;text-decoration:none;">case · zkfwdbld</a></span>
+    <a class="tb-tab" href="/notes.html">+ Notes</a>
+  </div>
 </header>
-<main id="main" class="wrap narrow">
+
+<section id="tb-inspector" class="tb-inspector" hidden aria-live="polite"></section>
+
+<div class="tb-reader">
+  <main id="main" class="tb-article">
 <section class="case-hero"><p class="eyebrow">systems / verification / Rust</p><h1>zkfwdbld</h1><p class="lede">A prototype trust layer that attaches evidence, derivation trace, proof artifacts, and verification state to automated findings.</p><div class="status-row"><span class="status supported">SERIOUS PROTOTYPE</span></div></section><section class="case-grid"><h2>Problem</h2><p>Automated findings are easy to generate and hard to trust. The project asks what additional structure is required before an engineer should act on an agent or scanner assertion.</p><h2>Core</h2><p>A Rust/Wasm path generates witnesses and verifies R1CS constraints over the Goldilocks field. AO-oriented orchestration and local evaluation tooling sit around it.</p><h2>Boundary</h2><p>The Rust prover path is real and tested; the orchestrator still contains a demo-only CNF path. Current end-to-end messages demonstrate liveness and flow, not a fully bound real-world causation proof.</p><h2>Direction</h2><p>The reusable artifact shape is the interesting part: source-aware finding, normalized claim, evidence, derivation trace, proof artifact, verification result, and a human-readable handoff.</p></section><div class="case-links"><a href="https://github.com/k-luecke/zkfwdbld">source ↗</a><a href="https://github.com/k-luecke/zkfwdbld/blob/main/docs/proof_contract.md">proof contract ↗</a></div>
-</main>
-<footer class="site-footer wrap">
-  <span>termbrow.org · evidence under the interface</span>
-  <span class="footer-links">
-    <a href="https://driftboundlabs.com">driftboundlabs.com</a>
-    <a href="https://paxiom.org">paxiom.org</a>
-    <a href="https://github.com/k-luecke">GitHub</a>
-    <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
-  </span>
+  </main>
+</div>
+
+<footer class="tb-bottom">
+  <div class="tb-status">
+    <span id="tb-status-msg" class="tb-status-msg">Viewing /projects/zkfwdbld.html · Case study · Press ☆ Save or Ctrl+S to bookmark locally</span>
+    <span class="tb-status-links">
+      <a href="https://driftboundlabs.com">Driftbound Labs LLC</a>
+      <a href="https://paxiom.org">paxiom.org</a>
+      <a href="/feed.xml">Atom/RSS</a>
+      <a href="https://github.com/k-luecke">GitHub</a>
+      <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+    </span>
+  </div>
+  <div class="tb-keybar" aria-label="TermBrow command shortcuts">
+    <button type="button" data-cmd=":focus-addr"><kbd>/</kbd>Address</button>
+    <button type="button" data-cmd=":notes"><kbd>:notes</kbd>Articles</button>
+    <button type="button" data-cmd=":work"><kbd>:work</kbd>20 Cases</button>
+    <button type="button" data-cmd=":save"><kbd>^S</kbd>Save</button>
+    <button type="button" data-cmd=":library"><kbd>Alt+Y</kbd>Library</button>
+    <button type="button" data-cmd=":history"><kbd>Alt+H</kbd>History</button>
+    <button type="button" data-cmd=":keywords"><kbd>:keywords</kbd>Weights</button>
+    <button type="button" data-cmd=":explore"><kbd>Alt+E</kbd>Explore</button>
+    <button type="button" data-cmd=":strip"><kbd>Alt+G</kbd>Strip</button>
+    <button type="button" data-cmd=":theme"><kbd>Alt+D</kbd>Light/Dark</button>
+    <button type="button" data-cmd=":install"><kbd>:install</kbd>CLI</button>
+  </div>
 </footer>
 </body>
 </html>

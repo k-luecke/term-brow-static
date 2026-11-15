@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>JCS &amp; 15-State Receipt Precedence — TermBrow Technical Notes</title>
+<meta name="description" content="Why HTTP 200 + EIP-3009 payment headers fail to bind response bytes, recursive UTF-16 key canonicalization hazards, strict base64 round-tripping, and why offline verifiers require ordered multi-state precedence rather than boolean validity.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JCS &amp; 15-State Receipt Precedence — TermBrow Technical Notes">
+<meta property="og:description" content="Why HTTP 200 + EIP-3009 payment headers fail to bind response bytes, recursive UTF-16 key canonicalization hazards, strict base64 round-tripping, and why offline verifiers require ordered multi-state precedence rather than boolean validity.">
+<meta property="og:url" content="https://termbrow.org/notes/canonical-json-and-trust-state-precedence.html">
+<link rel="canonical" href="https://termbrow.org/notes/canonical-json-and-trust-state-precedence.html">
+<link rel="alternate" type="application/atom+xml" title="TermBrow Technical Notes — Kyle Luecke" href="https://termbrow.org/feed.xml">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||'dark'}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/catalog.js"></script>
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">skip to reading column</a>
+
+<header class="tb-chrome-top">
+  <div class="tb-titlebar">
+    <div class="tb-brand-group">
+      <span class="tb-dot" aria-hidden="true">●</span>
+      <a class="tb-brand" href="/index.html">TermBrow</a>
+      <span class="tb-subtitle">— note · JCS &amp; 15-State Receipt Precedence</span>
+    </div>
+    <nav class="tb-topnav" aria-label="Primary">
+      <a class="active" href="/notes.html">NOTES</a><a href="/work.html">WORK (20)</a><a href="/method.html">METHOD</a><a href="/about.html">ABOUT</a><a href="/cv.html">CV</a>
+      <a href="https://driftboundlabs.com/ventures.html">DRIFTBOUND LABS ↗</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark or light theme" title="Toggle theme (Alt+D or :theme)">◐</button>
+    </nav>
+  </div>
+
+  <div class="tb-toolbar" role="search" aria-label="TermBrow address and command bar">
+    <button id="tb-back" class="tb-btn" type="button" title="Back" aria-label="Back">‹</button>
+    <a id="tb-home" class="tb-btn" href="/index.html" title="Home (:home)" aria-label="Home">⌂</a>
+    <form id="tb-addr-form" class="tb-addr-form">
+      <input id="addrbar" type="text" spellcheck="false" autocomplete="off"
+        aria-label="Search notes and projects or run a :command"
+        placeholder="termbrow://notes/canonical-json-and-trust-state-precedence.html  —  search or type :notes :work :library :keywords :install :help  (/ or Ctrl+K)">
+    </form>
+    <button id="tb-save" class="tb-btn" type="button" title="Save to local library (Ctrl+S or :save)">☆ Save</button>
+    <button id="tb-help" class="tb-btn" type="button" title="Commands and keybindings (:help)">:help</button>
+  </div>
+
+  <div id="tb-feed-wrap" class="tb-feed-wrap" aria-label="For You and bounded discovery strip">
+    <div class="tb-feed-head">
+      <div class="tb-feed-controls">
+        <span>For You · Explore:</span>
+        <button id="tb-explore-btn" class="tb-pill-btn" type="button" title="Cycle Focus (15%) / Balanced (40%) / Discover (65%) (Alt+E)">Balanced (40%)</button>
+        <span class="tb-feed-hint">◇ = anchored cross-domain discovery (local 0.98-decay weights, zero tracking)</span>
+      </div>
+      <button id="tb-feed-toggle" class="tb-pill-btn" type="button" title="Hide or show strip (Alt+G)">Hide</button>
+    </div>
+    <div id="tb-feed" class="tb-feed-strip">
+      <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">JCS &amp; 15-State Receipt Precedence</span><span class="feed-item-meta"><span>note</span><span>RFC 8785 · Ed25519</span></span></a>
+      <a class="feed-item discover" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">◇ Schumann Canonical Coherence &amp; D2b</span><span class="feed-item-meta"><span>note</span><span>GWOSC O3 · CRLB</span></span></a>
+      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Ring-0 Capabilities &amp; Typed Intent IR</span><span class="feed-item-meta"><span>note</span><span>Rust UEFI · OCaml 5</span></span></a>
+      <a class="feed-item discover" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">◇ Kaplan–Meier Substations &amp; 811 Triage</span><span class="feed-item-meta"><span>note</span><span>N=31 Builds · 811Dog</span></span></a>
+      <a class="feed-item" href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html"><span class="feed-item-title">TermBrow TLS &amp; Bounded Curation</span><span class="feed-item-meta"><span>note</span><span>Python · curl_cffi</span></span></a>
+    </div>
+  </div>
+
+  <div id="tb-tabs" class="tb-tabs" aria-label="Open reading tabs">
+    <span class="tb-tab active"><a class="tb-tab-label" href="/notes/canonical-json-and-trust-state-precedence.html" style="color:inherit;text-decoration:none;">note · JCS &amp; 15-State Re</a></span>
+    <a class="tb-tab" href="/notes.html">+ Notes</a>
+  </div>
+</header>
+
+<section id="tb-inspector" class="tb-inspector" hidden aria-live="polite"></section>
+
+<div class="tb-reader">
+  <main id="main" class="tb-article">
+
+<article class="note-doc">
+  <header class="note-hero">
+    <p class="eyebrow">technical note 01 · cryptographic protocols &amp; wire formats</p>
+    <h1>Deterministic JSON Canonicalization and Fifteen-State Verification Precedence in <code>paxiom.receipt.v0</code></h1>
+    <p class="lede">Why HTTP <code>200 OK</code> plus an on-chain payment header fails to bind delivered payload bytes, how recursive UTF-16 key canonicalization and strict base64 decoding eliminate malleability, and why autonomous callers need an ordered fifteen-state verification lattice rather than a boolean flag.</p>
+    <div class="note-meta-bar">
+      <span>Kyle W. Luecke</span>
+      <span>2026-11-15</span>
+      <span>11 min read</span>
+      <span>Source: <a href="https://github.com/k-luecke/paxiom-static/tree/main/standards/receipts/v0">standards/receipts/v0 ↗</a></span>
+    </div>
+  </header>
+
+  <h2>1. The Protocol Binding Gap in Paid HTTP Exchanges</h2>
+  <p>In HTTP-native micropayment flows such as <code>x402</code>, a client receives an <code>HTTP 402 Payment Required</code> challenge, signs an EIP-3009 <code>TransferWithAuthorization</code> payload (or submits a pre-funded authorization header), and retries the request. When the server responds with <code>HTTP 200 OK</code> and a base64-encoded <code>PAYMENT-RESPONSE</code> header citing an EVM transaction hash, two facts are established independently:</p>
+  <ol>
+    <li>An ERC-20 <code>Transfer(from, to, value)</code> event either settled or was broadcast on the target chain (for example, Circle USDC on Base Mainnet, <code>eip155:8453</code>).</li>
+    <li>A TLS session delivered a sequence of HTTP response bytes to the caller.</li>
+  </ol>
+  <p>What is missing is a cryptographic commitment linking the two. EIP-3009's typed EIP-712 struct commits to <code>(from, to, value, validAfter, validBefore, nonce)</code>, where <code>nonce</code> is typically a random 32-byte value chosen prior to response generation. Once TLS terminates at a gateway, reverse proxy, or client process, nothing in the on-chain transaction log proves which HTTP resource was queried, what request body was sent, or whether the JSON response body was truncated, substituted, or an upstream error envelope delivered after payment capture.</p>
+
+  <div class="eq-box">
+    On-chain log:   Transfer(payer, payTo, amount)   [commits funds movement only]<br>
+    Receipt input:  Ed25519.Sign_sk( UTF8( JCS({ receiptVersion, payload }) ) )<br>
+    where payload binds: requestHash || paymentRequirementsHash || paymentPayloadHash || txHash || outputHash
+  </div>
+
+  <p>Closing that gap without requiring synchronous on-chain calldata bloat on every API call requires a transport-level receipt header (<code>X-Paxiom-Receipt</code>) whose signature covers canonical digests of the request, the payment negotiation, and the delivered output — and whose verifier refuses to conflate signature validity with settlement finality.</p>
+
+  <h2>2. Canonical JSON Serialization Hazards Across Runtimes</h2>
+  <p>Signing raw HTTP wire bytes works until a receipt or JSON payload crosses an API gateway, structured logger, message queue, or cross-language SDK boundary (Node.js/V8 to Python 3.10+) that parses and re-serializes JSON objects. Object key insertion order, insignificant whitespace, and numeric formatting vary across serializers unless pinned to an explicit canonical profile (RFC&nbsp;8785 JSON Canonicalization Scheme, JCS).</p>
+  <p>In <code>paxiom.receipt.v0</code>, both the Ed25519 signing preimage and every JSON SHA-256 digest (<code>outputHash</code>, <code>bodyHash</code>, <code>requestHash</code>, <code>paymentRequirementsHash</code>, <code>paymentPayloadHash</code>) pass through a strict recursive canonicalizer before UTF-8 encoding:</p>
+
+<pre><code>export const MAX_DEPTH = 256;
+
+export function canonicalize(value, depth = 0) {
+  if (depth &gt; MAX_DEPTH) {
+    throw new RangeError(`canonicalize: nesting exceeds max depth ${MAX_DEPTH}`);
+  }
+  if (value === undefined) {
+    throw new TypeError('canonicalize: undefined is not representable');
+  }
+  const t = typeof value;
+  if (t === 'function' || t === 'symbol' || t === 'bigint') {
+    throw new TypeError(`canonicalize: ${t} is not representable in canonical JSON`);
+  }
+  if (t === 'number' &amp;&amp; !Number.isFinite(value)) {
+    throw new TypeError('canonicalize: non-finite numbers (NaN, Infinity) are not representable');
+  }
+  if (value === null || t !== 'object') return JSON.stringify(value);
+  if (typeof value.toJSON === 'function') {
+    return canonicalize(value.toJSON(), depth + 1);
+  }
+  if (value instanceof Map || value instanceof Set || value instanceof RegExp) {
+    throw new TypeError('canonicalize: Map, Set, and RegExp instances are not representable');
+  }
+  if (Array.isArray(value)) {
+    return '[' + value.map((v) =&gt; canonicalize(v, depth + 1)).join(',') + ']';
+  }
+  return '{' + Object.keys(value).sort()
+    .map((k) =&gt; JSON.stringify(k) + ':' + canonicalize(value[k], depth + 1))
+    .join(',') + '}';
+}</code></pre>
+
+  <p>Several subtle cross-runtime failure modes motivate each guard in those twenty-five lines:</p>
+  <ul>
+    <li><strong>Silent <code>NaN</code> / <code>Infinity</code> / <code>undefined</code> coercion in <code>JSON.stringify</code>:</strong> Standard JavaScript <code>JSON.stringify({ a: NaN, b: undefined })</code> silently emits <code>{"a":null}</code> instead of throwing, while Python's default <code>json.dumps</code> emits invalid JSON literal <code>NaN</code> unless <code>allow_nan=False</code> is set. Allowing silent coercion lets an upstream bug sign <code>null</code> where a numeric measurement was expected. Explicit <code>TypeError</code> rejection forces both runtimes to fail closed.</li>
+    <li><strong><code>Map</code>, <code>Set</code>, and <code>RegExp</code> empty-object collapse:</strong> In V8, <code>typeof new Map() === 'object'</code> and <code>Object.keys(new Map())</code> is <code>[]</code>, so a naive recursive serializer without prototype checks silently canonicalizes any non-empty <code>Map</code> or <code>Set</code> to <code>"{}"</code>, causing distinct objects to collide under the same SHA-256 <code>outputHash</code>.</li>
+    <li><strong>UTF-16 code-unit key ordering vs. Unicode scalar ordering:</strong> JavaScript's <code>Array.prototype.sort()</code> orders strings by UTF-16 code units, matching RFC&nbsp;8785 §3.2.3. In Python, <code>str</code> comparison orders by Unicode code points, which agrees with UTF-16 code-unit order across the entire Basic Multilingual Plane except when a key in <code>U+E000..U+FFFF</code> is compared against a supplementary plane character (<code>&gt; U+FFFF</code>, encoded as a UTF-16 surrogate pair in <code>0xD800..0xDBFF</code>). Cross-language SDK parity therefore requires sorting Python keys by <code>k.encode('utf-16-be')</code> rather than raw code-point order.</li>
+    <li><strong>IEEE-754 negative zero and atomic integer strings:</strong> Under ECMAScript <code>Number::toString</code> (and RFC&nbsp;8785), <code>JSON.stringify(-0)</code> deterministically yields <code>"0"</code>. For token quantities where 53-bit IEEE-754 mantissas overflow (<code>2^53 - 1</code> is ~<code>9e15</code> wei, less than <code>0.01 ETH</code>), <code>paxiom.receipt.v0</code> forbids JSON numbers altogether and schemas <code>amountAtomic</code> as a base-10 integer string (<code>^[0-9]+$</code>).</li>
+    <li><strong>Bounded recursion depth (<code>MAX_DEPTH = 256</code>):</strong> An adversarial caller submitting <code>{"a":{"a":...}}</code> nested 20,000 levels deep to an offline verifier would otherwise trigger an uncaught V8 <code>Maximum call stack size exceeded</code> crash. Catching <code>RangeError</code> inside <code>verifyReceipt</code> maps pathological outputs cleanly to <code>trustState: "error"</code> without terminating the verifier process.</li>
+  </ul>
+
+  <h2>3. Non-Malleable Base64 Decoding on Keys and Signatures</h2>
+  <p>Node.js's built-in <code>Buffer.from(str, 'base64')</code> is deliberately forgiving: it strips whitespace and non-alphabet characters, accepts missing <code>=</code> padding, and ignores non-zero trailing pad bits. If a verifier decodes <code>signature.publicKey</code> (32 bytes) or <code>signature.value</code> (64 bytes) permissively, two distinct receipt JSON strings can verify against the same canonical signing input while producing different envelope hashes or bypassing naive string-set key lookups.</p>
+  <p>To prevent representation malleability, <code>verify.mjs</code> enforces a canonical round-trip byte check before passing key or signature buffers to OpenSSL / RFC&nbsp;8032 Ed25519 verification:</p>
+
+<pre><code>const STRICT_BASE64_RE = /^[A-Za-z0-9+/]+={0,2}$/;
+
+function strictDecodeBase64(value, expectedByteLength, label) {
+  if (
+    typeof value !== 'string' ||
+    value.length === 0 ||
+    value.length % 4 !== 0 ||
+    !STRICT_BASE64_RE.test(value)
+  ) {
+    throw new Error(`${label} must be canonical base64`);
+  }
+  const raw = Buffer.from(value, 'base64');
+  if (raw.length !== expectedByteLength || raw.toString('base64') !== value) {
+    throw new Error(`${label} must decode to ${expectedByteLength} canonical bytes`);
+  }
+  return raw;
+}</code></pre>
+
+  <p>The condition <code>raw.toString('base64') === value</code> rejects non-zero pad bits in the final quantum (for instance, modifying the last character of a 44-character base64 string where 2 low bits are unused by 32 decoded bytes), ensuring a 1-to-1 bijection between valid 32-byte Ed25519 public keys and strings in <code>trustedPaxiomPublicKeys</code>.</p>
+
+  <h2>4. Why Boolean Verification Is Unsafe: The 15-State Precedence Lattice</h2>
+  <p>Suppose a seller signs a syntactically valid receipt asserting <code>payment.settlement.status = "verified_settled"</code> and <code>transactionHash = "0xabc..."</code>. An offline verifier running inside an agent process has no RPC connection to Base Mainnet. If that offline verifier returns <code>{ valid: true }</code> simply because the seller's Ed25519 signature and <code>outputHash</code> match, a malicious seller can fabricate an arbitrary 32-byte hex string as a "settled" transaction hash and pass offline verification. Conversely, if the offline verifier returns <code>{ valid: false }</code> with no structured distinction, callers cannot tell a forged signature apart from an unverified on-chain claim that merely needs live log confirmation.</p>
+  <p><code>paxiom.receipt.v0</code> resolves this by making <code>valid</code> a strict alias for <code>trustState === "verified"</code> at the bottom of a deterministic evaluation order:</p>
+
+  <table>
+    <thead>
+      <tr><th>Precedence</th><th>Trust State</th><th>Triggering Condition</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>01</td><td><code>malformed_header</code></td><td><code>X-Paxiom-Receipt</code> is not valid UTF-8 JSON under base64url decoding.</td></tr>
+      <tr><td>02</td><td><code>unsupported_format</code></td><td><code>receiptVersion !== "paxiom.receipt.v0"</code>.</td></tr>
+      <tr><td>03</td><td><code>schema_invalid</code></td><td>Draft-07 JSON Schema violation (missing required field, unexpected property, invalid RFC 3339 timestamp, malformed <code>0x</code> SHA-256 hex).</td></tr>
+      <tr><td>04</td><td><code>invalid_signature</code></td><td><code>payload.issuer.keyId !== signature.keyId</code>, non-canonical base64, or Ed25519 verification failure over <code>signingInput(receipt)</code>.</td></tr>
+      <tr><td>05</td><td><code>expired</code></td><td>Optional <code>payload.expiresAt</code> precedes verifier wall clock.</td></tr>
+      <tr><td>06</td><td><code>error</code></td><td>Supplied <code>output</code> exceeds <code>MAX_DEPTH</code> or contains non-JSON-representable types.</td></tr>
+      <tr><td>07</td><td><code>output_hash_mismatch</code></td><td><code>hashCanonical(output) !== payload.delivery.outputHash</code> (payload tampering or proxy substitution).</td></tr>
+      <tr><td>08</td><td><code>settlement_failed</code></td><td>Receipt explicitly records <code>payment.settlement.status === "failed"</code>.</td></tr>
+      <tr><td>09–10</td><td><code>proof_invalid</code> / <code>proof_unavailable</code></td><td>Attached upstream evidence entry reports <code>invalid</code> or <code>unavailable</code>.</td></tr>
+      <tr><td>11</td><td><code>settlement_claimed_not_checked</code></td><td>Receipt claims <code>claimed_not_checked</code>, claims <code>verified_settled</code> without a trusted counter-signature, asserts <code>checkedByPaxiom: true</code> from an untrusted key, or smuggles a non-null <code>transactionHash</code> under <code>not_required</code> / <code>verify_only</code>.</td></tr>
+      <tr><td>12</td><td><code>valid_signature_only</code></td><td>Signature passes, but caller omitted <code>output</code> (so delivery binding was not checked) or settlement is <code>unknown</code>.</td></tr>
+      <tr><td>13</td><td><code>verified</code></td><td>Schema, Ed25519 signature, <code>outputHash</code> binding, and settlement rules all pass (either <code>not_required</code> free tier or <code>verified_settled</code> counter-signed by a key in <code>trustedPaxiomPublicKeys</code>).</td></tr>
+    </tbody>
+  </table>
+
+  <p>Step 11 closes two subtle privilege-escalation vectors uncovered during adversarial testing:</p>
+  <ol>
+    <li><strong>Self-asserted counter-attestation:</strong> Any seller holds their own Ed25519 private key and can sign a payload with <code>checkedByPaxiom: true</code> and <code>status: "verified_settled"</code>. Offline verification only promotes a settled receipt to <code>verified</code> when <code>Boolean(trustedPaxiomSet &amp;&amp; trustedPaxiomSet.has(receipt.signature.publicKey))</code> holds against keys pinned from <code>/.well-known/paxiom-keys.json</code>.</li>
+    <li><strong>Transaction-hash smuggling under free-tier statuses:</strong> If an issuer sets <code>status: "not_required"</code> while populating a non-null <code>settlement.transactionHash</code>, naive downstream indexers that inspect <code>if (result.valid &amp;&amp; receipt.payload.payment.settlement.transactionHash)</code> would treat an unchecked hash as verified. Step 11 explicitly traps any non-null <code>transactionHash</code> paired with <code>not_required</code>, <code>disabled</code>, or <code>verify_only</code> and demotes the verdict to <code>settlement_claimed_not_checked</code>.</li>
+  </ol>
+
+  <h2>5. Middleware Stream-Capture Hazards in Node.js HTTP Servers</h2>
+  <p>Signing receipts automatically inside HTTP server middleware introduces two operational traps that do not appear in pure unit functions:</p>
+  <ul>
+    <li><strong>Truncated request-body signing under memory caps:</strong> To prevent unauthenticated memory exhaustion, Express/Connect middleware must bound how many request body bytes it buffers (<code>MAX_CAPTURE = 256 * 1024</code>). If a 1&nbsp;MiB request arrives and the middleware hashes only the first 256&nbsp;KiB, the seller signs a <code>bodyHash</code> that will never match the buyer's full request hash. When <code>capturedBytes + chunk.length &gt; MAX_CAPTURE</code>, <code>createReceiptMiddleware</code> sets <code>reqCapped = true</code>, discards buffered chunks, and skips receipt emission rather than signing a false prefix digest.</li>
+    <li><strong>Accidental <code>Promise</code> object spreading in synchronous <code>res.end</code> hooks:</strong> Unlike Web Standard Fetch handlers (<code>async (req) =&gt; Response</code>), Node's <code>http.ServerResponse.prototype.end</code> flushes headers synchronously. If a caller mistakenly passes an <code>async function resolvePayment()</code> to <code>createReceiptMiddleware</code>, invoking it returns a pending <code>Promise</code> object. In JavaScript, object-spreading a <code>Promise</code> (<code>{ ...paymentDefaults, ...dynamicPayment }</code>) copies zero own enumerable properties and silently signs <code>amountAtomic: "0"</code>! The middleware therefore checks both <code>resolvePayment.constructor.name === 'AsyncFunction'</code> at registration time and <code>typeof dynamicPayment.then === 'function'</code> at runtime, refusing to emit a mis-bound receipt.</li>
+  </ul>
+
+  <div class="case-links">
+    <a href="/projects/paxiom.html">← Paxiom Case Study</a>
+    <a href="https://paxiom.org/canonicalization.html">Canonicalization Spec (PXM-RC-102) ↗</a>
+    <a href="https://paxiom.org/trust-states.html">Trust States Spec (PXM-RC-101) ↗</a>
+    <a href="https://github.com/k-luecke/paxiom-static/tree/main/standards/receipts/v0">Reference TS &amp; Python SDKs ↗</a>
+  </div>
+</article>
+
+  </main>
+</div>
+
+<footer class="tb-bottom">
+  <div class="tb-status">
+    <span id="tb-status-msg" class="tb-status-msg">Reading /notes/canonical-json-and-trust-state-precedence.html · 11 min read · RFC 8785 · Ed25519</span>
+    <span class="tb-status-links">
+      <a href="https://driftboundlabs.com">Driftbound Labs LLC</a>
+      <a href="https://paxiom.org">paxiom.org</a>
+      <a href="/feed.xml">Atom/RSS</a>
+      <a href="https://github.com/k-luecke">GitHub</a>
+      <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+    </span>
+  </div>
+  <div class="tb-keybar" aria-label="TermBrow command shortcuts">
+    <button type="button" data-cmd=":focus-addr"><kbd>/</kbd>Address</button>
+    <button type="button" data-cmd=":notes"><kbd>:notes</kbd>Articles</button>
+    <button type="button" data-cmd=":work"><kbd>:work</kbd>20 Cases</button>
+    <button type="button" data-cmd=":save"><kbd>^S</kbd>Save</button>
+    <button type="button" data-cmd=":library"><kbd>Alt+Y</kbd>Library</button>
+    <button type="button" data-cmd=":history"><kbd>Alt+H</kbd>History</button>
+    <button type="button" data-cmd=":keywords"><kbd>:keywords</kbd>Weights</button>
+    <button type="button" data-cmd=":explore"><kbd>Alt+E</kbd>Explore</button>
+    <button type="button" data-cmd=":strip"><kbd>Alt+G</kbd>Strip</button>
+    <button type="button" data-cmd=":theme"><kbd>Alt+D</kbd>Light/Dark</button>
+    <button type="button" data-cmd=":install"><kbd>:install</kbd>CLI</button>
+  </div>
+</footer>
+</body>
+</html>

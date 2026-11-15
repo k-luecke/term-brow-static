@@ -1,41 +1,94 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>About — Kyle Luecke</title>
-<meta name="description" content="About Kyle Luecke: infrastructure work, independent research, Paxiom, and Driftbound Labs.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="About — Kyle Luecke">
-<meta property="og:description" content="About Kyle Luecke: infrastructure work, independent research, Paxiom, and Driftbound Labs.">
+<meta name="color-scheme" content="dark light">
+<title>About — Kyle Luecke (TermBrow)</title>
+<meta name="description" content="About Kyle Luecke: outside-plant fiber operations, Driftbound Labs LLC, Paxiom, and technical notes on termbrow.org.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="About — Kyle Luecke (TermBrow)">
+<meta property="og:description" content="About Kyle Luecke: outside-plant fiber operations, Driftbound Labs LLC, Paxiom, and technical notes on termbrow.org.">
 <meta property="og:url" content="https://termbrow.org/about.html">
 <link rel="canonical" href="https://termbrow.org/about.html">
+<link rel="alternate" type="application/atom+xml" title="TermBrow Technical Notes — Kyle Luecke" href="https://termbrow.org/feed.xml">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||'dark'}catch(e){}</script>
 <link rel="stylesheet" href="assets/css/site.css">
+<script defer src="assets/js/catalog.js"></script>
 <script defer src="assets/js/site.js"></script>
 </head>
 <body>
-<a class="skip" href="#main">skip to content</a>
-<header class="site-header wrap">
-  <a class="brand" href="index.html">TERMBROW</a>
-  <nav aria-label="Primary"><a href="work.html">WORK</a><a href="method.html">METHOD</a><a class="active" href="about.html">ABOUT</a><a href="cv.html">CV</a></nav>
-  <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+<a class="skip" href="#main">skip to reading column</a>
+
+<header class="tb-chrome-top">
+  <div class="tb-titlebar">
+    <div class="tb-brand-group">
+      <span class="tb-dot" aria-hidden="true">●</span>
+      <a class="tb-brand" href="/index.html">TermBrow</a>
+      <span class="tb-subtitle">— about · kyle luecke</span>
+    </div>
+    <nav class="tb-topnav" aria-label="Primary">
+      <a href="/notes.html">NOTES</a><a href="/work.html">WORK (20)</a><a href="/method.html">METHOD</a><a class="active" href="/about.html">ABOUT</a><a href="/cv.html">CV</a>
+      <a href="https://driftboundlabs.com/ventures.html">DRIFTBOUND LABS ↗</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark or light theme" title="Toggle theme (Alt+D or :theme)">◐</button>
+    </nav>
+  </div>
+
+  <div class="tb-toolbar" role="search" aria-label="TermBrow address and command bar">
+    <button id="tb-back" class="tb-btn" type="button" title="Back" aria-label="Back">‹</button>
+    <a id="tb-home" class="tb-btn" href="/index.html" title="Home (:home)" aria-label="Home">⌂</a>
+    <form id="tb-addr-form" class="tb-addr-form">
+      <input id="addrbar" type="text" spellcheck="false" autocomplete="off"
+        aria-label="Search notes and projects or run a :command"
+        placeholder="termbrow://about.html  —  search or type :notes :work :library :keywords :install :help  (/ or Ctrl+K)">
+    </form>
+    <button id="tb-save" class="tb-btn" type="button" title="Save to local library (Ctrl+S or :save)">☆ Save</button>
+    <button id="tb-help" class="tb-btn" type="button" title="Commands and keybindings (:help)">:help</button>
+  </div>
+
+  <div id="tb-feed-wrap" class="tb-feed-wrap" aria-label="For You and bounded discovery strip">
+    <div class="tb-feed-head">
+      <div class="tb-feed-controls">
+        <span>For You · Explore:</span>
+        <button id="tb-explore-btn" class="tb-pill-btn" type="button" title="Cycle Focus (15%) / Balanced (40%) / Discover (65%) (Alt+E)">Balanced (40%)</button>
+        <span class="tb-feed-hint">◇ = anchored cross-domain discovery (local 0.98-decay weights, zero tracking)</span>
+      </div>
+      <button id="tb-feed-toggle" class="tb-pill-btn" type="button" title="Hide or show strip (Alt+G)">Hide</button>
+    </div>
+    <div id="tb-feed" class="tb-feed-strip">
+      <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">JCS &amp; 15-State Receipt Precedence</span><span class="feed-item-meta"><span>note</span><span>RFC 8785 · Ed25519</span></span></a>
+      <a class="feed-item discover" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">◇ Schumann Canonical Coherence &amp; D2b</span><span class="feed-item-meta"><span>note</span><span>GWOSC O3 · CRLB</span></span></a>
+      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Ring-0 Capabilities &amp; Typed Intent IR</span><span class="feed-item-meta"><span>note</span><span>Rust UEFI · OCaml 5</span></span></a>
+      <a class="feed-item discover" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">◇ Kaplan–Meier Substations &amp; 811 Triage</span><span class="feed-item-meta"><span>note</span><span>N=31 Builds · 811Dog</span></span></a>
+      <a class="feed-item" href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html"><span class="feed-item-title">TermBrow TLS &amp; Bounded Curation</span><span class="feed-item-meta"><span>note</span><span>Python · curl_cffi</span></span></a>
+    </div>
+  </div>
+
+  <div id="tb-tabs" class="tb-tabs" aria-label="Open reading tabs">
+    <span class="tb-tab active"><a class="tb-tab-label" href="/about.html" style="color:inherit;text-decoration:none;">about · kyle luecke</a></span>
+    <a class="tb-tab" href="/notes.html">+ Notes</a>
+  </div>
 </header>
-<main id="main" class="wrap narrow">
+
+<section id="tb-inspector" class="tb-inspector" hidden aria-live="polite"></section>
+
+<div class="tb-reader">
+  <main id="main" class="tb-article">
+
 <section class="hero compact">
   <p class="eyebrow">about</p>
   <h1>Kyle Luecke</h1>
-  <p class="lede">Infrastructure by day. Independent experiments the rest of the time.</p>
+  <p class="lede">Outside-plant fiber infrastructure by day; verification engineering, physical-layer measurement, and systems research the rest of the time.</p>
 </section>
 
 <section class="section">
-  <div class="section-head"><h2>Bio</h2></div>
+  <div class="section-head"><h2>Operating Structure &amp; Scope</h2></div>
   <div class="intro">
-    <p>Kyle Luecke works in outside-plant fiber infrastructure and spends much of his time outside of it investigating technical problems. He founded <a href="https://driftboundlabs.com">Driftbound Labs</a> as a home for independent experiments in verification, measurement, and dependable systems, and ships open execution-provenance tooling at <a href="https://paxiom.org">paxiom.org</a>. <code>termbrow.org</code> is his personal space for case studies, engineering notes, and questions that span multiple domains.</p>
-    <p>Day job: Assistant Project Manager in outside-plant FTTP deployment — coordinating aerial and underground fiber across crews, engineering, utilities, permits, and closeout. Promoted from Crew Supervisor to Area Supervisor to APM. Earlier work was in the trades (glazing, then electrical apprenticeship). B.S. Psychological Sciences, Western Kentucky University, 2018.</p>
-    <p>The compact professional record is on the <a href="cv.html">CV</a>. How an uncertain question becomes a checkable claim is on the <a href="method.html">method</a> page. Published preprints and whitepapers live at <a href="https://driftboundlabs.com/papers.html">driftboundlabs.com/papers.html</a> (<a href="https://orcid.org/0009-0008-0202-7852">ORCID 0009-0008-0202-7852</a>).</p>
+    <p>Kyle Luecke works in outside-plant fiber construction management and founded <a href="https://driftboundlabs.com">Driftbound Labs LLC</a> as the operating company and venture vehicle for his commercial software platforms, physical-layer infrastructure research, and scoped technical diligence engagements — including <a href="https://paxiom.org">Paxiom</a> (cryptographic execution and payment-delivery receipts at <code>paxiom.org</code>). For institutional research, data licensing, or verification sprints, see <a href="https://driftboundlabs.com/ventures.html">driftboundlabs.com/ventures.html</a>.</p>
+    <p><code>termbrow.org</code> is his personal engineering notebook, rendered inside the web port of his open-source <a href="https://github.com/k-luecke/TermBrow"><code>TermBrow</code></a> terminal browser: a place for long-form <a href="/notes.html">technical notes</a>, <a href="/work.html">20 project case studies</a>, and negative experimental gates where failed hypotheses remain part of the permanent public record.</p>
+    <p>Day job: Assistant Project Manager in outside-plant FTTP deployment — coordinating aerial and underground fiber across crews, engineering, utilities, permits, and closeout (promoted from Crew Supervisor → Area Supervisor → APM). Earlier work was in the trades (commercial glazing, then electrical apprenticeship). B.S. Psychological Sciences, Western Kentucky University, 2018.</p>
+    <p>Formal preprints and whitepapers with SHA-256 manifests and Bitcoin OpenTimestamps proofs are archived at <a href="https://driftboundlabs.com/papers.html">driftboundlabs.com/papers.html</a> (<a href="https://orcid.org/0009-0008-0202-7852">ORCID 0009-0008-0202-7852</a>).</p>
   </div>
 </section>
 
@@ -43,26 +96,45 @@
   <div class="section-head"><h2>Background</h2></div>
   <div class="timeline">
     <div><span>2018</span><p><strong>B.S. Psychological Sciences</strong><br>Western Kentucky University. Completed in three years — quantitative methods, experimental design, statistics, cognition and biobehavioral dynamics.</p></div>
-    <div><span>2018–2023</span><p><strong>Trades and field work</strong><br>Glazing at Kentucky Mirror &amp; Plate Glass, then electrical apprenticeship at Warren Electric Inc. The recurring constraint was physical reality: plans, permits, utilities, materials, crews, and what actually happened in the field.</p></div>
-    <div><span>2023–present</span><p><strong>Fiber construction management</strong><br>Outside-plant telecommunications construction: Crew Supervisor → Area Supervisor → Assistant Project Manager on metro FTTP deployment, while building software tools to reduce reporting and locate-monitoring friction.</p></div>
-    <div><span>parallel track</span><p><strong>Independent research &amp; systems</strong><br>Founder of <a href="https://driftboundlabs.com">Driftbound Labs</a> and creator of <a href="https://paxiom.org">Paxiom</a> — working across cryptographic verification, capability operating systems, Rust/OCaml/C/Python/TypeScript, geophysical signal analysis, SystemVerilog, and public-record provenance.</p></div>
+    <div><span>2018–2023</span><p><strong>Trades and field work</strong><br>Glazing at Kentucky Mirror &amp; Plate Glass, then electrical apprenticeship at Warren Electric Inc. Working directly against physical constraints: plans, permits, utilities, materials, crews, and field reality.</p></div>
+    <div><span>2023–present</span><p><strong>Fiber construction management</strong><br>Outside-plant telecommunications construction: Crew Supervisor → Area Supervisor → Assistant Project Manager on metro FTTP deployment, building field automation and One-Call locate triage pipelines alongside operations.</p></div>
+    <div><span>parallel track</span><p><strong>Founder · <a href="https://driftboundlabs.com">Driftbound Labs LLC</a> &amp; <a href="https://paxiom.org">Paxiom</a></strong><br>Applied research and systems engineering across cryptographic receipts, capability microkernels, Rust/OCaml/C/Python/TypeScript, geophysical signal metrology, SystemVerilog RTL, and sovereign infrastructure telemetry.</p></div>
   </div>
 </section>
 
 <section class="section">
-  <div class="section-head"><h2>What connects the projects</h2></div>
+  <div class="section-head"><h2>What Connects the Work</h2></div>
   <p class="big-line">UNCERTAIN SYSTEM → EVIDENCE → FORMAL CLAIM → TOOLING → ADVERSARIAL CHECK → BOUNDED CONCLUSION</p>
-  <p>The portfolio is intentionally broader than a single domain. The common unit is the problem: an answer is uncertain, the evidence is messy or adversarial, and enough instrumentation has to be built to determine what can actually be claimed.</p>
+  <p>Across protocols, operating systems, magnetometry, and civil/power infrastructure, the recurring unit is an uncertain claim backed by messy or adversarial evidence — where enough instrumentation has to be built to determine what holds up and what fails.</p>
 </section>
-</main>
-<footer class="site-footer wrap">
-  <span>termbrow.org · evidence under the interface</span>
-  <span class="footer-links">
-    <a href="https://driftboundlabs.com">driftboundlabs.com</a>
-    <a href="https://paxiom.org">paxiom.org</a>
-    <a href="https://github.com/k-luecke">GitHub</a>
-    <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
-  </span>
+
+  </main>
+</div>
+
+<footer class="tb-bottom">
+  <div class="tb-status">
+    <span id="tb-status-msg" class="tb-status-msg">Viewing /about.html · Kyle Luecke · Driftbound Labs LLC</span>
+    <span class="tb-status-links">
+      <a href="https://driftboundlabs.com">Driftbound Labs LLC</a>
+      <a href="https://paxiom.org">paxiom.org</a>
+      <a href="/feed.xml">Atom/RSS</a>
+      <a href="https://github.com/k-luecke">GitHub</a>
+      <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+    </span>
+  </div>
+  <div class="tb-keybar" aria-label="TermBrow command shortcuts">
+    <button type="button" data-cmd=":focus-addr"><kbd>/</kbd>Address</button>
+    <button type="button" data-cmd=":notes"><kbd>:notes</kbd>Articles</button>
+    <button type="button" data-cmd=":work"><kbd>:work</kbd>20 Cases</button>
+    <button type="button" data-cmd=":save"><kbd>^S</kbd>Save</button>
+    <button type="button" data-cmd=":library"><kbd>Alt+Y</kbd>Library</button>
+    <button type="button" data-cmd=":history"><kbd>Alt+H</kbd>History</button>
+    <button type="button" data-cmd=":keywords"><kbd>:keywords</kbd>Weights</button>
+    <button type="button" data-cmd=":explore"><kbd>Alt+E</kbd>Explore</button>
+    <button type="button" data-cmd=":strip"><kbd>Alt+G</kbd>Strip</button>
+    <button type="button" data-cmd=":theme"><kbd>Alt+D</kbd>Light/Dark</button>
+    <button type="button" data-cmd=":install"><kbd>:install</kbd>CLI</button>
+  </div>
 </footer>
 </body>
 </html>

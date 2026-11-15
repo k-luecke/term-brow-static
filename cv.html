@@ -1,46 +1,98 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>CV — Kyle Luecke</title>
-<meta name="description" content="Professional background, technical stack, and selected work by Kyle Luecke.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CV — Kyle Luecke">
-<meta property="og:description" content="Professional background, technical stack, and selected work by Kyle Luecke.">
+<meta name="color-scheme" content="dark light">
+<title>CV — Kyle Luecke (TermBrow)</title>
+<meta name="description" content="Professional background, technical stack, Driftbound Labs LLC ventures, and selected engineering work by Kyle Luecke.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CV — Kyle Luecke (TermBrow)">
+<meta property="og:description" content="Professional background, technical stack, Driftbound Labs LLC ventures, and selected engineering work by Kyle Luecke.">
 <meta property="og:url" content="https://termbrow.org/cv.html">
 <link rel="canonical" href="https://termbrow.org/cv.html">
+<link rel="alternate" type="application/atom+xml" title="TermBrow Technical Notes — Kyle Luecke" href="https://termbrow.org/feed.xml">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||'dark'}catch(e){}</script>
 <link rel="stylesheet" href="assets/css/site.css">
+<script defer src="assets/js/catalog.js"></script>
 <script defer src="assets/js/site.js"></script>
 </head>
 <body>
-<a class="skip" href="#main">skip to content</a>
-<header class="site-header wrap">
-  <a class="brand" href="index.html">TERMBROW</a>
-  <nav aria-label="Primary"><a href="work.html">WORK</a><a href="method.html">METHOD</a><a href="about.html">ABOUT</a><a class="active" href="cv.html">CV</a></nav>
-  <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+<a class="skip" href="#main">skip to reading column</a>
+
+<header class="tb-chrome-top">
+  <div class="tb-titlebar">
+    <div class="tb-brand-group">
+      <span class="tb-dot" aria-hidden="true">●</span>
+      <a class="tb-brand" href="/index.html">TermBrow</a>
+      <span class="tb-subtitle">— cv · concise record</span>
+    </div>
+    <nav class="tb-topnav" aria-label="Primary">
+      <a href="/notes.html">NOTES</a><a href="/work.html">WORK (20)</a><a href="/method.html">METHOD</a><a href="/about.html">ABOUT</a><a class="active" href="/cv.html">CV</a>
+      <a href="https://driftboundlabs.com/ventures.html">DRIFTBOUND LABS ↗</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark or light theme" title="Toggle theme (Alt+D or :theme)">◐</button>
+    </nav>
+  </div>
+
+  <div class="tb-toolbar" role="search" aria-label="TermBrow address and command bar">
+    <button id="tb-back" class="tb-btn" type="button" title="Back" aria-label="Back">‹</button>
+    <a id="tb-home" class="tb-btn" href="/index.html" title="Home (:home)" aria-label="Home">⌂</a>
+    <form id="tb-addr-form" class="tb-addr-form">
+      <input id="addrbar" type="text" spellcheck="false" autocomplete="off"
+        aria-label="Search notes and projects or run a :command"
+        placeholder="termbrow://cv.html  —  search or type :notes :work :library :keywords :install :help  (/ or Ctrl+K)">
+    </form>
+    <button id="tb-save" class="tb-btn" type="button" title="Save to local library (Ctrl+S or :save)">☆ Save</button>
+    <button id="tb-help" class="tb-btn" type="button" title="Commands and keybindings (:help)">:help</button>
+  </div>
+
+  <div id="tb-feed-wrap" class="tb-feed-wrap" aria-label="For You and bounded discovery strip">
+    <div class="tb-feed-head">
+      <div class="tb-feed-controls">
+        <span>For You · Explore:</span>
+        <button id="tb-explore-btn" class="tb-pill-btn" type="button" title="Cycle Focus (15%) / Balanced (40%) / Discover (65%) (Alt+E)">Balanced (40%)</button>
+        <span class="tb-feed-hint">◇ = anchored cross-domain discovery (local 0.98-decay weights, zero tracking)</span>
+      </div>
+      <button id="tb-feed-toggle" class="tb-pill-btn" type="button" title="Hide or show strip (Alt+G)">Hide</button>
+    </div>
+    <div id="tb-feed" class="tb-feed-strip">
+      <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">JCS &amp; 15-State Receipt Precedence</span><span class="feed-item-meta"><span>note</span><span>RFC 8785 · Ed25519</span></span></a>
+      <a class="feed-item discover" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">◇ Schumann Canonical Coherence &amp; D2b</span><span class="feed-item-meta"><span>note</span><span>GWOSC O3 · CRLB</span></span></a>
+      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Ring-0 Capabilities &amp; Typed Intent IR</span><span class="feed-item-meta"><span>note</span><span>Rust UEFI · OCaml 5</span></span></a>
+      <a class="feed-item discover" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">◇ Kaplan–Meier Substations &amp; 811 Triage</span><span class="feed-item-meta"><span>note</span><span>N=31 Builds · 811Dog</span></span></a>
+      <a class="feed-item" href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html"><span class="feed-item-title">TermBrow TLS &amp; Bounded Curation</span><span class="feed-item-meta"><span>note</span><span>Python · curl_cffi</span></span></a>
+    </div>
+  </div>
+
+  <div id="tb-tabs" class="tb-tabs" aria-label="Open reading tabs">
+    <span class="tb-tab active"><a class="tb-tab-label" href="/cv.html" style="color:inherit;text-decoration:none;">cv · concise record</a></span>
+    <a class="tb-tab" href="/notes.html">+ Notes</a>
+  </div>
 </header>
-<main id="main" class="wrap narrow">
+
+<section id="tb-inspector" class="tb-inspector" hidden aria-live="polite"></section>
+
+<div class="tb-reader">
+  <main id="main" class="tb-article">
+
 <section class="hero compact">
   <p class="eyebrow">cv / concise</p>
   <h1>Kyle Luecke</h1>
-  <p class="lede">Outside-plant fiber operations + independent verification &amp; systems research.</p>
+  <p class="lede">Outside-plant fiber operations + Founder at <a href="https://driftboundlabs.com">Driftbound Labs LLC</a> (<a href="https://paxiom.org">Paxiom</a>).</p>
 </section>
 
 <section class="section cv-block">
   <h2>Current</h2>
+  <h3>Founder &amp; Principal Researcher · <a href="https://driftboundlabs.com">Driftbound Labs LLC</a></h3>
+  <p>Operating entity for commercial verification software (<a href="https://paxiom.org">Paxiom</a>), sovereign physical-layer infrastructure telemetry, and scoped technical diligence (<a href="https://driftboundlabs.com/ventures.html">Ventures &amp; Advisory</a>).</p>
   <h3>Assistant Project Manager · Outside-Plant Fiber Construction</h3>
   <p>FTTP design/construction coordination across aerial and underground fiber, conduit, directional boring, restoration, permits, ROW, production, unit-price cost tracking, design conflicts, subcontractors, and closeout.</p>
   <ul>
     <li>Promoted from Crew Supervisor → Area Supervisor → Assistant Project Manager.</li>
     <li>Managed multi-crew field production and cross-functional coordination with engineering, inspection, utilities, locates, subcontractors, and client teams.</li>
-    <li>Built Python and automation tooling for field reporting, locate triage, and operational visibility.</li>
+    <li>Built Python and SQLite pipelines for field reporting, One-Call locate triage, and operational visibility.</li>
   </ul>
-  <h3>Founder &amp; Independent Researcher · Driftbound Labs / Paxiom</h3>
-  <p>Independent research and open-source engineering in cryptographic provenance, capability systems, preregistered empirical measurement, and reproducible verification.</p>
 </section>
 
 <section class="section cv-block">
@@ -58,31 +110,51 @@
 <section class="section cv-block">
   <h2>Technical</h2>
   <p><strong>Languages / systems:</strong> Rust (<code>no_std</code> UEFI, C-FFI, Wasm), OCaml 5, C/C++, Python, TypeScript/Node, Solidity, SystemVerilog, SQL.</p>
-  <p><strong>Engineering / analysis:</strong> Cryptographic receipts &amp; Ed25519/BLS12-381 verification, Base/EVM JSON-RPC, MCP servers, SQLite WAL, Playwright, Icarus Verilog / cocotb / Yosys, signal processing, preregistered provenance pipelines.</p>
+  <p><strong>Engineering / analysis:</strong> Cryptographic receipts &amp; Ed25519/BLS12-381 verification, Base/EVM JSON-RPC, MCP servers, SQLite WAL, Playwright, Icarus Verilog / cocotb / Yosys, spectral &amp; survival analysis, preregistered provenance pipelines.</p>
   <p><strong>Construction:</strong> Bluebeam Revu, plan/as-built review, redlines, takeoffs, unit-price cost modeling, P6 coursework, AutoCAD plan review.</p>
 </section>
 
 <section class="section cv-block">
-  <h2>Selected evidence</h2>
+  <h2>Selected Technical Notes &amp; Systems</h2>
   <ul class="link-list">
-    <li><a href="projects/paxiom.html">Paxiom Receipts (v0.1.3) — Ed25519 delivery receipts, npm/PyPI SDKs, MCP &amp; Base Mainnet verifier</a></li>
-    <li><a href="projects/intentnativeos.html">IntentNativeOS (v0.3.0-alpha) — x86-64 Rust UEFI microkernel + OCaml 5 intent control plane (55 suites)</a></li>
-    <li><a href="projects/time-integrity.html">Time Integrity (v2.0.0) — preregistered LIGO O3 Schumann clock-integrity study</a></li>
-    <li><a href="projects/scp-typed-boundaries.html">Typed Agent Boundaries (v1.0.0) — 5/5 Bitcoin OpenTimestamps web-agent safety study</a></li>
-    <li><a href="projects/fincen-boi.html">FinCEN BOI — content-addressed public-record preservation &amp; provenance</a></li>
-    <li><a href="projects/811dog.html">811Dog — TN811 operational data pipeline (335 offline tests)</a></li>
-    <li><a href="projects/bls-verifier.html">BLS verifier — narrow Rust/Wasm sync-committee primitive</a></li>
+    <li><a href="/notes.html">Technical Notes Index (5 long-form engineering dissections)</a></li>
+    <li><a href="/projects/paxiom.html">Paxiom Receipts (v0.1.3) — Ed25519 delivery receipts, npm/PyPI SDKs, MCP &amp; Base Mainnet verifier</a></li>
+    <li><a href="/projects/intentnativeos.html">IntentNativeOS (v0.3.0-alpha) — x86-64 Rust UEFI microkernel + OCaml 5 intent control plane (55 suites)</a></li>
+    <li><a href="/projects/time-integrity.html">Time Integrity (v2.0.0) — preregistered LIGO O3 Schumann clock-integrity study</a></li>
+    <li><a href="/projects/scp-typed-boundaries.html">Typed Agent Boundaries (v1.0.0) — 5/5 Bitcoin OpenTimestamps web-agent safety study</a></li>
+    <li><a href="https://driftboundlabs.com/papers.html">Driftbound Labs Papers — 6 preprints &amp; institutional whitepapers (incl. N=31 AI Infrastructure Buildout) ↗</a></li>
+    <li><a href="/projects/811dog.html">811Dog — One-Call operational locate triage pipeline (335 offline tests)</a></li>
+    <li><a href="/projects/bls-verifier.html">BLS verifier — narrow Rust/Wasm sync-committee primitive</a></li>
   </ul>
 </section>
-</main>
-<footer class="site-footer wrap">
-  <span>termbrow.org · evidence under the interface</span>
-  <span class="footer-links">
-    <a href="https://driftboundlabs.com">driftboundlabs.com</a>
-    <a href="https://paxiom.org">paxiom.org</a>
-    <a href="https://github.com/k-luecke">GitHub</a>
-    <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
-  </span>
+
+  </main>
+</div>
+
+<footer class="tb-bottom">
+  <div class="tb-status">
+    <span id="tb-status-msg" class="tb-status-msg">Viewing /cv.html · ORCID 0009-0008-0202-7852</span>
+    <span class="tb-status-links">
+      <a href="https://driftboundlabs.com">Driftbound Labs LLC</a>
+      <a href="https://paxiom.org">paxiom.org</a>
+      <a href="/feed.xml">Atom/RSS</a>
+      <a href="https://github.com/k-luecke">GitHub</a>
+      <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+    </span>
+  </div>
+  <div class="tb-keybar" aria-label="TermBrow command shortcuts">
+    <button type="button" data-cmd=":focus-addr"><kbd>/</kbd>Address</button>
+    <button type="button" data-cmd=":notes"><kbd>:notes</kbd>Articles</button>
+    <button type="button" data-cmd=":work"><kbd>:work</kbd>20 Cases</button>
+    <button type="button" data-cmd=":save"><kbd>^S</kbd>Save</button>
+    <button type="button" data-cmd=":library"><kbd>Alt+Y</kbd>Library</button>
+    <button type="button" data-cmd=":history"><kbd>Alt+H</kbd>History</button>
+    <button type="button" data-cmd=":keywords"><kbd>:keywords</kbd>Weights</button>
+    <button type="button" data-cmd=":explore"><kbd>Alt+E</kbd>Explore</button>
+    <button type="button" data-cmd=":strip"><kbd>Alt+G</kbd>Strip</button>
+    <button type="button" data-cmd=":theme"><kbd>Alt+D</kbd>Light/Dark</button>
+    <button type="button" data-cmd=":install"><kbd>:install</kbd>CLI</button>
+  </div>
 </footer>
 </body>
 </html>

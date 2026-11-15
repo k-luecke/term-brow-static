@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>TermBrow TLS &amp; Bounded Curation — TermBrow Technical Notes</title>
+<meta name="description" content="Why CDN passive JA3/JA4 TLS fingerprinting blocks standard Python HTTP clients, escalating cleanly from honest User-Agents to curl_cffi Chrome impersonation and Wayback snapshots, defusing tracker links, and interleaving 0.98-decay topic weights with 1-hop Wikipedia neighbors.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TermBrow TLS &amp; Bounded Curation — TermBrow Technical Notes">
+<meta property="og:description" content="Why CDN passive JA3/JA4 TLS fingerprinting blocks standard Python HTTP clients, escalating cleanly from honest User-Agents to curl_cffi Chrome impersonation and Wayback snapshots, defusing tracker links, and interleaving 0.98-decay topic weights with 1-hop Wikipedia neighbors.">
+<meta property="og:url" content="https://termbrow.org/notes/fixed-frame-terminal-reading-and-tls-escalation.html">
+<link rel="canonical" href="https://termbrow.org/notes/fixed-frame-terminal-reading-and-tls-escalation.html">
+<link rel="alternate" type="application/atom+xml" title="TermBrow Technical Notes — Kyle Luecke" href="https://termbrow.org/feed.xml">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||'dark'}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/catalog.js"></script>
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">skip to reading column</a>
+
+<header class="tb-chrome-top">
+  <div class="tb-titlebar">
+    <div class="tb-brand-group">
+      <span class="tb-dot" aria-hidden="true">●</span>
+      <a class="tb-brand" href="/index.html">TermBrow</a>
+      <span class="tb-subtitle">— note · TermBrow TLS &amp; Bounded Curation</span>
+    </div>
+    <nav class="tb-topnav" aria-label="Primary">
+      <a class="active" href="/notes.html">NOTES</a><a href="/work.html">WORK (20)</a><a href="/method.html">METHOD</a><a href="/about.html">ABOUT</a><a href="/cv.html">CV</a>
+      <a href="https://driftboundlabs.com/ventures.html">DRIFTBOUND LABS ↗</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark or light theme" title="Toggle theme (Alt+D or :theme)">◐</button>
+    </nav>
+  </div>
+
+  <div class="tb-toolbar" role="search" aria-label="TermBrow address and command bar">
+    <button id="tb-back" class="tb-btn" type="button" title="Back" aria-label="Back">‹</button>
+    <a id="tb-home" class="tb-btn" href="/index.html" title="Home (:home)" aria-label="Home">⌂</a>
+    <form id="tb-addr-form" class="tb-addr-form">
+      <input id="addrbar" type="text" spellcheck="false" autocomplete="off"
+        aria-label="Search notes and projects or run a :command"
+        placeholder="termbrow://notes/fixed-frame-terminal-reading-and-tls-escalation.html  —  search or type :notes :work :library :keywords :install :help  (/ or Ctrl+K)">
+    </form>
+    <button id="tb-save" class="tb-btn" type="button" title="Save to local library (Ctrl+S or :save)">☆ Save</button>
+    <button id="tb-help" class="tb-btn" type="button" title="Commands and keybindings (:help)">:help</button>
+  </div>
+
+  <div id="tb-feed-wrap" class="tb-feed-wrap" aria-label="For You and bounded discovery strip">
+    <div class="tb-feed-head">
+      <div class="tb-feed-controls">
+        <span>For You · Explore:</span>
+        <button id="tb-explore-btn" class="tb-pill-btn" type="button" title="Cycle Focus (15%) / Balanced (40%) / Discover (65%) (Alt+E)">Balanced (40%)</button>
+        <span class="tb-feed-hint">◇ = anchored cross-domain discovery (local 0.98-decay weights, zero tracking)</span>
+      </div>
+      <button id="tb-feed-toggle" class="tb-pill-btn" type="button" title="Hide or show strip (Alt+G)">Hide</button>
+    </div>
+    <div id="tb-feed" class="tb-feed-strip">
+      <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">JCS &amp; 15-State Receipt Precedence</span><span class="feed-item-meta"><span>note</span><span>RFC 8785 · Ed25519</span></span></a>
+      <a class="feed-item discover" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">◇ Schumann Canonical Coherence &amp; D2b</span><span class="feed-item-meta"><span>note</span><span>GWOSC O3 · CRLB</span></span></a>
+      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Ring-0 Capabilities &amp; Typed Intent IR</span><span class="feed-item-meta"><span>note</span><span>Rust UEFI · OCaml 5</span></span></a>
+      <a class="feed-item discover" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">◇ Kaplan–Meier Substations &amp; 811 Triage</span><span class="feed-item-meta"><span>note</span><span>N=31 Builds · 811Dog</span></span></a>
+      <a class="feed-item" href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html"><span class="feed-item-title">TermBrow TLS &amp; Bounded Curation</span><span class="feed-item-meta"><span>note</span><span>Python · curl_cffi</span></span></a>
+    </div>
+  </div>
+
+  <div id="tb-tabs" class="tb-tabs" aria-label="Open reading tabs">
+    <span class="tb-tab active"><a class="tb-tab-label" href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html" style="color:inherit;text-decoration:none;">note · TermBrow TLS &amp; Bo</a></span>
+    <a class="tb-tab" href="/notes.html">+ Notes</a>
+  </div>
+</header>
+
+<section id="tb-inspector" class="tb-inspector" hidden aria-live="polite"></section>
+
+<div class="tb-reader">
+  <main id="main" class="tb-article">
+
+<article class="note-doc">
+  <header class="note-hero">
+    <p class="eyebrow">technical note 05 · network clients, text extraction &amp; human factors</p>
+    <h1>Fixed-Frame Terminal Reading: TLS Handshake Escalation, Boilerplate Stripping, and Bounded Discovery in <code>TermBrow</code></h1>
+    <p class="lede">Why passive CDN TLS <code>ClientHello</code> fingerprinting blocks standard Python HTTP clients, how <code>TermBrow</code> escalates cleanly from honest User-Agents to <code>curl_cffi</code> BoringSSL impersonation and Wayback snapshots, defuses 29 classes of tracker links, and budgets local <code>0.98</code>-decay topic curation without opaque engagement ranking.</p>
+    <div class="note-meta-bar">
+      <span>Kyle W. Luecke</span>
+      <span>2026-10-29</span>
+      <span>9 min read</span>
+      <span>Source: <a href="https://github.com/k-luecke/TermBrow">k-luecke/TermBrow ↗</a></span>
+    </div>
+  </header>
+
+  <h2>1. Visual Re-Orientation Cost Across Heterogeneous Documentation</h2>
+  <p>Reading across twenty unrelated technical references in a conventional web browser — an IETF RFC, a Substack post, an academic preprint landing page, a documentation wiki, and a news archive — forces continuous perceptual re-calibration. Column widths swing from <code>48ch</code> to full-bleed <code>160ch</code>; sticky headers, newsletter modals, and related-article carousels compete for peripheral attention; body contrast and font metrics change on every click.</p>
+  <p><a href="https://github.com/k-luecke/TermBrow"><code>TermBrow</code></a> (a Python / Textual terminal browser, and the exact UI frame powering <code>termbrow.org</code>) treats layout invariance as a client-side invariant: <strong>one background, one accent color, one centered <code>84ch</code> reading column, and identical peripheral chrome in the same screen coordinates regardless of origin domain</strong>. Every retrieved document is reduced to clean structured Markdown (headings, paragraphs, tables, code blocks, and numbered links) before rendering.</p>
+
+  <h2>2. Passive TLS Fingerprinting and the Four-Tier Retrieval Ladder</h2>
+  <p>Building a terminal reader in Python quickly hits a transport-layer wall that has nothing to do with HTML parsing. A polite request sent via Python's <code>httpx</code> or <code>urllib</code> (linked against system OpenSSL) routinely receives <code>HTTP 403 Forbidden</code> or an interactive JavaScript challenge from CDN edge proxies (Cloudflare, Akamai, DataDome), even on public documentation and reference articles — and even if the caller copies a verbatim Chrome <code>User-Agent</code> string.</p>
+  <p>The discriminator is passive transport fingerprinting prior to HTTP header inspection:</p>
+  <ul>
+    <li><strong>TLS <code>ClientHello</code> (JA3 / JA4):</strong> OpenSSL's default cipher-suite list, extension permutation order, elliptic-curve groups, GREASE absence, and ALPN advertisement differ visibly from BoringSSL (Chrome) and NSS (Firefox).</li>
+    <li><strong>HTTP/2 frame negotiation:</strong> Initial <code>SETTINGS</code> window sizes, <code>WINDOW_UPDATE</code> increments, and pseudo-header ordering (<code>:method</code>, <code>:authority</code>, <code>:scheme</code>, <code>:path</code>) identify non-browser HTTP stacks on the first flight of packets.</li>
+  </ul>
+  <p>Always impersonating Chrome on every request would be needlessly dishonest toward origin servers that welcome lightweight readers; never impersonating Chrome makes a large fraction of the public web unreadable from a terminal. In <code>termbrow/fetch.py</code>, <code>fetch_page(url)</code> resolves this via a strict four-tier escalation ladder gated on a minimum extracted prose threshold (<code>_MIN_READABLE = 280</code> Markdown characters after boilerplate removal):</p>
+
+<pre><code>_MIN_READABLE = 280  # extracted Markdown chars required to accept a tier
+
+# Tier 1: Honest terminal reader UA over async httpx + per-domain cookie jar
+#   User-Agent: "TermBrow/1.0 (terminal reading browser) Mozilla/5.0"
+# Tier 2: Standard desktop Chrome Sec-Fetch-* &amp; Accept-Language header set
+# Tier 3: BoringSSL TLS ClientHello + HTTP/2 impersonation via curl_cffi
+#   curl_cffi.requests.get(url, impersonate="chrome", timeout=20)
+# Tier 4: Internet Archive Wayback Availability API fallback
+#   GET https://archive.org/wayback/available?url=&lt;encoded&gt;</code></pre>
+
+  <p>Two implementation details keep this escalation predictable and privacy-preserving:</p>
+  <ol>
+    <li><strong>Extraction-gated fallback rather than status-code-only fallback:</strong> Many soft-paywall or bot-wall responses return <code>HTTP 200 OK</code> containing a 140-character <em>"Please enable JavaScript and cookies to continue"</em> shell. Because each tier passes its HTML through content extraction before checking <code>len(markdown) &gt;= _MIN_READABLE</code>, soft 200-status shells automatically escalate to Tier&nbsp;3 (<code>browser-impersonation</code>) or Tier&nbsp;4 (<code>wayback</code>), and the status bar explicitly reports which retrieval tier succeeded (<code>via: direct</code>, <code>via: browser-impersonation</code>, or <code>via: wayback</code>).</li>
+    <li><strong>Strict <code>.onion</code> circuit isolation:</strong> When <code>tor.is_onion(url)</code> detects a v3 onion service hostname, <code>fetch_page</code> bypasses all clearnet tiers and the Wayback fallback completely, routing exclusively through the local Tor SOCKS5 proxy (<code>127.0.0.1:9050</code> or <code>9150</code>) so onion hostnames are never leaked to clearnet DNS resolvers or <code>archive.org</code>.</li>
+  </ol>
+
+  <h2>3. Boilerplate Stripping and Ad/Tracker Link Defusing</h2>
+  <p>Raw DOM trees are converted to Markdown via <code>trafilatura.extract(..., output_format="markdown", include_links=True, include_comments=False, include_tables=True, favor_recall=True)</code>, with a secondary BeautifulSoup structural extractor if <code>trafilatura</code> yields an empty tree. However, preserving inline article hyperlinks introduces a residual hazard: inline affiliate redirects and ad-network click-wrappers embedded inside body paragraphs.</p>
+  <p>Rather than running a heavyweight filter list engine, <code>fetch.py</code> applies a deterministic post-extraction pass (<code>_defuse_ad_links</code>) across <code>29</code> ad-tech and click-tracker host substrings (<code>doubleclick.net</code>, <code>googlesyndication.com</code>, <code>googleadservices.com</code>, <code>taboola.com</code>, <code>outbrain.com</code>, <code>criteo.com</code>, <code>adsrvr.org</code>, <code>app.adjust.com</code>, <code>onelink.me</code>, etc.):</p>
+
+<pre><code>_MD_LINK_RE = re.compile(r"\[([^\]]+)\]\((https?://[^)\s]+)\)")
+
+def _defuse_ad_links(md: str) -&gt; str:
+    def _check(m: re.Match) -&gt; str:
+        text, href = m.group(1), m.group(2)
+        host = urlparse(href).netloc.lower()
+        if any(ad in host for ad in _AD_HOSTS):
+            return text  # preserve readable prose, strip outbound tracker URL
+        return m.group(0)
+    return _MD_LINK_RE.sub(_check, md)</code></pre>
+
+  <p>Rewriting <code>[anchor](https://tracker.example/...)</code> to plain <code>anchor</code> keeps sentences grammatically intact while making tracker navigation impossible.</p>
+
+  <h2>4. Inspectable <code>0.98</code>-Decay Topic Weights and Bounded Discovery</h2>
+  <p>Pure chronological RSS readers exhibit zero cross-domain serendipity; commercial recommendation feeds optimize opaque engagement objectives on remote servers. <code>TermBrow</code> implements a local, inspectable middle ground stored entirely as plain JSON under <code>~/.termbrow/{history,keywords,library,prefs}.json</code> (written crash-safely via <code>.tmp</code> write + POSIX/NTFS atomic <code>Path.replace()</code>).</p>
+  <p>On every visited article, <code>extract_keywords(title, markdown, top_n=8)</code> tokenizes alphabetic words of length $\ge 4$ outside a 110-word English/web stopword set, weights title tokens $3\times$ against body tokens $1\times$, and updates <code>keywords.json</code> via exponential decay:</p>
+
+  <div class="eq-box">
+    w_k(t) = 0.98 · w_k(t − 1) + 𝟙[k ∈ top_8(article_t)],     pruned when w_k &lt; 0.05
+  </div>
+
+  <p>A multiplicative decay factor of <code>_DECAY = 0.98</code> per page visit gives every topic weight a deterministic half-life of $\ln(0.5)/\ln(0.98) \approx 34.3$ page reads: sustained research threads rise naturally above <code>3.0–8.0</code>, while one-off detours decay below the <code>0.05</code> pruning floor without manual cleanup.</p>
+  <p>When populating the horizontal <code>For You · Explore</code> strip (both in the CLI and at the top of <code>termbrow.org</code> — press <kbd>Alt+E</kbd> or run <code>:keywords</code> in the bar above to inspect your live local vector), <code>curate.py</code> partitions <code>limit</code> slots strictly according to the user-selected exploration ratio:</p>
+  <ul>
+    <li><strong><code>Focus (15% explore)</code>:</strong> 85% direct keyword-affinity matches, 15% discovery slots (marked with <code>◇</code>).</li>
+    <li><strong><code>Balanced (40% explore)</code>:</strong> 60% affinity matches, 40% anchored discovery slots.</li>
+    <li><strong><code>Discover (65% explore)</code>:</strong> 35% affinity matches, 65% cross-domain discovery slots.</li>
+  </ul>
+  <p>Crucially, discovery slots in the desktop browser are <em>anchored</em> rather than random: <code>_wiki_hop</code> fetches outgoing main-namespace (<code>plnamespace=0</code>) links from a Wikipedia article matching one of the reader's top weighted topics (filtering out <code>List of ...</code> and <code>Index of ...</code> meta-pages), while <code>_cross_pollinate</code> queries pairwise intersections of distinct interest clusters, subject to per-host diversity caps (<code>max_per_host = 2</code>) and uniform deterministic interleaving at slot indices <code>round((i + 1) * n_disc / limit)</code>.</p>
+
+  <div class="case-links">
+    <a href="/projects/termbrow.html">← TermBrow Case Study</a>
+    <a href="https://github.com/k-luecke/TermBrow">k-luecke/TermBrow ↗</a>
+    <a href="/notes.html">All Technical Notes →</a>
+  </div>
+</article>
+
+  </main>
+</div>
+
+<footer class="tb-bottom">
+  <div class="tb-status">
+    <span id="tb-status-msg" class="tb-status-msg">Reading /notes/fixed-frame-terminal-reading-and-tls-escalation.html · 9 min read · Python · curl_cffi</span>
+    <span class="tb-status-links">
+      <a href="https://driftboundlabs.com">Driftbound Labs LLC</a>
+      <a href="https://paxiom.org">paxiom.org</a>
+      <a href="/feed.xml">Atom/RSS</a>
+      <a href="https://github.com/k-luecke">GitHub</a>
+      <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+    </span>
+  </div>
+  <div class="tb-keybar" aria-label="TermBrow command shortcuts">
+    <button type="button" data-cmd=":focus-addr"><kbd>/</kbd>Address</button>
+    <button type="button" data-cmd=":notes"><kbd>:notes</kbd>Articles</button>
+    <button type="button" data-cmd=":work"><kbd>:work</kbd>20 Cases</button>
+    <button type="button" data-cmd=":save"><kbd>^S</kbd>Save</button>
+    <button type="button" data-cmd=":library"><kbd>Alt+Y</kbd>Library</button>
+    <button type="button" data-cmd=":history"><kbd>Alt+H</kbd>History</button>
+    <button type="button" data-cmd=":keywords"><kbd>:keywords</kbd>Weights</button>
+    <button type="button" data-cmd=":explore"><kbd>Alt+E</kbd>Explore</button>
+    <button type="button" data-cmd=":strip"><kbd>Alt+G</kbd>Strip</button>
+    <button type="button" data-cmd=":theme"><kbd>Alt+D</kbd>Light/Dark</button>
+    <button type="button" data-cmd=":install"><kbd>:install</kbd>CLI</button>
+  </div>
+</footer>
+</body>
+</html>
