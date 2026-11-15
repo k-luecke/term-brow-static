@@ -177,6 +177,16 @@
         "v1.0.0",
         "SINGLE-FILE"
       ]
+    },
+    {
+      "slug": "custos",
+      "title": "CUSTOS Embedded LoRa AEAD & TDOA Engine",
+      "kind": "systems",
+      "repo": "k-luecke/custos",
+      "status": [
+        "v0.1.0",
+        "AEAD + TDOA"
+      ]
     }
   ]
 }
