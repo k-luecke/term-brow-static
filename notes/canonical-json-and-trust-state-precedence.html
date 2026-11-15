@@ -74,7 +74,7 @@
     where payload binds: requestHash || paymentRequirementsHash || paymentPayloadHash || txHash || outputHash
   </div>
 
-  <p>Closing that gap without requiring synchronous on-chain calldata bloat on every API call requires a transport-level receipt header (<code>X-Paxiom-Receipt</code>) whose signature covers canonical digests of the request, the payment negotiation, and the delivered output — and whose verifier refuses to conflate signature validity with settlement finality.</p>
+  <p>Closing that gap without requiring synchronous on-chain calldata bloat on every API call requires a transport-level receipt header (<code>Payment-Receipt</code>, with <code>X-Paxiom-Receipt</code> backward compatibility) whose signature covers canonical digests of the request, the payment negotiation, and the delivered output — and whose verifier refuses to conflate signature validity with signer authorization or settlement finality.</p>
 
   <h2>2. Canonical JSON Serialization Hazards Across Runtimes</h2>
   <p>Signing raw HTTP wire bytes works until a receipt or JSON payload crosses an API gateway, structured logger, message queue, or cross-language SDK boundary (Node.js/V8 to Python 3.10+) that parses and re-serializes JSON objects. Object key insertion order, insignificant whitespace, and numeric formatting vary across serializers unless pinned to an explicit canonical profile (RFC&nbsp;8785 JSON Canonicalization Scheme, JCS).</p>
@@ -157,9 +157,10 @@ function strictDecodeBase64(value, expectedByteLength, label) {
       <tr><td>02</td><td><code>unsupported_format</code></td><td><code>receiptVersion !== "paxiom.receipt.v0"</code>.</td></tr>
       <tr><td>03</td><td><code>schema_invalid</code></td><td>Draft-07 JSON Schema violation (missing required field, unexpected property, invalid RFC 3339 timestamp, malformed <code>0x</code> SHA-256 hex).</td></tr>
       <tr><td>04</td><td><code>invalid_signature</code></td><td><code>payload.issuer.keyId !== signature.keyId</code>, non-canonical base64, or Ed25519 verification failure over <code>signingInput(receipt)</code>.</td></tr>
+      <tr><td>04b</td><td><code>unauthorized_issuer</code></td><td><em>(Added in <code>v0.2.0</code>)</em> Signature passes, but <code>signature.publicKey</code> is not in <code>expectedIssuerPublicKeys</code> (discovered from the seller's HTTPS <code>/.well-known/x402-keys.json</code>) or <code>payTo</code> mismatches <code>expectedPayTo</code>.</td></tr>
       <tr><td>05</td><td><code>expired</code></td><td>Optional <code>payload.expiresAt</code> precedes verifier wall clock.</td></tr>
       <tr><td>06</td><td><code>error</code></td><td>Supplied <code>output</code> exceeds <code>MAX_DEPTH</code> or contains non-JSON-representable types.</td></tr>
-      <tr><td>07</td><td><code>output_hash_mismatch</code></td><td><code>hashCanonical(output) !== payload.delivery.outputHash</code> (payload tampering or proxy substitution).</td></tr>
+      <tr><td>07</td><td><code>output_hash_mismatch</code></td><td><code>jcs-sha256</code> or <code>raw-sha256</code> digest of <code>output</code> &ne; <code>payload.delivery.outputHash</code> (payload tampering or proxy substitution).</td></tr>
       <tr><td>08</td><td><code>settlement_failed</code></td><td>Receipt explicitly records <code>payment.settlement.status === "failed"</code>.</td></tr>
       <tr><td>09–10</td><td><code>proof_invalid</code> / <code>proof_unavailable</code></td><td>Attached upstream evidence entry reports <code>invalid</code> or <code>unavailable</code>.</td></tr>
       <tr><td>11</td><td><code>settlement_claimed_not_checked</code></td><td>Receipt claims <code>claimed_not_checked</code>, claims <code>verified_settled</code> without a trusted counter-signature, asserts <code>checkedByPaxiom: true</code> from an untrusted key, or smuggles a non-null <code>transactionHash</code> under <code>not_required</code> / <code>verify_only</code>.</td></tr>

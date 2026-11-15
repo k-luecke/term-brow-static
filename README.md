@@ -9,4 +9,4 @@ Static source for **[termbrow.org](https://termbrow.org)** — Kyle W. Luecke's 
 - **Content Surface:**
   - `notes.html` & `notes/*.html` — 5 long-form technical articles grounded in shipped protocols, kernel invariants, geophysical metrology, and survival analysis (`/feed.xml` Atom feed).
   - `work.html` & `projects/*.html` — 20 bounded empirical and systems case studies.
-  - Commercial platforms ([paxiom.org](https://paxiom.org)) and institutional research/advisory operate through **[Driftbound Labs LLC](https://driftboundlabs.com/ventures.html)**.
+  - Open protocol standards ([paxiom.org](https://paxiom.org)) and institutional research/advisory operate through **[Driftbound Labs LLC](https://driftboundlabs.com/ventures.html)**.

@@ -86,7 +86,7 @@ window.TERMBROW_CATALOG = [
     "url": "/projects/paxiom.html",
     "title": "Paxiom Receipts (paxiom.receipt.v0)",
     "kind": "system",
-    "meta": "v0.1.3 Live",
+    "meta": "v0.2.0 Open MIT",
     "keywords": [
       "cryptography",
       "ed25519",
@@ -94,7 +94,7 @@ window.TERMBROW_CATALOG = [
       "receipts",
       "protocol"
     ],
-    "summary": "Ed25519 delivery receipts, npm/PyPI SDKs, MCP server, and Base Mainnet USDC settlement verifier."
+    "summary": "Open MIT Ed25519 delivery-receipt standard, npm/PyPI SDKs, MCP server, and free public Base Mainnet reference verifier."
   },
   {
     "url": "/projects/intentnativeos.html",
