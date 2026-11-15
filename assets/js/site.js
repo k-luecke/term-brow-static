@@ -210,7 +210,7 @@
       .slice(0, 5)
       .map(([k]) => k);
 
-    const limit = 10;
+    const limit = 4;
     const nDisc = Math.max(1, Math.round(limit * mode.ratio));
 
     const candidates = CATALOG.filter((c) => c.url !== currentPath);

@@ -19,55 +19,30 @@
 <script defer src="../assets/js/site.js"></script>
 </head>
 <body>
-<a class="skip" href="#main">skip to reading column</a>
+<a class="skip" href="#main">Skip to content</a>
 
-<header class="tb-chrome-top">
-  <div class="tb-titlebar">
-    <div class="tb-brand-group">
+<header class="tb-header">
+  <div class="tb-header-inner">
+    <a class="tb-brand" href="/index.html">
       <span class="tb-dot" aria-hidden="true">●</span>
-      <a class="tb-brand" href="/index.html">TermBrow</a>
-      <span class="tb-subtitle">— note · Schumann Canonical Coherence &amp; D2b</span>
-    </div>
-    <nav class="tb-topnav" aria-label="Primary">
-      <a class="active" href="/notes.html">NOTES</a><a href="/work.html">WORK (20)</a><a href="/method.html">METHOD</a><a href="/about.html">ABOUT</a><a href="/cv.html">CV</a>
-      <a href="https://driftboundlabs.com/ventures.html">DRIFTBOUND LABS ↗</a>
-      <button class="theme-toggle" type="button" aria-label="Toggle dark or light theme" title="Toggle theme (Alt+D or :theme)">◐</button>
-    </nav>
-  </div>
+      <span>TermBrow</span>
+    </a>
 
-  <div class="tb-toolbar" role="search" aria-label="TermBrow address and command bar">
-    <button id="tb-back" class="tb-btn" type="button" title="Back" aria-label="Back">‹</button>
-    <a id="tb-home" class="tb-btn" href="/index.html" title="Home (:home)" aria-label="Home">⌂</a>
-    <form id="tb-addr-form" class="tb-addr-form">
+    <form id="tb-addr-form" class="tb-search-form" role="search">
       <input id="addrbar" type="text" spellcheck="false" autocomplete="off"
-        aria-label="Search notes and projects or run a :command"
-        placeholder="termbrow://notes/subspace-coherence-and-source-phase-wander.html  —  search or type :notes :work :library :keywords :install :help  (/ or Ctrl+K)">
+        aria-label="Search articles and projects or run a :command"
+        placeholder="Search notes &amp; projects… (press / or :help)">
     </form>
-    <button id="tb-save" class="tb-btn" type="button" title="Save to local library (Ctrl+S or :save)">☆ Save</button>
-    <button id="tb-help" class="tb-btn" type="button" title="Commands and keybindings (:help)">:help</button>
-  </div>
 
-  <div id="tb-feed-wrap" class="tb-feed-wrap" aria-label="For You and bounded discovery strip">
-    <div class="tb-feed-head">
-      <div class="tb-feed-controls">
-        <span>For You · Explore:</span>
-        <button id="tb-explore-btn" class="tb-pill-btn" type="button" title="Cycle Focus (15%) / Balanced (40%) / Discover (65%) (Alt+E)">Balanced (40%)</button>
-        <span class="tb-feed-hint">◇ = anchored cross-domain discovery (local 0.98-decay weights, zero tracking)</span>
-      </div>
-      <button id="tb-feed-toggle" class="tb-pill-btn" type="button" title="Hide or show strip (Alt+G)">Hide</button>
-    </div>
-    <div id="tb-feed" class="tb-feed-strip">
-      <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">JCS &amp; 15-State Receipt Precedence</span><span class="feed-item-meta"><span>note</span><span>RFC 8785 · Ed25519</span></span></a>
-      <a class="feed-item discover" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">◇ Schumann Canonical Coherence &amp; D2b</span><span class="feed-item-meta"><span>note</span><span>GWOSC O3 · CRLB</span></span></a>
-      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Ring-0 Capabilities &amp; Typed Intent IR</span><span class="feed-item-meta"><span>note</span><span>Rust UEFI · OCaml 5</span></span></a>
-      <a class="feed-item discover" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">◇ Kaplan–Meier Substations &amp; 811 Triage</span><span class="feed-item-meta"><span>note</span><span>N=31 Builds · 811Dog</span></span></a>
-      <a class="feed-item" href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html"><span class="feed-item-title">TermBrow TLS &amp; Bounded Curation</span><span class="feed-item-meta"><span>note</span><span>Python · curl_cffi</span></span></a>
-    </div>
-  </div>
-
-  <div id="tb-tabs" class="tb-tabs" aria-label="Open reading tabs">
-    <span class="tb-tab active"><a class="tb-tab-label" href="/notes/subspace-coherence-and-source-phase-wander.html" style="color:inherit;text-decoration:none;">note · Schumann Canonica</a></span>
-    <a class="tb-tab" href="/notes.html">+ Notes</a>
+    <nav class="tb-topnav" aria-label="Primary">
+      <a class="active" href="/notes.html">Notes</a>
+      <a href="/work.html">Projects</a>
+      <a class="hide-xs" href="/method.html">Method</a>
+      <a href="/about.html">About</a>
+      <a class="hide-xs" href="/cv.html">CV</a>
+      <button id="tb-save" class="icon-btn hide-xs-btn" type="button" title="Save page locally (Ctrl+S)">☆ Save</button>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Toggle light or dark theme" title="Toggle theme (Alt+D)">◐</button>
+    </nav>
   </div>
 </header>
 
@@ -75,7 +50,6 @@
 
 <div class="tb-reader">
   <main id="main" class="tb-article">
-
 <article class="note-doc">
   <header class="note-hero">
     <p class="eyebrow">technical note 02 · signal processing, time metrology &amp; geophysics</p>
@@ -171,33 +145,41 @@
     <a href="https://github.com/k-luecke/Geo">Companion Geo Repository ↗</a>
   </div>
 </article>
-
   </main>
 </div>
 
-<footer class="tb-bottom">
-  <div class="tb-status">
-    <span id="tb-status-msg" class="tb-status-msg">Reading /notes/subspace-coherence-and-source-phase-wander.html · 12 min read · GWOSC O3 · CRLB</span>
-    <span class="tb-status-links">
+<aside id="tb-feed-wrap" class="tb-feed-wrap" aria-label="Recommended next reads">
+  <div class="tb-feed-head">
+    <span class="tb-feed-title">Recommended Next <span style="font-weight:400;color:var(--muted);">· local topic weights, zero tracking</span></span>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="tb-explore-btn" class="tb-pill-btn" type="button" title="Cycle Focus / Balanced / Discover (Alt+E)">Balanced (40%)</button>
+      <button id="tb-feed-toggle" class="tb-pill-btn" type="button" title="Hide recommendations">Hide</button>
+    </div>
+  </div>
+  <div id="tb-feed" class="tb-feed-strip">
+    <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">Deterministic JSON Canonicalization and Fifteen-State Verification Precedence in paxiom.receipt.v0</span><span class="feed-item-meta"><span>note</span><span>11 min read</span></span></a>
+      <a class="feed-item discover" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">◇ Two-Axis Canonical Coherence and the Source-Phase Stationarity Gap Across a 3,002 km Magnetometer Baseline</span><span class="feed-item-meta"><span>note</span><span>12 min read</span></span></a>
+      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Separating Semantic Inference from Ring-0 Authority: Typed Intent Contracts and Capability Confinement in INOS</span><span class="feed-item-meta"><span>note</span><span>11 min read</span></span></a>
+      <a class="feed-item discover" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">◇ Point-in-Time Sovereign Telemetry, Right-Censored Energization Survival, and Export-First 811 Triage</span><span class="feed-item-meta"><span>note</span><span>10 min read</span></span></a>
+  </div>
+</aside>
+
+<footer class="tb-footer">
+  <div class="tb-footer-inner">
+    <div class="tb-footer-links">
+      <strong style="color:var(--ink-bright);">Kyle Luecke</strong>
       <a href="https://driftboundlabs.com">Driftbound Labs LLC</a>
-      <a href="https://paxiom.org">paxiom.org</a>
+      <a href="https://paxiom.org">Paxiom</a>
       <a href="/feed.xml">Atom/RSS</a>
       <a href="https://github.com/k-luecke">GitHub</a>
       <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
-    </span>
-  </div>
-  <div class="tb-keybar" aria-label="TermBrow command shortcuts">
-    <button type="button" data-cmd=":focus-addr"><kbd>/</kbd>Address</button>
-    <button type="button" data-cmd=":notes"><kbd>:notes</kbd>Articles</button>
-    <button type="button" data-cmd=":work"><kbd>:work</kbd>20 Cases</button>
-    <button type="button" data-cmd=":save"><kbd>^S</kbd>Save</button>
-    <button type="button" data-cmd=":library"><kbd>Alt+Y</kbd>Library</button>
-    <button type="button" data-cmd=":history"><kbd>Alt+H</kbd>History</button>
-    <button type="button" data-cmd=":keywords"><kbd>:keywords</kbd>Weights</button>
-    <button type="button" data-cmd=":explore"><kbd>Alt+E</kbd>Explore</button>
-    <button type="button" data-cmd=":strip"><kbd>Alt+G</kbd>Strip</button>
-    <button type="button" data-cmd=":theme"><kbd>Alt+D</kbd>Light/Dark</button>
-    <button type="button" data-cmd=":install"><kbd>:install</kbd>CLI</button>
+    </div>
+    <div class="tb-shortcuts" aria-label="Reader tools">
+      <button type="button" data-cmd=":library">Saved</button>
+      <button type="button" data-cmd=":keywords">Topic Weights</button>
+      <button type="button" data-cmd=":install">TermBrow CLI</button>
+      <button type="button" data-cmd=":help">:help</button>
+    </div>
   </div>
 </footer>
 </body>

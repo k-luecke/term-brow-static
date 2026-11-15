@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark light">
-<title>TermBrow — Technical Notes &amp; Empirical Systems (Kyle Luecke)</title>
-<meta name="description" content="Technical engineering notes, preregistered experiments, and verification systems by Kyle W. Luecke, rendered in the fixed-frame TermBrow reading interface.">
+<title>TermBrow — Technical Notes &amp; Projects by Kyle Luecke</title>
+<meta name="description" content="Long-form engineering notes and open-source systems by Kyle Luecke across cryptographic receipts, capability kernels, signal metrology, and infrastructure.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TermBrow — Technical Notes &amp; Empirical Systems (Kyle Luecke)">
-<meta property="og:description" content="Technical engineering notes, preregistered experiments, and verification systems by Kyle W. Luecke, rendered in the fixed-frame TermBrow reading interface.">
+<meta property="og:title" content="TermBrow — Technical Notes &amp; Projects by Kyle Luecke">
+<meta property="og:description" content="Long-form engineering notes and open-source systems by Kyle Luecke across cryptographic receipts, capability kernels, signal metrology, and infrastructure.">
 <meta property="og:url" content="https://termbrow.org/">
 <link rel="canonical" href="https://termbrow.org/">
 <link rel="alternate" type="application/atom+xml" title="TermBrow Technical Notes — Kyle Luecke" href="https://termbrow.org/feed.xml">
@@ -19,55 +19,30 @@
 <script defer src="assets/js/site.js"></script>
 </head>
 <body>
-<a class="skip" href="#main">skip to reading column</a>
+<a class="skip" href="#main">Skip to content</a>
 
-<header class="tb-chrome-top">
-  <div class="tb-titlebar">
-    <div class="tb-brand-group">
+<header class="tb-header">
+  <div class="tb-header-inner">
+    <a class="tb-brand" href="/index.html">
       <span class="tb-dot" aria-hidden="true">●</span>
-      <a class="tb-brand" href="/index.html">TermBrow</a>
-      <span class="tb-subtitle">— kyle luecke · technical notebook</span>
-    </div>
-    <nav class="tb-topnav" aria-label="Primary">
-      <a href="/notes.html">NOTES</a><a href="/work.html">WORK (20)</a><a href="/method.html">METHOD</a><a href="/about.html">ABOUT</a><a href="/cv.html">CV</a>
-      <a href="https://driftboundlabs.com/ventures.html">DRIFTBOUND LABS ↗</a>
-      <button class="theme-toggle" type="button" aria-label="Toggle dark or light theme" title="Toggle theme (Alt+D or :theme)">◐</button>
-    </nav>
-  </div>
+      <span>TermBrow</span>
+    </a>
 
-  <div class="tb-toolbar" role="search" aria-label="TermBrow address and command bar">
-    <button id="tb-back" class="tb-btn" type="button" title="Back" aria-label="Back">‹</button>
-    <a id="tb-home" class="tb-btn" href="/index.html" title="Home (:home)" aria-label="Home">⌂</a>
-    <form id="tb-addr-form" class="tb-addr-form">
+    <form id="tb-addr-form" class="tb-search-form" role="search">
       <input id="addrbar" type="text" spellcheck="false" autocomplete="off"
-        aria-label="Search notes and projects or run a :command"
-        placeholder="termbrow://home  —  search or type :notes :work :library :keywords :install :help  (/ or Ctrl+K)">
+        aria-label="Search articles and projects or run a :command"
+        placeholder="Search notes &amp; projects… (press / or :help)">
     </form>
-    <button id="tb-save" class="tb-btn" type="button" title="Save to local library (Ctrl+S or :save)">☆ Save</button>
-    <button id="tb-help" class="tb-btn" type="button" title="Commands and keybindings (:help)">:help</button>
-  </div>
 
-  <div id="tb-feed-wrap" class="tb-feed-wrap" aria-label="For You and bounded discovery strip">
-    <div class="tb-feed-head">
-      <div class="tb-feed-controls">
-        <span>For You · Explore:</span>
-        <button id="tb-explore-btn" class="tb-pill-btn" type="button" title="Cycle Focus (15%) / Balanced (40%) / Discover (65%) (Alt+E)">Balanced (40%)</button>
-        <span class="tb-feed-hint">◇ = anchored cross-domain discovery (local 0.98-decay weights, zero tracking)</span>
-      </div>
-      <button id="tb-feed-toggle" class="tb-pill-btn" type="button" title="Hide or show strip (Alt+G)">Hide</button>
-    </div>
-    <div id="tb-feed" class="tb-feed-strip">
-      <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">JCS &amp; 15-State Receipt Precedence</span><span class="feed-item-meta"><span>note</span><span>RFC 8785 · Ed25519</span></span></a>
-      <a class="feed-item discover" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">◇ Schumann Canonical Coherence &amp; D2b</span><span class="feed-item-meta"><span>note</span><span>GWOSC O3 · CRLB</span></span></a>
-      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Ring-0 Capabilities &amp; Typed Intent IR</span><span class="feed-item-meta"><span>note</span><span>Rust UEFI · OCaml 5</span></span></a>
-      <a class="feed-item discover" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">◇ Kaplan–Meier Substations &amp; 811 Triage</span><span class="feed-item-meta"><span>note</span><span>N=31 Builds · 811Dog</span></span></a>
-      <a class="feed-item" href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html"><span class="feed-item-title">TermBrow TLS &amp; Bounded Curation</span><span class="feed-item-meta"><span>note</span><span>Python · curl_cffi</span></span></a>
-    </div>
-  </div>
-
-  <div id="tb-tabs" class="tb-tabs" aria-label="Open reading tabs">
-    <span class="tb-tab active"><a class="tb-tab-label" href="/index.html" style="color:inherit;text-decoration:none;">kyle luecke · technical </a></span>
-    <a class="tb-tab" href="/notes.html">+ Notes</a>
+    <nav class="tb-topnav" aria-label="Primary">
+      <a href="/notes.html">Notes</a>
+      <a href="/work.html">Projects</a>
+      <a class="hide-xs" href="/method.html">Method</a>
+      <a href="/about.html">About</a>
+      <a class="hide-xs" href="/cv.html">CV</a>
+      <button id="tb-save" class="icon-btn hide-xs-btn" type="button" title="Save page locally (Ctrl+S)">☆ Save</button>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Toggle light or dark theme" title="Toggle theme (Alt+D)">◐</button>
+    </nav>
   </div>
 </header>
 
@@ -77,184 +52,187 @@
   <main id="main" class="tb-article">
 
 <section class="hero">
-  <p class="eyebrow">termbrow.org · engineering notebook &amp; empirical archive</p>
-  <h1>Technical notes and bounded claims inside a fixed-frame terminal reader.</h1>
-  <p class="lede">Personal engineering notebook of <strong>Kyle W. Luecke</strong> — rendered inside the web interface of <a href="https://github.com/k-luecke/TermBrow"><code>TermBrow</code></a>: one centered <code>84ch</code> reading column, local <code>0.98</code>-decay topic weights, bounded cross-domain discovery, and zero remote tracking. Commercial verification platforms (<a href="https://paxiom.org">Paxiom</a>) and physical-layer research &amp; diligence operate through <a href="https://driftboundlabs.com/ventures.html">Driftbound Labs LLC</a>.</p>
-  <div class="note-meta-bar">
-    <span><a href="/notes.html">5 Technical Notes</a></span>
-    <span><a href="/work.html">20 Case Studies</a></span>
-    <span><a href="https://driftboundlabs.com/papers.html">6 Preprints &amp; Whitepapers ↗</a></span>
-    <span><a href="/feed.xml">Atom Feed</a></span>
+  <p class="eyebrow">Kyle Luecke · Engineering Notebook</p>
+  <h1>Field notes on verification, systems, and physical-layer measurement.</h1>
+  <p class="lede">Long-form technical writing and open-source builds across cryptographic protocols, capability microkernels, geophysical signal analysis, and fiber/power infrastructure — including the hypotheses that failed.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="#writing">Read Technical Notes ↓</a>
+    <a class="btn-secondary" href="/work.html">Browse All 20 Projects →</a>
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="writing">
   <div class="section-head">
-    <h2>Technical Notes</h2>
-    <a href="/notes.html">all 5 articles &amp; Atom feed →</a>
+    <h2>Recent Technical Notes</h2>
+    <a href="/feed.xml">Subscribe via Atom/RSS →</a>
   </div>
-  
-  <article class="feature">
-    <span class="feature-index">01</span>
-    <div>
-      <p class="eyebrow">Cryptographic Protocols · Wire Formats · 2026-11-15 · 11 min read</p>
+  <div class="article-stack">
+    
+    <article class="article-card">
+      <div class="article-card-meta">
+        <span class="article-card-domain">Cryptographic Protocols · Wire Formats</span>
+        <span>·</span>
+        <span>2026-11-15</span>
+        <span>·</span>
+        <span>11 min read</span>
+      </div>
       <h3><a href="/notes/canonical-json-and-trust-state-precedence.html">Deterministic JSON Canonicalization and Fifteen-State Verification Precedence in paxiom.receipt.v0</a></h3>
       <p>Why HTTP 200 + EIP-3009 payment headers fail to bind response bytes, recursive UTF-16 key canonicalization hazards, strict base64 round-tripping, and why offline verifiers require ordered multi-state precedence rather than boolean validity.</p>
-      <div class="status-row">
-        <span class="status verified">RFC 8785 · Ed25519</span>
-        <a href="/notes/canonical-json-and-trust-state-precedence.html" class="mono" style="font-size:12px;margin-left:6px;">read note →</a>
-        <a href="/projects/paxiom.html" class="mono" style="font-size:12px;margin-left:8px;color:var(--muted);">case study</a>
+      <div class="article-card-foot">
+        <a href="/notes/canonical-json-and-trust-state-precedence.html">Read article →</a>
+        <a href="/projects/paxiom.html" style="color:var(--muted);font-weight:400;">Companion project</a>
       </div>
-    </div>
-  </article>
-  <article class="feature">
-    <span class="feature-index">02</span>
-    <div>
-      <p class="eyebrow">Signal Processing · Time Metrology · Geophysics · 2026-11-12 · 12 min read</p>
+    </article>
+    <article class="article-card">
+      <div class="article-card-meta">
+        <span class="article-card-domain">Signal Processing · Time Metrology · Geophysics</span>
+        <span>·</span>
+        <span>2026-11-12</span>
+        <span>·</span>
+        <span>12 min read</span>
+      </div>
       <h3><a href="/notes/subspace-coherence-and-source-phase-wander.html">Two-Axis Canonical Coherence and the Source-Phase Stationarity Gap Across a 3,002 km Magnetometer Baseline</a></h3>
       <p>Deriving GL(2,C)-invariant whitened cross-spectral eigenvalues over horizontal vault magnetometers, translating null-subtracted coherence into a 76.6 µs Carter Cramér–Rao bound, and diagnosing why diurnal thunderstorm migration broke inter-window GCC-SCOT stationarity (Gate D2b).</p>
-      <div class="status-row">
-        <span class="status verified">GWOSC O3 · CRLB</span>
-        <a href="/notes/subspace-coherence-and-source-phase-wander.html" class="mono" style="font-size:12px;margin-left:6px;">read note →</a>
-        <a href="/projects/time-integrity.html" class="mono" style="font-size:12px;margin-left:8px;color:var(--muted);">case study</a>
+      <div class="article-card-foot">
+        <a href="/notes/subspace-coherence-and-source-phase-wander.html">Read article →</a>
+        <a href="/projects/time-integrity.html" style="color:var(--muted);font-weight:400;">Companion project</a>
       </div>
-    </div>
-  </article>
-  <article class="feature">
-    <span class="feature-index">03</span>
-    <div>
-      <p class="eyebrow">Operating Systems · Type Systems · Kernel Security · 2026-11-08 · 11 min read</p>
+    </article>
+    <article class="article-card">
+      <div class="article-card-meta">
+        <span class="article-card-domain">Operating Systems · Type Systems · Kernel Security</span>
+        <span>·</span>
+        <span>2026-11-08</span>
+        <span>·</span>
+        <span>11 min read</span>
+      </div>
       <h3><a href="/notes/intent-contracts-and-capability-isolation.html">Separating Semantic Inference from Ring-0 Authority: Typed Intent Contracts and Capability Confinement in INOS</a></h3>
       <p>Partitioning T0–T4 authority across a no_std x86-64 UEFI Rust microkernel and an OCaml 5 control plane: W^X CR3 isolation, provenance-qualified AST bindings preventing EXPLORE-to-EXECUTE escalation, 6-boundary WAL crash recovery, and quarantined research lanes.</p>
-      <div class="status-row">
-        <span class="status verified">Rust UEFI · OCaml 5</span>
-        <a href="/notes/intent-contracts-and-capability-isolation.html" class="mono" style="font-size:12px;margin-left:6px;">read note →</a>
-        <a href="/projects/intentnativeos.html" class="mono" style="font-size:12px;margin-left:8px;color:var(--muted);">case study</a>
+      <div class="article-card-foot">
+        <a href="/notes/intent-contracts-and-capability-isolation.html">Read article →</a>
+        <a href="/projects/intentnativeos.html" style="color:var(--muted);font-weight:400;">Companion project</a>
       </div>
-    </div>
-  </article>
-  <article class="feature">
-    <span class="feature-index">04</span>
-    <div>
-      <p class="eyebrow">Infrastructure Analytics · Survival Modeling · Field Systems · 2026-11-03 · 10 min read</p>
+    </article>
+    <article class="article-card">
+      <div class="article-card-meta">
+        <span class="article-card-domain">Infrastructure Analytics · Survival Modeling · Field Systems</span>
+        <span>·</span>
+        <span>2026-11-03</span>
+        <span>·</span>
+        <span>10 min read</span>
+      </div>
       <h3><a href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html">Point-in-Time Sovereign Telemetry, Right-Censored Energization Survival, and Export-First 811 Triage</a></h3>
       <p>Eliminating lookahead and survivorship bias in hyperscale power/civil auditing (211-day median physical divergence lead, 112.0-week Kaplan–Meier energization median), paired with CSV export-first One-Call locate filtering and conjunctive contractor scoring.</p>
-      <div class="status-row">
-        <span class="status verified">N=31 Builds · 811Dog</span>
-        <a href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html" class="mono" style="font-size:12px;margin-left:6px;">read note →</a>
-        <a href="/projects/811dog.html" class="mono" style="font-size:12px;margin-left:8px;color:var(--muted);">case study</a>
+      <div class="article-card-foot">
+        <a href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html">Read article →</a>
+        <a href="/projects/811dog.html" style="color:var(--muted);font-weight:400;">Companion project</a>
       </div>
-    </div>
-  </article>
-  <article class="feature">
-    <span class="feature-index">05</span>
-    <div>
-      <p class="eyebrow">Network Clients · Text Extraction · Human Factors · 2026-10-29 · 9 min read</p>
+    </article>
+    <article class="article-card">
+      <div class="article-card-meta">
+        <span class="article-card-domain">Network Clients · Text Extraction · Human Factors</span>
+        <span>·</span>
+        <span>2026-10-29</span>
+        <span>·</span>
+        <span>9 min read</span>
+      </div>
       <h3><a href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html">Fixed-Frame Terminal Reading: TLS Handshake Escalation, Boilerplate Stripping, and Bounded Discovery in TermBrow</a></h3>
       <p>Why CDN passive JA3/JA4 TLS fingerprinting blocks standard Python HTTP clients, escalating cleanly from honest User-Agents to curl_cffi Chrome impersonation and Wayback snapshots, defusing tracker links, and interleaving 0.98-decay topic weights with 1-hop Wikipedia neighbors.</p>
-      <div class="status-row">
-        <span class="status verified">Python · curl_cffi</span>
-        <a href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html" class="mono" style="font-size:12px;margin-left:6px;">read note →</a>
-        <a href="/projects/termbrow.html" class="mono" style="font-size:12px;margin-left:8px;color:var(--muted);">case study</a>
+      <div class="article-card-foot">
+        <a href="/notes/fixed-frame-terminal-reading-and-tls-escalation.html">Read article →</a>
+        <a href="/projects/termbrow.html" style="color:var(--muted);font-weight:400;">Companion project</a>
       </div>
-    </div>
-  </article>
-</section>
-
-<section class="section">
-  <div class="section-head">
-    <h2>Browse All 20 Case Studies</h2>
-    <a href="/work.html">full annotated work index →</a>
-  </div>
-  <div class="columns four">
-    <div>
-      <h3>Research</h3>
-      <ul class="link-list">
-        <li><a href="/projects/time-integrity.html">Time Integrity (LIGO O3)</a></li>
-        <li><a href="/projects/scp-typed-boundaries.html">Typed Agent Boundaries</a></li>
-        <li><a href="/projects/tonic-gating.html">Tonic Gating (MoE)</a></li>
-        <li><a href="/projects/network-native-computation.html">Network-Native Computation</a></li>
-        <li><a href="/projects/fnwd-v04-retraction.html">FNWD v0.4 Retraction</a></li>
-        <li><a href="/projects/secp256k1-kangaroo-lab.html">secp256k1 Kangaroo Lab</a></li>
-        <li><a href="/projects/rc4-causal-cones.html">RC4 Causal Cones</a></li>
-        <li><a href="/projects/geo.html">Geo ELF Notebook</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>Systems</h3>
-      <ul class="link-list">
-        <li><a href="/projects/paxiom.html">Paxiom Receipts (v0.1.3)</a></li>
-        <li><a href="/projects/intentnativeos.html">IntentNativeOS (v0.3.0-alpha)</a></li>
-        <li><a href="/projects/custos.html">CUSTOS LoRa AEAD &amp; TDOA</a></li>
-        <li><a href="/projects/bls-verifier.html">BLS12-381 Verifier</a></li>
-        <li><a href="/projects/zkfwdbld.html">zkfwdbld (Goldilocks R1CS)</a></li>
-        <li><a href="/projects/medals.html">Selkov + Goldilocks RTL</a></li>
-        <li><a href="/projects/switchboard.html">Switchboard (RFC 5545)</a></li>
-        <li><a href="/projects/termbrow.html">TermBrow CLI Browser</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>Investigations</h3>
-      <ul class="link-list">
-        <li><a href="/projects/811dog.html">811Dog Locate Pipeline</a></li>
-        <li><a href="/projects/fincen-boi.html">FinCEN BOI Provenance</a></li>
-      </ul>
-      <h3 style="margin-top:18px;">Method &amp; Lab</h3>
-      <ul class="link-list">
-        <li><a href="/projects/research-method.html">research-method (11 Stages)</a></li>
-        <li><a href="/projects/driftbound-labs.html">Driftbound Benchmark CLI</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>Ecosystem</h3>
-      <ul class="link-list">
-        <li><a href="https://driftboundlabs.com">Driftbound Labs LLC ↗</a></li>
-        <li><a href="https://driftboundlabs.com/ventures.html">Ventures &amp; Advisory ↗</a></li>
-        <li><a href="https://driftboundlabs.com/papers.html">Published Papers (PDF) ↗</a></li>
-        <li><a href="https://paxiom.org">paxiom.org ↗</a></li>
-        <li><a href="https://api.paxiom.org/version">api.paxiom.org ↗</a></li>
-        <li><a href="https://github.com/k-luecke">github.com/k-luecke ↗</a></li>
-      </ul>
-    </div>
+    </article>
   </div>
 </section>
 
 <section class="section">
   <div class="section-head">
-    <h2>About This Interface (<code>TermBrow</code>)</h2>
-    <a href="https://github.com/k-luecke/TermBrow">github.com/k-luecke/TermBrow ↗</a>
+    <h2>Selected Systems &amp; Studies</h2>
+    <a href="/work.html">View all 20 case studies →</a>
   </div>
-  <p>This website uses the exact layout geometry and local curation model of <a href="/projects/termbrow.html"><code>TermBrow</code></a>, an open-source Python / Textual terminal browser built for distraction-free technical reading. Press <kbd>/</kbd> (or <kbd>Ctrl+K</kbd>) to focus the command/search bar above, <kbd>Alt+E</kbd> to cycle <code>Focus (15%)</code> / <code>Balanced (40%)</code> / <code>Discover (65%)</code> exploration budgets, or run <code>:keywords</code>, <code>:library</code>, <code>:history</code>, and <code>:help</code> directly in the toolbar. Every state vector stays in your browser's local storage.</p>
-<pre><code>pipx install git+https://github.com/k-luecke/TermBrow
-termbrow https://termbrow.org/notes.html</code></pre>
+  <div class="highlight-grid">
+    <div class="highlight-card">
+      <div>
+        <p class="eyebrow">Live Protocol · npm &amp; PyPI</p>
+        <h3><a href="/projects/paxiom.html">Paxiom Receipts</a></h3>
+        <p>Ed25519 proof-of-delivery receipts binding HTTP payloads to Base USDC settlement, operated commercially through Driftbound Labs LLC.</p>
+      </div>
+      <a href="/projects/paxiom.html" style="font-size:14px;font-weight:500;">Open case study →</a>
+    </div>
+
+    <div class="highlight-card">
+      <div>
+        <p class="eyebrow">Rust UEFI + OCaml 5</p>
+        <h3><a href="/projects/intentnativeos.html">IntentNativeOS</a></h3>
+        <p>Experimental x86-64 capability microkernel, 17 native Ring 3 desktop apps, crash-tested WAL storage, and typed intent control plane.</p>
+      </div>
+      <a href="/projects/intentnativeos.html" style="font-size:14px;font-weight:500;">Open case study →</a>
+    </div>
+
+    <div class="highlight-card">
+      <div>
+        <p class="eyebrow">LIGO O3 Magnetometry</p>
+        <h3><a href="/projects/time-integrity.html">Schumann Time Integrity</a></h3>
+        <p>Preregistered 3,002 km vault magnetometer study measuring canonical wavefield coherence (z = 24.54) and documenting failed lag stationarity.</p>
+      </div>
+      <a href="/projects/time-integrity.html" style="font-size:14px;font-weight:500;">Open case study →</a>
+    </div>
+
+    <div class="highlight-card">
+      <div>
+        <p class="eyebrow">Field Telemetry · 335 Tests</p>
+        <h3><a href="/projects/811dog.html">811Dog Locate Triage</a></h3>
+        <p>Export-first One-Call excavation monitoring with explainable contractor scoring, offline SQLite replay, and PII redaction boundaries.</p>
+      </div>
+      <a href="/projects/811dog.html" style="font-size:14px;font-weight:500;">Open case study →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="callout">
+    <h3 style="margin-top:0;">Named after <code>TermBrow</code></h3>
+    <p style="margin-bottom:10px;color:var(--muted);font-size:15px;">This site shares its reading layout and local topic-decay curation with <a href="https://github.com/k-luecke/TermBrow"><strong>TermBrow</strong></a>, an open-source terminal browser I built for calm, ad-free technical reading in Python &amp; Textual. Commercial software (<a href="https://paxiom.org">Paxiom</a>) and research/diligence engagements run through <a href="https://driftboundlabs.com/ventures.html">Driftbound Labs LLC</a>.</p>
+    <code style="font-size:13px;">pipx install git+https://github.com/k-luecke/TermBrow</code>
+  </div>
 </section>
 
   </main>
 </div>
 
-<footer class="tb-bottom">
-  <div class="tb-status">
-    <span id="tb-status-msg" class="tb-status-msg">Ready · termbrow://home · 5 technical notes · 20 case studies · press / or :help</span>
-    <span class="tb-status-links">
+<aside id="tb-feed-wrap" class="tb-feed-wrap" aria-label="Recommended next reads">
+  <div class="tb-feed-head">
+    <span class="tb-feed-title">Recommended Next <span style="font-weight:400;color:var(--muted);">· local topic weights, zero tracking</span></span>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="tb-explore-btn" class="tb-pill-btn" type="button" title="Cycle Focus / Balanced / Discover (Alt+E)">Balanced (40%)</button>
+      <button id="tb-feed-toggle" class="tb-pill-btn" type="button" title="Hide recommendations">Hide</button>
+    </div>
+  </div>
+  <div id="tb-feed" class="tb-feed-strip">
+    <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">Deterministic JSON Canonicalization and Fifteen-State Verification Precedence in paxiom.receipt.v0</span><span class="feed-item-meta"><span>note</span><span>11 min read</span></span></a>
+      <a class="feed-item discover" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">◇ Two-Axis Canonical Coherence and the Source-Phase Stationarity Gap Across a 3,002 km Magnetometer Baseline</span><span class="feed-item-meta"><span>note</span><span>12 min read</span></span></a>
+      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Separating Semantic Inference from Ring-0 Authority: Typed Intent Contracts and Capability Confinement in INOS</span><span class="feed-item-meta"><span>note</span><span>11 min read</span></span></a>
+      <a class="feed-item discover" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">◇ Point-in-Time Sovereign Telemetry, Right-Censored Energization Survival, and Export-First 811 Triage</span><span class="feed-item-meta"><span>note</span><span>10 min read</span></span></a>
+  </div>
+</aside>
+
+<footer class="tb-footer">
+  <div class="tb-footer-inner">
+    <div class="tb-footer-links">
+      <strong style="color:var(--ink-bright);">Kyle Luecke</strong>
       <a href="https://driftboundlabs.com">Driftbound Labs LLC</a>
-      <a href="https://paxiom.org">paxiom.org</a>
+      <a href="https://paxiom.org">Paxiom</a>
       <a href="/feed.xml">Atom/RSS</a>
       <a href="https://github.com/k-luecke">GitHub</a>
       <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
-    </span>
-  </div>
-  <div class="tb-keybar" aria-label="TermBrow command shortcuts">
-    <button type="button" data-cmd=":focus-addr"><kbd>/</kbd>Address</button>
-    <button type="button" data-cmd=":notes"><kbd>:notes</kbd>Articles</button>
-    <button type="button" data-cmd=":work"><kbd>:work</kbd>20 Cases</button>
-    <button type="button" data-cmd=":save"><kbd>^S</kbd>Save</button>
-    <button type="button" data-cmd=":library"><kbd>Alt+Y</kbd>Library</button>
-    <button type="button" data-cmd=":history"><kbd>Alt+H</kbd>History</button>
-    <button type="button" data-cmd=":keywords"><kbd>:keywords</kbd>Weights</button>
-    <button type="button" data-cmd=":explore"><kbd>Alt+E</kbd>Explore</button>
-    <button type="button" data-cmd=":strip"><kbd>Alt+G</kbd>Strip</button>
-    <button type="button" data-cmd=":theme"><kbd>Alt+D</kbd>Light/Dark</button>
-    <button type="button" data-cmd=":install"><kbd>:install</kbd>CLI</button>
+    </div>
+    <div class="tb-shortcuts" aria-label="Reader tools">
+      <button type="button" data-cmd=":library">Saved</button>
+      <button type="button" data-cmd=":keywords">Topic Weights</button>
+      <button type="button" data-cmd=":install">TermBrow CLI</button>
+      <button type="button" data-cmd=":help">:help</button>
+    </div>
   </div>
 </footer>
 </body>
