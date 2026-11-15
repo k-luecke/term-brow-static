@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Selkov + Goldilocks RTL — Kyle Luecke</title>
+<meta name="description" content="SystemVerilog fixed-point Selkov nonlinear oscillator and divider-free 64-bit Goldilocks prime-field arithmetic verified with cocotb and Yosys.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Selkov + Goldilocks RTL — Kyle Luecke">
+<meta property="og:description" content="SystemVerilog fixed-point Selkov nonlinear oscillator and divider-free 64-bit Goldilocks prime-field arithmetic verified with cocotb and Yosys.">
+<meta property="og:url" content="https://termbrow.org/projects/medals.html">
+<link rel="canonical" href="https://termbrow.org/projects/medals.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="../index.html">TERMBROW</a>
+  <nav aria-label="Primary"><a class="active" href="../work.html">WORK</a><a href="../method.html">METHOD</a><a href="../about.html">ABOUT</a><a href="../cv.html">CV</a></nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+</header>
+<main id="main" class="wrap narrow">
+<section class="case-hero">
+  <p class="eyebrow">systems / SystemVerilog &amp; differential RTL verification</p>
+  <h1>Selkov + Goldilocks RTL</h1>
+  <p class="lede">Synthesizable SystemVerilog cores for fixed-point nonlinear glycolytic dynamics and divider-free 64-bit Goldilocks prime-field arithmetic (p = 2⁶⁴ − 2³² + 1), checked cycle-by-cycle against independent software references.</p>
+  <div class="status-row"><span class="status supported">EXPERIMENTAL RTL</span><span class="status verified">DIFFERENTIAL TESTS</span></div>
+</section>
+<section class="case-grid">
+  <h2>Question</h2><p>How cleanly can nonlinear dynamical stepping (Selkov reaction-diffusion / limit-cycle dynamics) and ZK-friendly 64-bit Goldilocks modular reduction be expressed in divider-free RTL without hidden rounding drift or carry-chain bugs?</p>
+  <h2>Method</h2><p>Implements synthesizable SystemVerilog arithmetic datapaths exploiting the sparse Goldilocks identity <code>2⁶⁴ ≡ 2³² − 1 (mod p)</code> alongside deterministic fixed-point state updates, driven by Icarus Verilog simulation, Python <code>cocotb</code> randomized differential testbenches, and Yosys synthesis checks.</p>
+  <h2>Evidence</h2><p>Bit-exact agreement between hardware simulation traces and independent arbitrary-precision Python reference models across edge residues (<code>0</code>, <code>1</code>, <code>p − 1</code>, <code>2⁶⁴ − 1</code>) and multi-step trajectories.</p>
+  <h2>Limits</h2><p>Simulation- and synthesis-verified RTL building blocks (`k-luecke/medals`); not taped-out silicon or a full multi-core ZK prover accelerator.</p>
+</section>
+<div class="case-links">
+  <a href="https://github.com/k-luecke/medals">source ↗</a>
+</div>
+</main>
+<footer class="site-footer wrap">
+  <span>termbrow.org · evidence under the interface</span>
+  <span class="footer-links">
+    <a href="https://driftboundlabs.com">driftboundlabs.com</a>
+    <a href="https://paxiom.org">paxiom.org</a>
+    <a href="https://github.com/k-luecke">GitHub</a>
+    <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+  </span>
+</footer>
+</body>
+</html>

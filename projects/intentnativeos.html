@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>IntentNativeOS — Kyle Luecke</title>
+<meta name="description" content="Experimental x86-64 UEFI Rust capability microkernel, 17 Ring 3 applications, and OCaml 5 + C typed intent control plane.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IntentNativeOS — Kyle Luecke">
+<meta property="og:description" content="Experimental x86-64 UEFI Rust capability microkernel, 17 Ring 3 applications, and OCaml 5 + C typed intent control plane.">
+<meta property="og:url" content="https://termbrow.org/projects/intentnativeos.html">
+<link rel="canonical" href="https://termbrow.org/projects/intentnativeos.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="../index.html">TERMBROW</a>
+  <nav aria-label="Primary"><a class="active" href="../work.html">WORK</a><a href="../method.html">METHOD</a><a href="../about.html">ABOUT</a><a href="../cv.html">CV</a></nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+</header>
+<main id="main" class="wrap narrow">
+<section class="case-hero">
+  <p class="eyebrow">systems / capability microkernel &amp; intent control plane · v0.3.0-alpha</p>
+  <h1>IntentNativeOS</h1>
+  <p class="lede">An experimental x86-64 operating system pairing a bare-metal UEFI Rust microkernel and 17 native Ring 3 desktop applications with an OCaml 5 + C typed intent control plane — zero Python or cloud runtime dependencies.</p>
+  <div class="status-row"><span class="status verified">v0.3.0-alpha</span><span class="status verified">55/55 SUITES PASSING</span><span class="status narrowed">BETA EXPLICITLY WITHHELD</span></div>
+</section>
+<section class="case-grid">
+  <h2>Question</h2><p>What does a desktop operating system look like when capability isolation and explicit user-intent mediation are architectural invariants from Ring 0 page tables up to every file, network, and application boundary?</p>
+  <h2>Architecture</h2><p>A <code>no_std</code> Rust x86-64 UEFI kernel enforces strict <code>W^X</code> page tables, per-process <code>CR3</code> Ring 0/3 isolation, capability-checked IPC, a crash-tested write-ahead log (WAL) filesystem, VirtIO TCP/UDP + DNSSEC networking, and a 1280×800 GOP compositor running 17 packaged Ring 3 <code>.inapp</code> applications alongside an OCaml 5 + C typed intent control plane.</p>
+  <h2>Evidence</h2><p>All <strong>55/55</strong> unit, property, adversarial-boundary, and Sentinel qualification suites pass under <code>dune runtest</code>, alongside reproducible cold builds of <code>BOOTX64.EFI</code> and automated QEMU/OVMF capture runs verifying cold boot, text editing, WAL crash/reboot persistence, and capability policy denial.</p>
+  <h2>Withheld Beta boundaries</h2><p>Released strictly as <strong>v0.3.0-alpha</strong>. Production Beta status is explicitly withheld behind two open hardware/assurance blockers: bare-metal USB HID FIDO2 token passthrough validation (<code>BLK-01</code>) and independent external cryptographic/kernel audit (<code>BLK-02</code>). Experimental <code>research/tonic</code> and <code>research/scp</code> lanes remain quarantined <code>OFF</code> by default.</p>
+</section>
+<section class="section">
+  <div class="section-head"><h2>QEMU / OVMF qualification captures</h2><span>v0.3.0-alpha release artifacts</span></div>
+  <div class="media-grid">
+    <figure class="media-card">
+      <video controls preload="metadata" muted playsinline src="../assets/media/inos/capture_a_boot_master.mp4"></video>
+      <figcaption><strong>Capture A · UEFI Cold Boot &amp; Compositor</strong>64-bit Rust microkernel boot into the 1280×800 Ring 3 desktop shell.</figcaption>
+    </figure>
+    <figure class="media-card">
+      <video controls preload="metadata" muted playsinline src="../assets/media/inos/capture_b_editor_master.mp4"></video>
+      <figcaption><strong>Capture B · Ring 3 Native Editor</strong>Isolated userland application execution under per-process CR3 paging.</figcaption>
+    </figure>
+    <figure class="media-card">
+      <video controls preload="metadata" muted playsinline src="../assets/media/inos/capture_c_reboot_master.mp4"></video>
+      <figcaption><strong>Capture C · WAL Crash / Reboot Persistence</strong>Write-ahead log recovery preserving committed state across reboot.</figcaption>
+    </figure>
+    <figure class="media-card">
+      <video controls preload="metadata" muted playsinline src="../assets/media/inos/capture_d_denial_master.mp4"></video>
+      <figcaption><strong>Capture D · Capability Policy Denial</strong>Typed intent control plane rejecting unauthorized capability escalation.</figcaption>
+    </figure>
+  </div>
+</section>
+<div class="case-links">
+  <a href="https://github.com/k-luecke/IntentNativeOS">source ↗</a>
+  <a href="https://github.com/k-luecke/IntentNativeOS/releases/tag/v0.3.0-alpha">release v0.3.0-alpha ↗</a>
+</div>
+</main>
+<footer class="site-footer wrap">
+  <span>termbrow.org · evidence under the interface</span>
+  <span class="footer-links">
+    <a href="https://driftboundlabs.com">driftboundlabs.com</a>
+    <a href="https://paxiom.org">paxiom.org</a>
+    <a href="https://github.com/k-luecke">GitHub</a>
+    <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+  </span>
+</footer>
+</body>
+</html>

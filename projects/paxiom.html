@@ -1,12 +1,58 @@
 <!doctype html>
 <html lang="en" data-theme="light">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Paxiom — Kyle Luecke</title><meta name="description" content="Proof-bound Ed25519 execution receipts (paxiom.receipt.v0), npm and PyPI SDKs, MCP server, and live Base Mainnet x402 settlement verification.">
-<link rel="stylesheet" href="../assets/css/site.css"><script defer src="../assets/js/site.js"></script>
-</head><body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Paxiom — Kyle Luecke</title>
+<meta name="description" content="Proof-bound Ed25519 execution receipts (paxiom.receipt.v0), npm and PyPI SDKs, MCP server, and live Base Mainnet x402 settlement verification.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Paxiom — Kyle Luecke">
+<meta property="og:description" content="Proof-bound Ed25519 execution receipts (paxiom.receipt.v0), npm and PyPI SDKs, MCP server, and live Base Mainnet x402 settlement verification.">
+<meta property="og:url" content="https://termbrow.org/projects/paxiom.html">
+<link rel="canonical" href="https://termbrow.org/projects/paxiom.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
 <a class="skip" href="#main">skip to content</a>
-<header class="site-header wrap"><a class="brand" href="../index.html">TERMBROW</a><nav><a class="active" href="../work.html">WORK</a><a href="../method.html">METHOD</a><a href="../about.html">ABOUT</a><a href="../cv.html">CV</a></nav><button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button></header>
-<main id="main" class="wrap narrow"><section class="case-hero"><p class="eyebrow">systems / proof-of-delivery &amp; verification</p><h1>Paxiom</h1><p class="lede">x402 proves a payment; Paxiom proves what the payment bought — Ed25519 proof-of-delivery receipts, zero-dependency TypeScript &amp; Python SDKs, MCP servers, and live Base Mainnet USDC settlement verification.</p><div class="status-row"><span class="status verified">LIVE · v0.1.3</span><span class="status verified">NPM · PYPI · MCP</span><span class="status supported">MPT R&amp;D SUBSTRATE</span></div></section><section class="case-grid"><h2>Shipped product (Receipts v0)</h2><p><code>paxiom.receipt.v0</code> binds the HTTP request, canonicalized output hash (RFC 8785 JCS + SHA-256), and payment reference under an Ed25519 signature. Published at <code>v0.1.3</code> on npm (<code>@paxiom/receipts</code>), PyPI (<code>paxiom-receipts</code>), and the Official MCP Registry (<code>io.github.k-luecke/paxiom-receipts</code>).</p><h2>Live Base Mainnet verifier</h2><p><code>https://api.paxiom.org</code> serves free deterministic offline verification (<code>POST /v1/receipt/verify</code>), paid Base &amp; Base-Sepolia USDC <code>Transfer</code>-log verification with Paxiom counter-attestation (<code>POST /v1/receipt/verify-live</code>, <code>$0.002</code> USDC), and SSRF-hardened pre-payment x402 seller preflight scans (<code>POST /v1/x402/preflight</code>, <code>$0.01</code> USDC).</p><h2>Upstream substrate prototype</h2><p>The separate <a href="https://github.com/k-luecke/paxiom"><code>k-luecke/paxiom</code></a> repository (159 tests) verifies archived Ethereum account/storage proofs against block <code>stateRoot</code> values using Merkle-Patricia verification, accompanied by an unflattering self-audit.</p><h2>Explicit boundaries</h2><p>Offline receipt verification reports unverified tx claims honestly as <code>claimed_not_checked</code> without touching RPC. Recursive zero-knowledge proofs over full Ethereum consensus history remain upstream R&amp;D, not a shipped product claim.</p></section><div class="case-links"><a href="https://paxiom.org">paxiom.org ↗</a><a href="https://api.paxiom.org/version">api.paxiom.org ↗</a><a href="https://github.com/k-luecke/paxiom-static">receipts &amp; runtime repo ↗</a><a href="https://www.npmjs.com/package/@paxiom/receipts">npm ↗</a><a href="https://pypi.org/project/paxiom-receipts/">PyPI ↗</a><a href="https://github.com/k-luecke/paxiom">MPT prototype ↗</a></div></main>
-<footer class="site-footer wrap"><span>termbrow.org</span><span><a href="https://github.com/k-luecke">GitHub</a></span><span>evidence under the interface</span></footer>
-</body></html>
+<header class="site-header wrap">
+  <a class="brand" href="../index.html">TERMBROW</a>
+  <nav aria-label="Primary"><a class="active" href="../work.html">WORK</a><a href="../method.html">METHOD</a><a href="../about.html">ABOUT</a><a href="../cv.html">CV</a></nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+</header>
+<main id="main" class="wrap narrow">
+<section class="case-hero">
+  <p class="eyebrow">systems / proof-of-delivery &amp; verification</p>
+  <h1>Paxiom</h1>
+  <p class="lede">x402 proves a payment; Paxiom proves what the payment bought — Ed25519 proof-of-delivery receipts, zero-dependency TypeScript &amp; Python SDKs, MCP servers, and live Base Mainnet USDC settlement verification.</p>
+  <div class="status-row"><span class="status verified">LIVE · v0.1.3</span><span class="status verified">NPM · PYPI · MCP</span><span class="status supported">MPT R&amp;D SUBSTRATE</span></div>
+</section>
+<section class="case-grid">
+  <h2>Shipped product (Receipts v0)</h2><p><code>paxiom.receipt.v0</code> binds the HTTP request, canonicalized output hash (deterministic canonical JSON + SHA-256), and payment reference under an Ed25519 signature. Published at <code>v0.1.3</code> on npm (<code>@paxiom/receipts</code>), PyPI (<code>paxiom-receipts</code>), and the Official MCP Registry (<code>io.github.k-luecke/paxiom-receipts</code>).</p>
+  <h2>Live Base Mainnet verifier</h2><p><code>https://api.paxiom.org</code> serves free deterministic offline verification (<code>POST /v1/receipt/verify</code>), paid Base &amp; Base-Sepolia USDC <code>Transfer</code>-log verification with Paxiom counter-attestation (<code>POST /v1/receipt/verify-live</code>, <code>$0.002</code> USDC), and SSRF-hardened pre-payment x402 seller preflight scans (<code>POST /v1/x402/preflight</code>, <code>$0.01</code> USDC).</p>
+  <h2>Upstream substrate prototype</h2><p>The companion <a href="https://github.com/k-luecke/paxiom"><code>k-luecke/paxiom</code></a> repository (159 tests) verifies archived Ethereum account/storage proofs against block <code>stateRoot</code> values using Merkle-Patricia verification, accompanied by an explicit self-audit.</p>
+  <h2>Explicit boundaries</h2><p>Offline receipt verification reports unverified tx claims honestly as <code>settlement_claimed_not_checked</code> without touching RPC. Recursive zero-knowledge proofs over full Ethereum consensus history remain upstream R&amp;D, not a shipped product claim.</p>
+</section>
+<div class="case-links">
+  <a href="https://paxiom.org">paxiom.org ↗</a>
+  <a href="https://api.paxiom.org/version">api.paxiom.org ↗</a>
+  <a href="https://github.com/k-luecke/paxiom-static">receipts &amp; runtime repo ↗</a>
+  <a href="https://www.npmjs.com/package/@paxiom/receipts">npm ↗</a>
+  <a href="https://pypi.org/project/paxiom-receipts/">PyPI ↗</a>
+  <a href="https://github.com/k-luecke/paxiom">MPT prototype ↗</a>
+</div>
+</main>
+<footer class="site-footer wrap">
+  <span>termbrow.org · evidence under the interface</span>
+  <span class="footer-links">
+    <a href="https://driftboundlabs.com">driftboundlabs.com</a>
+    <a href="https://paxiom.org">paxiom.org</a>
+    <a href="https://github.com/k-luecke">GitHub</a>
+    <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+  </span>
+</footer>
+</body>
+</html>

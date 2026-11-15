@@ -1,39 +1,80 @@
 <!doctype html>
 <html lang="en" data-theme="light">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Work — Kyle Luecke</title><meta name="description" content="Selected research, investigations, and systems by Kyle Luecke.">
-<link rel="stylesheet" href="assets/css/site.css"><script defer src="assets/js/site.js"></script>
-</head><body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Work — Kyle Luecke</title>
+<meta name="description" content="Selected research, investigations, and verification systems by Kyle Luecke.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Work — Kyle Luecke">
+<meta property="og:description" content="Selected research, investigations, and verification systems by Kyle Luecke.">
+<meta property="og:url" content="https://termbrow.org/work.html">
+<link rel="canonical" href="https://termbrow.org/work.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<script defer src="assets/js/site.js"></script>
+</head>
+<body>
 <a class="skip" href="#main">skip to content</a>
-<header class="site-header wrap"><a class="brand" href="index.html">TERMBROW</a><nav><a class="active" href="work.html">WORK</a><a href="method.html">METHOD</a><a href="about.html">ABOUT</a><a href="cv.html">CV</a></nav><button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button></header>
+<header class="site-header wrap">
+  <a class="brand" href="index.html">TERMBROW</a>
+  <nav aria-label="Primary"><a class="active" href="work.html">WORK</a><a href="method.html">METHOD</a><a href="about.html">ABOUT</a><a href="cv.html">CV</a></nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+</header>
 <main id="main" class="wrap narrow">
-<section class="hero compact"><p class="eyebrow">work / selected</p><h1>Questions, investigations, systems.</h1><p class="lede">Organized by the problem being solved rather than by repository or programming language.</p></section>
-<section class="section"><div class="section-head"><h2>Research</h2><span>phenomena → experiment → claim</span></div>
-<div class="project-row"><div><p class="kicker">SCHUMANN RESONANCE EXPERIMENTATION</p><h3><a href="projects/geo.html">Geo</a></h3><p>The broader experimental lineage: coherence, timing, nulls, follow-up experiments, closure records, and negative results.</p></div><span class="status working">RESEARCH NOTEBOOK</span></div>
-<div class="project-row"><div><p class="kicker">PREREGISTERED O3 RESULT · v2.0 PREPRINT</p><h3><a href="projects/time-integrity.html">Time Integrity</a></h3><p>Curated O3 reproducibility package and v2.0 preprint (P1/P2/D1 supported; D2b lag stability not supported), with checksums, scored outputs, and GWOSC/WWLLN acknowledgments.</p></div><span class="status verified">v2.0.0</span></div>
-<div class="project-row"><div><p class="kicker">PREPRINTS &amp; WHITEPAPERS</p><h3><a href="https://driftboundlabs.com/papers.html">Driftbound Labs Papers ↗</a></h3><p>Six preprints and institutional research releases with hosted PDFs, SHA-256 digests, OpenTimestamps Bitcoin proofs, and explicit failed-gate records.</p></div><span class="status verified">6 PAPERS</span></div>
-<div class="project-row"><div><p class="kicker">TYPED AGENT BOUNDARIES · 5/5 OTS</p><h3><a href="https://github.com/k-luecke/scp-typed-boundaries">scp-typed-boundaries ↗</a></h3><p>Preregistered BrowserGym/MiniWoB++ evaluation and N=300 synthetic cohort: 3.1×–3.8× fewer observation tokens and zero invalid actions executed, reporting plainly that the gate filters rather than repairs.</p></div><span class="status verified">v1.0.0 · OTS</span></div>
-<div class="project-row"><div><p class="kicker">OSCILLATORY CONTROL · 12/12 OTS</p><h3><a href="https://github.com/k-luecke/tonic-gating">tonic-gating ↗</a></h3><p>Twelve preregistered MoE stages testing tonic selection persistence, cosine demodulation, and phase-tagged attribution alongside null amplification and lookup-dominance boundaries.</p></div><span class="status verified">v1.0.0 · OTS</span></div>
-<div class="project-row"><div><p class="kicker">PROTOCOL SUBSTRATES &amp; QUERY LOWER BOUNDS</p><h3><a href="https://github.com/k-luecke/network-native-computation">network-native-computation ↗</a></h3><p>Formal accounting law, Bounded-Probe Structural Ambiguity proof, and 8 reproducible experiments across DNS, Merkle DAGs, stock Git, IPFS Bitswap/DHT, AO emulation, and failed prospective routing.</p></div><span class="status verified">v1.0.0</span></div>
-<div class="project-row"><div><p class="kicker">RETRACTION ALGEBRA &amp; CONCURRENCY</p><h3><a href="https://github.com/k-luecke/fnwd-v04-retraction">fnwd-v04-retraction ↗</a></h3><p>115-class quotient Projection Poset over F_4093, 6-gate linearizability and factorial ablation suite, 12-operator blind triage, and small-tree DSW latency crossover characterization.</p></div><span class="status verified">v0.4.0</span></div>
-<div class="project-row"><div><p class="kicker">BOUNDED ECDLP &amp; GPU KANGAROO</p><h3><a href="https://github.com/k-luecke/secp256k1-kangaroo-lab">secp256k1-kangaroo-lab ↗</a></h3><p>OpenCL decoupled Pollard Kangaroo benchmark on solved Bitcoin Puzzles #40–#44, modular ECDLP representation tournament, and 16 falsified sub-constant/endomorphism cycles.</p></div><span class="status verified">v1.0.0</span></div>
-<div class="project-row"><div><p class="kicker">STREAM-CIPHER SEARCH &amp; CONSTRAINT SATISFACTION</p><h3><a href="https://github.com/k-luecke/rc4-causal-cones">rc4-causal-cones ↗</a></h3><p>Reduced-modulus RC4 (m ≤ 16) exact Z3/DFS equivalence, lazy state revelation, and causal-cone frontier experiments with held-out M9/M12 transfer benchmarks.</p></div><span class="status verified">v1.0.0</span></div>
-<div class="project-row"><div><p class="kicker">REPRODUCIBLE EXPERIMENTS UNDER DRIFT</p><h3><a href="projects/driftbound-labs.html">Driftbound Labs</a></h3><p>Implemented research platform and Three Little Pigs benchmark CLI for adaptive assurance experiments — not a deployed intelligent system.</p></div><span class="status working">RESEARCH PLATFORM</span></div></section>
-<section class="section"><div class="section-head"><h2>Investigations</h2><span>messy evidence → reconstruction → traceable conclusion</span></div>
-<div class="project-row"><div><p class="kicker">PUBLIC-RECORD PRESERVATION</p><h3><a href="projects/fincen-boi.html">FinCEN BOI</a></h3><p>Content-addressed preservation and public-record ownership reconstruction with an append-only retrieval ledger and lawful recovery semantics.</p></div><span class="status working">ACTIVE</span></div>
-<div class="project-row"><div><p class="kicker">FIELD-DERIVED MONITORING</p><h3><a href="projects/811dog.html">811Dog</a></h3><p>TN811 ticket monitoring with export-first scraping, PDF parsing, explainable scoring, SQLite history, reminders, and a static dashboard.</p></div><span class="status verified">335 TESTS</span></div></section>
-<section class="section"><div class="section-head"><h2>Method / Research Infrastructure</h2><span>protocol → scaffolding → verification</span></div>
-<div class="project-row"><div><p class="kicker">EXECUTABLE RESEARCH PROTOCOL</p><h3><a href="projects/research-method.html">research-method</a></h3><p>The eleven-stage protocol used across these projects, with templates, schemas, project scaffolding, and hash-verification tooling that fails loudly on a broken provenance chain.</p></div><span class="status working">PROTOCOL</span></div></section>
-<section class="section"><div class="section-head"><h2>Systems</h2><span>verification machinery</span></div>
-<div class="project-row"><div><p class="kicker">CAPABILITY MICROKERNEL &amp; CONTROL PLANE</p><h3><a href="https://github.com/k-luecke/IntentNativeOS">IntentNativeOS ↗</a></h3><p>Experimental x86-64 UEFI Rust microkernel, 17 native Ring 3 desktop applications, and OCaml 5 + C typed intent control plane (55 test suites passing in QEMU/OVMF; Beta withheld behind bare-metal FIDO2 and external audit gates).</p></div><span class="status verified">v0.3.0-alpha</span></div>
-<div class="project-row"><div><p class="kicker">EMBEDDED LORA AEAD &amp; TDOA SENSOR FUSION</p><h3><a href="https://github.com/k-luecke/custos">CUSTOS ↗</a></h3><p>ESP32/ESP32-S3 SX1262 LoRa ChaCha20-Poly1305 sensor telemetry, 24-bit I2S Goertzel DSP monitor, and local Python 3 SQLite asymmetric TDOA localization &amp; hash-chained incident engine.</p></div><span class="status verified">v0.1.0</span></div>
-<div class="project-row"><div><p class="kicker">OFFLINE CALENDAR &amp; VISUAL TIMER</p><h3><a href="https://github.com/k-luecke/switchboard">Switchboard ↗</a></h3><p>Single-file offline-first visual countdown timer and RFC 5545 (.ics) calendar import/export utility with zero external network requests.</p></div><span class="status verified">v1.0.0</span></div>
-<div class="project-row"><div><p class="kicker">RUST / CRYPTOGRAPHY</p><h3><a href="projects/bls-verifier.html">BLS verifier</a></h3><p>A deliberately narrow Ethereum sync-committee BLS primitive with native and wasm targets and explicit production boundaries.</p></div><span class="status working">WORKING</span></div>
-<div class="project-row"><div><p class="kicker">PROOF-OF-DELIVERY RECEIPTS &amp; x402 VERIFIER</p><h3><a href="projects/paxiom.html">Paxiom</a></h3><p>Shipped Ed25519 receipt standard (paxiom.receipt.v0), npm &amp; PyPI SDKs (v0.1.3), MCP server, and live Base Mainnet x402 settlement verifier — plus upstream Ethereum MPT substrate prototypes.</p></div><span class="status verified">LIVE · v0.1.3</span></div>
-<div class="project-row"><div><p class="kicker">VERIFIED FINDINGS</p><h3><a href="projects/zkfwdbld.html">zkfwdbld</a></h3><p>A prototype trust layer attaching evidence, derivation trace, and proof artifacts to automated findings.</p></div><span class="status supported">PROTOTYPE</span></div>
-<div class="project-row"><div><p class="kicker">READING / RESEARCH TOOL</p><h3><a href="projects/termbrow.html">TermBrow</a></h3><p>The terminal browser that gave this site its name: reading-first navigation, local history, source diversity, and minimal visual context switching.</p></div><span class="status working">WORKING</span></div>
-<div class="project-row"><div><p class="kicker">SYSTEMVERILOG / DIFFERENTIAL TESTING</p><h3><a href="https://github.com/k-luecke/medals">Selkov + Goldilocks RTL ↗</a></h3><p>Fixed-point nonlinear dynamics and divider-free Goldilocks arithmetic checked against independent implementations.</p></div><span class="status supported">EXPERIMENTAL</span></div></section>
+<section class="hero compact">
+  <p class="eyebrow">work / selected</p>
+  <h1>Questions, investigations, systems.</h1>
+  <p class="lede">Organized by the problem being solved rather than by repository or programming language.</p>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Research</h2><span>phenomena → experiment → bounded claim</span></div>
+  <div class="project-row"><div><p class="kicker">PREREGISTERED O3 RESULT · v2.0 PREPRINT</p><h3><a href="projects/time-integrity.html">Time Integrity</a></h3><p>Curated LIGO O3 reproducibility package and v2.0 preprint (P1/P2/D1 supported; D2b lag stability not supported), with checksums, scored outputs, and GWOSC/WWLLN acknowledgments.</p></div><span class="status verified">v2.0.0</span></div>
+  <div class="project-row"><div><p class="kicker">TYPED AGENT BOUNDARIES · 5/5 OTS</p><h3><a href="projects/scp-typed-boundaries.html">Typed Boundaries for Small-Model Web Agents</a></h3><p>Preregistered BrowserGym/MiniWoB++ evaluation and N=300 synthetic cohort: 3.1×–3.8× fewer observation tokens and zero invalid actions executed, reporting plainly that the gate filters rather than repairs.</p></div><span class="status verified">v1.0.0 · OTS</span></div>
+  <div class="project-row"><div><p class="kicker">OSCILLATORY CONTROL · 12/12 OTS</p><h3><a href="projects/tonic-gating.html">Tonic Gating (Phase Selects; It Does Not Amplify)</a></h3><p>Twelve preregistered MoE stages testing tonic selection persistence, cosine demodulation, and phase-tagged attribution alongside null amplification, lookup dominance, and T10 closed as uninformative.</p></div><span class="status verified">v1.0.0 · OTS</span></div>
+  <div class="project-row"><div><p class="kicker">PROTOCOL SUBSTRATES &amp; QUERY LOWER BOUNDS</p><h3><a href="projects/network-native-computation.html">Network-Native Computation</a></h3><p>Formal four-term accounting law, Bounded-Probe Structural Ambiguity proof, and 8 reproducible experiments across DNS, Merkle DAGs, stock Git, IPFS Bitswap/DHT, AO witnesses, and failed prospective routing.</p></div><span class="status verified">v1.0.0</span></div>
+  <div class="project-row"><div><p class="kicker">RETRACTION ALGEBRA &amp; CONCURRENCY</p><h3><a href="projects/fnwd-v04-retraction.html">FNWD v0.4 Retraction &amp; Commutation</a></h3><p>115-class quotient Projection Poset over F_4093, 6-gate linearizability and factorial ablation suite, 12-operator blind triage, and explicit small-tree DSW latency crossover (+69.6% at N=150).</p></div><span class="status verified">v0.4.0</span></div>
+  <div class="project-row"><div><p class="kicker">BOUNDED ECDLP &amp; GPU KANGAROO</p><h3><a href="projects/secp256k1-kangaroo-lab.html">secp256k1 Kangaroo Lab</a></h3><p>OpenCL decoupled Pollard Kangaroo benchmark on solved Bitcoin Puzzles #40–#44, BIP34 regtest verifier, modular ECDLP representation tournament, and 16 falsified sub-constant/endomorphism cycles.</p></div><span class="status verified">v1.0.0</span></div>
+  <div class="project-row"><div><p class="kicker">STREAM-CIPHER SEARCH &amp; CONSTRAINT SATISFACTION</p><h3><a href="projects/rc4-causal-cones.html">RC4 Causal Cones</a></h3><p>Reduced-modulus RC4 (m ≤ 16) exact Z3/DFS equivalence, lazy state revelation, and causal-cone frontier experiments (exp1–exp16) with held-out M9/M12 transfer benchmarks.</p></div><span class="status verified">v1.0.0</span></div>
+  <div class="project-row"><div><p class="kicker">SCHUMANN RESONANCE EXPERIMENTATION</p><h3><a href="projects/geo.html">Geo</a></h3><p>The broader geophysical laboratory notebook: cross-site coherence, sensor corrections, WWLLN lightning tests, closure ledgers, and negative results.</p></div><span class="status working">RESEARCH NOTEBOOK</span></div>
+  <div class="project-row"><div><p class="kicker">REPRODUCIBLE EXPERIMENTS UNDER DRIFT</p><h3><a href="projects/driftbound-labs.html">Driftbound Labs Platform</a></h3><p>Seed-pinned research platform and Three Little Pigs benchmark CLI for adaptive assurance experiments — implemented benchmark infrastructure, not a deployed AI product.</p></div><span class="status working">RESEARCH PLATFORM</span></div>
+  <div class="project-row"><div><p class="kicker">PREPRINTS &amp; INSTITUTIONAL WHITEPAPERS</p><h3><a href="https://driftboundlabs.com/papers.html">Driftbound Labs Papers Index ↗</a></h3><p>Full PDFs, SHA-256 digests, Bitcoin OpenTimestamps proofs, and BibTeX records — including The Physical Layer of the AI Infrastructure Buildout (31 North American builds).</p></div><span class="status verified">6 PAPERS</span></div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Investigations</h2><span>messy evidence → reconstruction → traceable conclusion</span></div>
+  <div class="project-row"><div><p class="kicker">PUBLIC-RECORD PRESERVATION</p><h3><a href="projects/fincen-boi.html">FinCEN BOI</a></h3><p>Content-addressed preservation and public-record ownership reconstruction with an append-only retrieval ledger and lawful recovery semantics.</p></div><span class="status working">ACTIVE</span></div>
+  <div class="project-row"><div><p class="kicker">FIELD-DERIVED MONITORING</p><h3><a href="projects/811dog.html">811Dog</a></h3><p>TN811 ticket monitoring with export-first scraping, PDF parsing, explainable scoring, SQLite history, reminders, and a static dashboard.</p></div><span class="status verified">335 TESTS</span></div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Method / Research Infrastructure</h2><span>protocol → scaffolding → verification</span></div>
+  <div class="project-row"><div><p class="kicker">EXECUTABLE RESEARCH PROTOCOL</p><h3><a href="projects/research-method.html">research-method</a></h3><p>The eleven-stage protocol used across these projects, with templates, schemas, project scaffolding, and hash-verification tooling that fails loudly on a broken provenance chain.</p></div><span class="status working">PROTOCOL</span></div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Systems</h2><span>verification machinery</span></div>
+  <div class="project-row"><div><p class="kicker">PROOF-OF-DELIVERY RECEIPTS &amp; x402 VERIFIER</p><h3><a href="projects/paxiom.html">Paxiom</a></h3><p>Shipped Ed25519 receipt standard (paxiom.receipt.v0), npm &amp; PyPI SDKs (v0.1.3), MCP servers, and live Base Mainnet x402 settlement verifier — plus upstream Ethereum MPT substrate prototypes.</p></div><span class="status verified">LIVE · v0.1.3</span></div>
+  <div class="project-row"><div><p class="kicker">CAPABILITY MICROKERNEL &amp; CONTROL PLANE</p><h3><a href="projects/intentnativeos.html">IntentNativeOS</a></h3><p>Experimental x86-64 UEFI Rust microkernel, 17 native Ring 3 desktop applications, and OCaml 5 + C typed intent control plane (55 test suites passing in QEMU/OVMF; Beta gated behind bare-metal FIDO2 and external audit).</p></div><span class="status verified">v0.3.0-alpha</span></div>
+  <div class="project-row"><div><p class="kicker">EMBEDDED LORA AEAD &amp; TDOA SENSOR FUSION</p><h3><a href="projects/custos.html">CUSTOS</a></h3><p>ESP32/ESP32-S3 SX1262 LoRa ChaCha20-Poly1305 sensor telemetry, 24-bit I2S Goertzel DSP monitor, and local Python 3 SQLite asymmetric TDOA localization &amp; hash-chained incident engine.</p></div><span class="status verified">v0.1.0</span></div>
+  <div class="project-row"><div><p class="kicker">RUST / CRYPTOGRAPHY</p><h3><a href="projects/bls-verifier.html">BLS verifier</a></h3><p>A deliberately narrow Ethereum sync-committee BLS12-381 primitive with native C-FFI and wasm32 targets and explicit production boundaries.</p></div><span class="status working">WORKING</span></div>
+  <div class="project-row"><div><p class="kicker">VERIFIED FINDINGS</p><h3><a href="projects/zkfwdbld.html">zkfwdbld</a></h3><p>A prototype trust layer attaching evidence, derivation trace, and Goldilocks R1CS proof artifacts to automated findings.</p></div><span class="status supported">PROTOTYPE</span></div>
+  <div class="project-row"><div><p class="kicker">SYSTEMVERILOG / DIFFERENTIAL TESTING</p><h3><a href="projects/medals.html">Selkov + Goldilocks RTL</a></h3><p>Fixed-point nonlinear dynamics and divider-free 64-bit Goldilocks prime-field arithmetic verified bit-exact with Icarus Verilog, cocotb, and Yosys.</p></div><span class="status supported">EXPERIMENTAL</span></div>
+  <div class="project-row"><div><p class="kicker">OFFLINE CALENDAR &amp; VISUAL TIMER</p><h3><a href="projects/switchboard.html">Switchboard</a></h3><p>Single-file offline-first visual countdown timer and RFC 5545 (.ics) calendar import/export utility with zero external network requests.</p></div><span class="status verified">v1.0.0</span></div>
+  <div class="project-row"><div><p class="kicker">READING / RESEARCH TOOL</p><h3><a href="projects/termbrow.html">TermBrow</a></h3><p>The terminal browser that gave this site its name: reading-first navigation, local history, source diversity, and minimal visual context switching.</p></div><span class="status working">WORKING</span></div>
+</section>
 </main>
-<footer class="site-footer wrap"><span>termbrow.org</span><span><a href="https://github.com/k-luecke">GitHub</a></span><span>evidence under the interface</span></footer>
-</body></html>
+<footer class="site-footer wrap">
+  <span>termbrow.org · evidence under the interface</span>
+  <span class="footer-links">
+    <a href="https://driftboundlabs.com">driftboundlabs.com</a>
+    <a href="https://paxiom.org">paxiom.org</a>
+    <a href="https://github.com/k-luecke">GitHub</a>
+    <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+  </span>
+</footer>
+</body>
+</html>

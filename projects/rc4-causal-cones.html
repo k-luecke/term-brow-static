@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>RC4 Causal Cones — Kyle Luecke</title>
+<meta name="description" content="Reduced-modulus RC4 (m <= 16) exact Z3/DFS equivalence, lazy state revelation, and causal-cone frontier experiments.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RC4 Causal Cones — Kyle Luecke">
+<meta property="og:description" content="Reduced-modulus RC4 (m <= 16) exact Z3/DFS equivalence, lazy state revelation, and causal-cone frontier experiments.">
+<meta property="og:url" content="https://termbrow.org/projects/rc4-causal-cones.html">
+<link rel="canonical" href="https://termbrow.org/projects/rc4-causal-cones.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="../index.html">TERMBROW</a>
+  <nav aria-label="Primary"><a class="active" href="../work.html">WORK</a><a href="../method.html">METHOD</a><a href="../about.html">ABOUT</a><a href="../cv.html">CV</a></nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+</header>
+<main id="main" class="wrap narrow">
+<section class="case-hero">
+  <p class="eyebrow">research / stream-cipher constraint propagation · v1.0.0</p>
+  <h1>RC4 Causal Cones</h1>
+  <p class="lede">Exact Z3/DFS state-recovery experiments on reduced-modulus RC4 (m ≤ 16) measuring lazy permutation revelation and causal-cone branching frontiers.</p>
+  <div class="status-row"><span class="status verified">v1.0.0</span><span class="status verified">EXP1–EXP16 REPRODUCIBLE</span></div>
+</section>
+<section class="case-grid">
+  <h2>Question</h2><p>When inverting reduced-modulus RC4 keystream prefixes into internal permutation state, how much search-tree pruning comes from causal-cone dependency tracking versus generic SAT/SMT unit propagation?</p>
+  <h2>Method</h2><p>Sixteen self-contained Python + Z3 experiments (<code>exp1</code>–<code>exp16</code>) checking exact solution-set equivalence between custom lazy-revelation DFS solvers and Z3 bit-vector/integer encodings across moduli <code>m ≤ 16</code>, including held-out <code>M9</code> and <code>M12</code> transfer benchmarks.</p>
+  <h2>Limits</h2><p>All exact-recovery results apply to toy reduced-modulus permutations (<code>m ≤ 16</code>) used to study constraint-propagation scaling, not full 256-byte RC4.</p>
+</section>
+<div class="case-links">
+  <a href="https://github.com/k-luecke/rc4-causal-cones">source ↗</a>
+  <a href="https://github.com/k-luecke/rc4-causal-cones/releases/tag/v1.0.0">release v1.0.0 ↗</a>
+</div>
+</main>
+<footer class="site-footer wrap">
+  <span>termbrow.org · evidence under the interface</span>
+  <span class="footer-links">
+    <a href="https://driftboundlabs.com">driftboundlabs.com</a>
+    <a href="https://paxiom.org">paxiom.org</a>
+    <a href="https://github.com/k-luecke">GitHub</a>
+    <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+  </span>
+</footer>
+</body>
+</html>

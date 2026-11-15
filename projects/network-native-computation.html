@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Network-Native Computation — Kyle Luecke</title>
+<meta name="description" content="Formal four-term accounting law, Bounded-Probe Structural Ambiguity theorem, and 8 protocol substrate experiments.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Network-Native Computation — Kyle Luecke">
+<meta property="og:description" content="Formal four-term accounting law, Bounded-Probe Structural Ambiguity theorem, and 8 protocol substrate experiments.">
+<meta property="og:url" content="https://termbrow.org/projects/network-native-computation.html">
+<link rel="canonical" href="https://termbrow.org/projects/network-native-computation.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="../index.html">TERMBROW</a>
+  <nav aria-label="Primary"><a class="active" href="../work.html">WORK</a><a href="../method.html">METHOD</a><a href="../about.html">ABOUT</a><a href="../cv.html">CV</a></nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+</header>
+<main id="main" class="wrap narrow">
+<section class="case-hero">
+  <p class="eyebrow">research / distributed systems &amp; protocol theory · v1.0.0</p>
+  <h1>Network-Native Computation</h1>
+  <p class="lede">When does moving state resolution into naming, content addressing, and Merkle witness protocols beat shipping raw state — and where is the exact information-theoretic floor?</p>
+  <div class="status-row"><span class="status verified">v1.0.0 PREPRINT</span><span class="status verified">8 EXPERIMENTS</span><span class="status failed">EXP08 ROUTING NEGATIVE</span></div>
+</section>
+<section class="case-grid">
+  <h2>Question</h2><p>Protocol substrates (DNS aliases, Git packfiles, content-addressed DAGs, IPFS, AO logs) already perform structural computation during resolution. How do we measure that work honestly without hiding cost in pre-indexing or uncounted round trips?</p>
+  <h2>Theory</h2><p>Introduces a closed four-term accounting law across setup, transport, local compute, and verification, alongside Theorem 1 &amp; Lemma 1 (<strong>Bounded-Probe Structural Ambiguity</strong>), proving sharp query lower bounds when structural invariants are not committed in hashes.</p>
+  <h2>Empirical suite</h2><p>Eight reproducible experiments (<code>Exp01</code>–<code>Exp08</code>) spanning DNS <code>DNAME</code> redirection, content-addressed Merkle deduplication, stock Git <code>v2.55.0</code> tree-same pruning, IPFS Bitswap/DHT resolution, and AO checkpoint witness replay.</p>
+  <h2>Negative result retained</h2><p><code>Exp08</code> (prospective latency-aware routing under noisy probes) fails to beat static baseline selection and is preserved verbatim in both the manuscript and benchmark runner.</p>
+</section>
+<div class="case-links">
+  <a href="https://driftboundlabs.com/papers/Network_Native_Computation.pdf">preprint PDF (14 pp.) ↗</a>
+  <a href="https://github.com/k-luecke/network-native-computation">source &amp; runner ↗</a>
+  <a href="https://github.com/k-luecke/network-native-computation/releases/tag/v1.0.0">release v1.0.0 ↗</a>
+  <a href="https://driftboundlabs.com/papers.html#network-native-computation">BibTeX &amp; digest ↗</a>
+</div>
+</main>
+<footer class="site-footer wrap">
+  <span>termbrow.org · evidence under the interface</span>
+  <span class="footer-links">
+    <a href="https://driftboundlabs.com">driftboundlabs.com</a>
+    <a href="https://paxiom.org">paxiom.org</a>
+    <a href="https://github.com/k-luecke">GitHub</a>
+    <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+  </span>
+</footer>
+</body>
+</html>

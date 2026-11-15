@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Typed Boundaries for Small-Model Web Agents — Kyle Luecke</title>
+<meta name="description" content="Preregistered evaluation of typed DOM projections and pre-execution action gates for small-model web agents (5/5 Bitcoin OpenTimestamps).">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Typed Boundaries for Small-Model Web Agents — Kyle Luecke">
+<meta property="og:description" content="Preregistered evaluation of typed DOM projections and pre-execution action gates for small-model web agents (5/5 Bitcoin OpenTimestamps).">
+<meta property="og:url" content="https://termbrow.org/projects/scp-typed-boundaries.html">
+<link rel="canonical" href="https://termbrow.org/projects/scp-typed-boundaries.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="../index.html">TERMBROW</a>
+  <nav aria-label="Primary"><a class="active" href="../work.html">WORK</a><a href="../method.html">METHOD</a><a href="../about.html">ABOUT</a><a href="../cv.html">CV</a></nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+</header>
+<main id="main" class="wrap narrow">
+<section class="case-hero">
+  <p class="eyebrow">research / agentic safety &amp; runtime verification · v1.0.0</p>
+  <h1>Typed Boundaries for Small-Model Web Agents</h1>
+  <p class="lede">Preregistered BrowserGym/MiniWoB++ evaluation and N=300 synthetic cohort testing whether compact typed DOM projections and deterministic pre-execution gates keep 0.5B–3B models safe without frontier token budgets.</p>
+  <div class="status-row"><span class="status verified">v1.0.0 PREPRINT</span><span class="status verified">5/5 BITCOIN OTS</span><span class="status narrowed">FILTERS · DOES NOT REPAIR</span></div>
+</section>
+<section class="case-grid">
+  <h2>Question</h2><p>When small local language models (0.5B–3B parameters) interact with web interfaces, how much invalid-action risk and observation token overhead can be eliminated purely by enforcing a typed observation/action boundary?</p>
+  <h2>Method</h2><p>Five preregistered experimental stages anchored to the Bitcoin blockchain via OpenTimestamps (<code>.ots</code>) prior to evaluation, comparing raw accessibility-tree prompts against compact typed projections and pre-execution schema/affordance gates across BrowserGym/MiniWoB++ and an N=300 adversarial synthetic cohort.</p>
+  <h2>Evidence</h2><p>Tracks the reference agent across 0.5B–3B model scales using <strong>3.1×–3.8× fewer observation tokens</strong> while executing <strong>0/300 invalid actions</strong> in the gated cohort (versus 152/300 invalid actions executed unassisted).</p>
+  <h2>Boundary retained</h2><p>Reported plainly as a safety filter, not a capability amplifier: a deterministic pre-execution gate blocks malformed or out-of-scope actions before side effects occur, but it does <strong>not</strong> repair a model's underlying task plan when semantic reasoning fails.</p>
+</section>
+<div class="case-links">
+  <a href="https://driftboundlabs.com/papers/Paper_1_Typed_Boundaries.pdf">preprint PDF (21 pp.) ↗</a>
+  <a href="https://github.com/k-luecke/scp-typed-boundaries">source &amp; .ots proofs ↗</a>
+  <a href="https://github.com/k-luecke/scp-typed-boundaries/releases/tag/v1.0.0">release v1.0.0 ↗</a>
+  <a href="https://driftboundlabs.com/papers.html#scp-typed-boundaries">BibTeX &amp; digest ↗</a>
+</div>
+</main>
+<footer class="site-footer wrap">
+  <span>termbrow.org · evidence under the interface</span>
+  <span class="footer-links">
+    <a href="https://driftboundlabs.com">driftboundlabs.com</a>
+    <a href="https://paxiom.org">paxiom.org</a>
+    <a href="https://github.com/k-luecke">GitHub</a>
+    <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+  </span>
+</footer>
+</body>
+</html>

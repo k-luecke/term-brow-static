@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>secp256k1 Kangaroo Lab — Kyle Luecke</title>
+<meta name="description" content="OpenCL decoupled Pollard Kangaroo benchmark on solved Bitcoin Puzzles #40-#44 and 16 falsified ECDLP tournament cycles.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="secp256k1 Kangaroo Lab — Kyle Luecke">
+<meta property="og:description" content="OpenCL decoupled Pollard Kangaroo benchmark on solved Bitcoin Puzzles #40-#44 and 16 falsified ECDLP tournament cycles.">
+<meta property="og:url" content="https://termbrow.org/projects/secp256k1-kangaroo-lab.html">
+<link rel="canonical" href="https://termbrow.org/projects/secp256k1-kangaroo-lab.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="../index.html">TERMBROW</a>
+  <nav aria-label="Primary"><a class="active" href="../work.html">WORK</a><a href="../method.html">METHOD</a><a href="../about.html">ABOUT</a><a href="../cv.html">CV</a></nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+</header>
+<main id="main" class="wrap narrow">
+<section class="case-hero">
+  <p class="eyebrow">research / elliptic-curve discrete log &amp; GPU benchmarking · v1.0.0</p>
+  <h1>secp256k1 Kangaroo Lab</h1>
+  <p class="lede">An OpenCL decoupled Pollard's Kangaroo baseline on solved bounded secp256k1 intervals (#40–#44) paired with an explicit ledger of 16 falsified sub-constant and endomorphism hypotheses.</p>
+  <div class="status-row"><span class="status verified">v1.0.0</span><span class="status verified">OPENCL BASELINE</span><span class="status failed">16 CYCLES FALSIFIED</span></div>
+</section>
+<section class="case-grid">
+  <h2>Question</h2><p>On bounded-interval <code>secp256k1</code> discrete logarithms, which implementation choices genuinely improve wall-clock group-ops/sec — and do alternative coordinate/endomorphism heuristics actually beat generic O(√N) Kangaroo search under fair accounting?</p>
+  <h2>Positive engineering</h2><p>Implements a decoupled OpenCL GPU Kangaroo solver benchmarked reproducibly across historically solved Bitcoin Puzzle intervals <code>#40</code>–<code>#44</code>, plus a standalone BIP34 coinbase/regtest transaction verifier.</p>
+  <h2>Negative ledger retained</h2><p>Sixteen candidate representation, GLV-endomorphism folding, and distinguished-point heuristics were tested in a modular tournament and <strong>falsified</strong> once walk-equivalence blowup or branching overhead was counted honestly.</p>
+  <h2>Limits</h2><p>Strictly an educational benchmarking and falsification archive on small, already-solved public test intervals; claims zero asymptotic or sub-exponential break against <code>secp256k1</code>.</p>
+</section>
+<div class="case-links">
+  <a href="https://github.com/k-luecke/secp256k1-kangaroo-lab">source &amp; negative ledger ↗</a>
+  <a href="https://github.com/k-luecke/secp256k1-kangaroo-lab/releases/tag/v1.0.0">release v1.0.0 ↗</a>
+</div>
+</main>
+<footer class="site-footer wrap">
+  <span>termbrow.org · evidence under the interface</span>
+  <span class="footer-links">
+    <a href="https://driftboundlabs.com">driftboundlabs.com</a>
+    <a href="https://paxiom.org">paxiom.org</a>
+    <a href="https://github.com/k-luecke">GitHub</a>
+    <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+  </span>
+</footer>
+</body>
+</html>

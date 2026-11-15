@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>CUSTOS — Kyle Luecke</title>
+<meta name="description" content="Generic ESP32/SX1262 LoRa ChaCha20-Poly1305 sensor telemetry, 24-bit I2S Goertzel DSP, and local Python SQLite TDOA engine.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CUSTOS — Kyle Luecke">
+<meta property="og:description" content="Generic ESP32/SX1262 LoRa ChaCha20-Poly1305 sensor telemetry, 24-bit I2S Goertzel DSP, and local Python SQLite TDOA engine.">
+<meta property="og:url" content="https://termbrow.org/projects/custos.html">
+<link rel="canonical" href="https://termbrow.org/projects/custos.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="../index.html">TERMBROW</a>
+  <nav aria-label="Primary"><a class="active" href="../work.html">WORK</a><a href="../method.html">METHOD</a><a href="../about.html">ABOUT</a><a href="../cv.html">CV</a></nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+</header>
+<main id="main" class="wrap narrow">
+<section class="case-hero">
+  <p class="eyebrow">systems / embedded RF, DSP &amp; provenance · v0.1.0</p>
+  <h1>CUSTOS</h1>
+  <p class="lede">Open-source ESP32/ESP32-S3 SX1262 LoRa authenticated telemetry firmware, 24-bit I2S narrowband Goertzel DSP monitor, and a zero-cloud Python 3 SQLite TDOA &amp; hash-chained incident vault.</p>
+  <div class="status-row"><span class="status verified">v0.1.0</span><span class="status verified">AEAD + TDOA VERIFIED</span></div>
+</section>
+<section class="case-grid">
+  <h2>Problem</h2><p>Low-power sub-GHz sensor meshes frequently trade away packet authenticity, replay resistance, or local auditability in favor of proprietary cloud gateways.</p>
+  <h2>Firmware &amp; DSP</h2><p>PlatformIO C++ firmware for ESP32 / SX1262 915 MHz LoRa nodes encrypts and authenticates 40-byte telemetry frames with RFC 7539 <code>ChaCha20-Poly1305</code> AEAD and monotonic replay counters, paired with a 24-bit <code>PCM1808</code> I2S acoustic/vibration monitor implementing sliding narrowband Goertzel tone detection.</p>
+  <h2>Vault &amp; TDOA solver</h2><p>A dependency-light Python 3 receiver logs verified frames into SQLite, performs asymmetric Huber-loss time-difference-of-arrival (TDOA) localization across multi-node timestamps, and links every event into a SHA-256 hash chain.</p>
+  <h2>Verification &amp; limits</h2><p>Includes an offline <code>pytest</code> suite covering RFC 7539 AEAD vectors, anti-replay rejection, TDOA geometry convergence, and hash-chain tamper detection. Published as generic reference firmware and local fusion code — hardware radio calibration, enclosure design, and site-specific RF link budgets remain user-supplied.</p>
+</section>
+<div class="case-links">
+  <a href="https://github.com/k-luecke/custos">source ↗</a>
+  <a href="https://github.com/k-luecke/custos/releases/tag/v0.1.0">release v0.1.0 ↗</a>
+</div>
+</main>
+<footer class="site-footer wrap">
+  <span>termbrow.org · evidence under the interface</span>
+  <span class="footer-links">
+    <a href="https://driftboundlabs.com">driftboundlabs.com</a>
+    <a href="https://paxiom.org">paxiom.org</a>
+    <a href="https://github.com/k-luecke">GitHub</a>
+    <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+  </span>
+</footer>
+</body>
+</html>
