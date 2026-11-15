@@ -137,6 +137,46 @@
         "v0.4.0 PREPRINT",
         "6 GATES VERIFIED"
       ]
+    },
+    {
+      "slug": "intent-native-os",
+      "title": "Intent-Native OS (INOS)",
+      "kind": "systems",
+      "repo": "k-luecke/IntentNativeOS",
+      "status": [
+        "v0.3.0-alpha",
+        "55 SUITES VERIFIED"
+      ]
+    },
+    {
+      "slug": "secp256k1-kangaroo-lab",
+      "title": "secp256k1 Kangaroo & ECDLP Tournament Lab",
+      "kind": "research",
+      "repo": "k-luecke/secp256k1-kangaroo-lab",
+      "status": [
+        "v1.0.0",
+        "GPU + NEGATIVE LEDGER"
+      ]
+    },
+    {
+      "slug": "rc4-causal-cones",
+      "title": "RC4 Causal Cones & Constraint Solver",
+      "kind": "research",
+      "repo": "k-luecke/rc4-causal-cones",
+      "status": [
+        "v1.0.0",
+        "REPRODUCIBLE"
+      ]
+    },
+    {
+      "slug": "switchboard",
+      "title": "Switchboard Offline Timer & .ics Utility",
+      "kind": "systems",
+      "repo": "k-luecke/switchboard",
+      "status": [
+        "v1.0.0",
+        "SINGLE-FILE"
+      ]
     }
   ]
 }
