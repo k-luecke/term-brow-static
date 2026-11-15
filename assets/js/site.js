@@ -72,7 +72,7 @@
   const savedTheme = (() => {
     try { return localStorage.getItem(THEME_KEY); } catch { return null; }
   })();
-  applyTheme(savedTheme || 'dark');
+  applyTheme(savedTheme || 'light');
 
   const statusEl = document.getElementById('tb-status-msg');
   const setStatus = (msg) => {

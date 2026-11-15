@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="light dark">
 <title>CV — Kyle Luecke (TermBrow)</title>
 <meta name="description" content="Professional background, technical stack, Driftbound Labs LLC ventures, and selected engineering work by Kyle Luecke.">
 <meta property="og:type" content="article">
@@ -11,9 +11,9 @@
 <meta property="og:description" content="Professional background, technical stack, Driftbound Labs LLC ventures, and selected engineering work by Kyle Luecke.">
 <meta property="og:url" content="https://termbrow.org/cv.html">
 <link rel="canonical" href="https://termbrow.org/cv.html">
-<link rel="alternate" type="application/atom+xml" title="TermBrow Technical Notes — Kyle Luecke" href="https://termbrow.org/feed.xml">
+<link rel="alternate" type="application/atom+xml" title="Kyle Luecke — Technical Notes" href="https://termbrow.org/feed.xml">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||'dark'}catch(e){}</script>
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||'light'}catch(e){}</script>
 <link rel="stylesheet" href="assets/css/site.css">
 <script defer src="assets/js/catalog.js"></script>
 <script defer src="assets/js/site.js"></script>
@@ -23,28 +23,25 @@
 
 <header class="tb-header">
   <div class="tb-header-inner">
-    <a class="tb-brand" href="/index.html">
-      <span class="tb-dot" aria-hidden="true">●</span>
-      <span>TermBrow</span>
-    </a>
-
-    <form id="tb-addr-form" class="tb-search-form" role="search">
-      <input id="addrbar" type="text" spellcheck="false" autocomplete="off"
-        aria-label="Search articles and projects or run a :command"
-        placeholder="Search notes &amp; projects… (press / or :help)">
-    </form>
-
+    <a class="tb-brand" href="/index.html">Kyle Luecke</a>
     <nav class="tb-topnav" aria-label="Primary">
       <a href="/notes.html">Notes</a>
       <a href="/work.html">Projects</a>
-      <a class="hide-xs" href="/method.html">Method</a>
+      <a href="/method.html">Method</a>
       <a href="/about.html">About</a>
-      <a class="active hide-xs" href="/cv.html">CV</a>
-      <button id="tb-save" class="icon-btn hide-xs-btn" type="button" title="Save page locally (Ctrl+S)">☆ Save</button>
-      <button class="icon-btn theme-toggle" type="button" aria-label="Toggle light or dark theme" title="Toggle theme (Alt+D)">◐</button>
+      <a class="active" href="/cv.html">CV</a>
+      <button class="plain-btn theme-toggle" type="button" aria-label="Toggle light or dark theme" title="Switch paper / dark theme">dark/light</button>
     </nav>
   </div>
 </header>
+
+<div class="search-row">
+  <form id="tb-addr-form" class="tb-search-form" role="search">
+    <input id="addrbar" type="text" spellcheck="false" autocomplete="off"
+      aria-label="Filter notes and projects or run a TermBrow command"
+      placeholder="Filter notes &amp; projects (press /) or type :keywords :library :install :help">
+  </form>
+</div>
 
 <section id="tb-inspector" class="tb-inspector" hidden aria-live="polite"></section>
 
@@ -104,36 +101,18 @@
   </main>
 </div>
 
-<aside id="tb-feed-wrap" class="tb-feed-wrap" aria-label="Recommended next reads">
-  <div class="tb-feed-head">
-    <span class="tb-feed-title">Recommended Next <span style="font-weight:400;color:var(--muted);">· local topic weights, zero tracking</span></span>
-    <div style="display:flex;gap:8px;align-items:center;">
-      <button id="tb-explore-btn" class="tb-pill-btn" type="button" title="Cycle Focus / Balanced / Discover (Alt+E)">Balanced (40%)</button>
-      <button id="tb-feed-toggle" class="tb-pill-btn" type="button" title="Hide recommendations">Hide</button>
-    </div>
-  </div>
-  <div id="tb-feed" class="tb-feed-strip">
-    <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">Deterministic JSON Canonicalization and Fifteen-State Verification Precedence in paxiom.receipt.v0</span><span class="feed-item-meta"><span>note</span><span>11 min read</span></span></a>
-      <a class="feed-item discover" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">◇ Two-Axis Canonical Coherence and the Source-Phase Stationarity Gap Across a 3,002 km Magnetometer Baseline</span><span class="feed-item-meta"><span>note</span><span>12 min read</span></span></a>
-      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Separating Semantic Inference from Ring-0 Authority: Typed Intent Contracts and Capability Confinement in INOS</span><span class="feed-item-meta"><span>note</span><span>11 min read</span></span></a>
-      <a class="feed-item discover" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">◇ Point-in-Time Sovereign Telemetry, Right-Censored Energization Survival, and Export-First 811 Triage</span><span class="feed-item-meta"><span>note</span><span>10 min read</span></span></a>
-  </div>
-</aside>
-
 <footer class="tb-footer">
   <div class="tb-footer-inner">
-    <div class="tb-footer-links">
-      <strong style="color:var(--ink-bright);">Kyle Luecke</strong>
-      <a href="https://driftboundlabs.com">Driftbound Labs LLC</a>
-      <a href="https://paxiom.org">Paxiom</a>
-      <a href="/feed.xml">Atom/RSS</a>
-      <a href="https://github.com/k-luecke">GitHub</a>
+    <div>
+      <a href="https://driftboundlabs.com">Driftbound Labs LLC</a> &middot;
+      <a href="https://paxiom.org">Paxiom</a> &middot;
+      <a href="https://github.com/k-luecke">GitHub</a> &middot;
       <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
     </div>
-    <div class="tb-shortcuts" aria-label="Reader tools">
-      <button type="button" data-cmd=":library">Saved</button>
-      <button type="button" data-cmd=":keywords">Topic Weights</button>
-      <button type="button" data-cmd=":install">TermBrow CLI</button>
+    <div class="tb-shortcuts">
+      <button type="button" data-cmd=":library">saved</button>
+      <button type="button" data-cmd=":keywords">topic weights</button>
+      <button type="button" data-cmd=":install">termbrow cli</button>
       <button type="button" data-cmd=":help">:help</button>
     </div>
   </div>
