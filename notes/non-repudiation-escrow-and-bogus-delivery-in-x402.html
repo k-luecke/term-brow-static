@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Signed Receipts, AuthCaptureEscrow & Bogus Delivery — TermBrow Technical Notes</title>
+<meta name="description" content="Stating the exact limit of paxiom.receipt.v0: why Ed25519 payload binding proves non-repudiation without recovering unconditionally settled EIP-3009 funds or solving semantic fabrication, four decidability regimes for paid APIs, and how two-step AuthCaptureEscrow pairs with a deterministic pre-sign buyer firewall.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Signed Receipts, AuthCaptureEscrow & Bogus Delivery — TermBrow Technical Notes">
+<meta property="og:description" content="Stating the exact limit of paxiom.receipt.v0: why Ed25519 payload binding proves non-repudiation without recovering unconditionally settled EIP-3009 funds or solving semantic fabrication, four decidability regimes for paid APIs, and how two-step AuthCaptureEscrow pairs with a deterministic pre-sign buyer firewall.">
+<meta property="og:url" content="https://termbrow.org/notes/non-repudiation-escrow-and-bogus-delivery-in-x402.html">
+<link rel="canonical" href="https://termbrow.org/notes/non-repudiation-escrow-and-bogus-delivery-in-x402.html">
+<link rel="alternate" type="application/atom+xml" title="Kyle Luecke — Technical Notes" href="https://termbrow.org/feed.xml">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>try{const t=localStorage.getItem('termbrow-theme');document.documentElement.dataset.theme=t||'light'}catch(e){}</script>
+<link rel="stylesheet" href="../assets/css/site.css">
+<script defer src="../assets/js/catalog.js"></script>
+<script defer src="../assets/js/site.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="tb-header">
+  <div class="tb-header-inner">
+    <a class="tb-brand" href="/index.html">Kyle Luecke</a>
+    <nav class="tb-topnav" aria-label="Primary">
+      <a class="active" href="/notes.html">Notes</a>
+      <a href="/work.html">Projects</a>
+      <a href="/method.html">Method</a>
+      <a href="/about.html">About</a>
+      <a href="/cv.html">CV</a>
+      <button class="plain-btn theme-toggle" type="button" aria-label="Toggle light or dark theme" title="Switch paper / dark theme">dark/light</button>
+    </nav>
+  </div>
+</header>
+
+<div class="search-row">
+  <form id="tb-addr-form" class="tb-search-form" role="search">
+    <input id="addrbar" type="text" spellcheck="false" autocomplete="off"
+      aria-label="Filter notes and projects or run a TermBrow command"
+      placeholder="Filter notes &amp; projects (press /) or type :keywords :library :install :help">
+  </form>
+</div>
+
+<section id="tb-inspector" class="tb-inspector" hidden aria-live="polite"></section>
+
+<div class="tb-reader">
+  <main id="main" class="tb-article">
+<article class="note-doc">
+  <header class="note-hero">
+    <p class="eyebrow">technical note 06 &middot; agentic payments, escrow &amp; protocol boundaries</p>
+    <h1>Why Signed Receipts Do Not Prevent Bogus Delivery in <code>x402</code>: Non-Repudiation Boundaries, <code>AuthCaptureEscrow</code>, and Buyer Policy Firewalls</h1>
+    <p class="lede">Stating the exact limit of cryptographic delivery receipts: why an Ed25519 signature over <code>(requestHash, txHash, outputHash)</code> establishes unforgeable attribution without recovering unconditionally settled EIP-3009 funds or detecting fabricated data, and what architecture actually closes both gaps.</p>
+    <div class="note-meta-bar">
+      <span>Kyle W. Luecke</span>
+      <span>2026-11-17</span>
+      <span>9 min read</span>
+      <span>Companion: <a href="/notes/canonical-json-and-trust-state-precedence.html">Technical Note 01 &rarr;</a></span>
+    </div>
+  </header>
+
+  <h2>1. Stating the Negative Boundary Plainly</h2>
+  <p>In <a href="/notes/canonical-json-and-trust-state-precedence.html">Technical Note&nbsp;01</a>, I documented why HTTP <code>200 OK</code> paired with an on-chain <code>Transfer(from, to, value)</code> log leaves response bytes unbound to payment, and how <code>paxiom.receipt.v0</code> closes that transport gap by signing canonical RFC&nbsp;8785 digests of the request, payment terms, settlement transaction, and delivered output under an authorized seller Ed25519 key.</p>
+  <p>What must be stated just as plainly is what a signed delivery receipt <em>does not</em> solve. Suppose an autonomous buyer pays 0.25&nbsp;USDC via <code>x402</code>&rsquo;s standard <code>exact</code> scheme (EIP-3009 <code>TransferWithAuthorization</code>) for a structured market feed or tool execution, and the seller returns:</p>
+
+<pre><code>HTTP/1.1 200 OK
+Content-Type: application/json
+Payment-Receipt: eyJyZWNlaXB0VmVyc2lvbiI6InBheGlvbS5yZWNlaXB0LnYwIiwuLi59
+
+{"results": [], "warning": "upstream_degraded"}</code></pre>
+
+  <p>Or worse, suppose the seller returns a syntactically valid JSON payload whose schema passes every structural check, whose JCS SHA-256 digest matches <code>payload.delivery.outputHash</code>, and whose Ed25519 signature verifies against <code>/.well-known/x402-keys.json</code>&mdash;except the numbers inside the JSON were fabricated without running the promised computation.</p>
+  <p>In both cases, <code>verifyReceipt</code> (and live on-chain verification) will report a cryptographically valid receipt. Yet the buyer still received bogus delivery. Treating signed receipts as a silver bullet conflates three distinct security properties that sit at different layers of the stack:</p>
+  <ol>
+    <li><strong>Cryptographic non-repudiation &amp; byte binding:</strong> Proving <em>which exact payload bytes</em> Seller Key&nbsp;<em>K</em> committed to in exchange for Payment&nbsp;<em>P</em>.</li>
+    <li><strong>Conditional settlement finality:</strong> Ensuring buyer funds are only irreversibly captured <em>after</em> delivery satisfies an agreed acceptance condition.</li>
+    <li><strong>Semantic or provenance validity:</strong> Deciding whether a well-typed response body is factually or computationally genuine rather than plausible noise.</li>
+  </ol>
+  <p><code>paxiom.receipt.v0</code> solves (1). By itself, it cannot solve (2) or (3)&mdash;though as shown below, neither (2) nor (3) works cleanly without (1).</p>
+
+  <h2>2. Failure Boundary I: Unconditional Settlement Ordering (<code>exact</code> vs. <code>AuthCaptureEscrow</code>)</h2>
+  <p>In the baseline <code>x402</code> <code>exact</code> flow, the buyer signs an EIP-3009 authorization transferring USDC directly to <code>payTo</code>, and the facilitator or resource server settles (or broadcasts) that transfer before returning the HTTP response body. Settlement is <strong>pay-before-see</strong> and irreversible. If the response times out at the reverse proxy, arrives truncated, or contains an empty error envelope, a valid or missing receipt gives the buyer forensic proof of non-performance&mdash;like a signed crime-scene photograph&mdash;without any on-chain mechanism to claw back settled USDC.</p>
+
+  <div class="eq-box">
+    exact (EIP-3009):       Sign(payer) &rarr; Transfer(payer &rarr; seller) &rarr; HTTP 200 [bogus]   (funds already final)<br>
+    auth-capture escrow:    Sign(payer) &rarr; Authorize(payer &rarr; Escrow) &rarr; HTTP 200 + Receipt &rarr; Verify &rarr; Capture | Void
+  </div>
+
+  <p>Recovering conditional atomicity over HTTP requires decoupling <em>collateral lock</em> from <em>final payout</em>. Coinbase&rsquo;s open-source <code>AuthCaptureEscrow</code> contract (<a href="https://github.com/base/commerce-payments/blob/main/src/AuthCaptureEscrow.sol"><code>base/commerce-payments</code></a>) implements this two-phase state machine on Base around a canonical <code>PaymentInfo</code> struct:</p>
+  <ul>
+    <li><strong><code>authorize</code>:</strong> Moves up to <code>uint120 maxAmount</code> from <code>payer</code> into an operator-scoped <code>TokenStore</code> clone, recording <code>capturableAmount</code> bounded by <code>uint48 authorizationExpiry</code>.</li>
+    <li><strong><code>capture</code>:</strong> Executed by <code>PaymentInfo.operator</code> once delivery is confirmed, transferring funds (net of bounded <code>minFeeBps..maxFeeBps</code>) to <code>receiver</code>.</li>
+    <li><strong><code>void</code> / <code>reclaim</code>:</strong> Either <code>operator</code> explicitly voids the hold upon failed delivery (<code>PaymentVoided</code>), or <code>payer</code> reclaims escrowed funds permissionlessly once <code>block.timestamp &gt;= authorizationExpiry</code> (<code>PaymentReclaimed</code>).</li>
+  </ul>
+  <p>Notice the architectural seam left open by <code>AuthCaptureEscrow</code>: the smart contract enforces <em>who</em> may call <code>capture</code> or <code>void</code> (the designated <code>operator</code>), and enforces hard timeout safety (<code>authorizationExpiry</code>), but the EVM has no native visibility into off-chain HTTP responses. An automated <code>operator</code> needs deterministic, tamper-evident courtroom evidence from the HTTP exchange to decide between <code>capture()</code> and <code>void()</code>. That evidence record is where a signed <code>Payment-Receipt</code> belongs: if the seller omits a valid signature, signs the wrong <code>requestHash</code>, or delivers bytes that fail the structural contract, the arbiter rejects capture and voids the hold.</p>
+
+  <h2>3. Failure Boundary II: &ldquo;Signed Nonsense&rdquo; and the Four Decidability Regimes</h2>
+  <p>Even when <code>AuthCaptureEscrow</code> holds buyer funds in escrow until after HTTP delivery, a dishonest seller can sign a structurally valid JSON document containing fabricated values. A SHA-256 hash and an Ed25519 signature attest to <em>authorship and byte integrity</em>, never to empirical truth. Whether an automated buyer or escrow operator can detect bogus content prior to <code>capture()</code> depends strictly on which of four decidability regimes the workload inhabits:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Regime</th>
+        <th>Representative API Workloads</th>
+        <th>Can Escrow Arbiter Detect Bogus Payload Pre-Capture?</th>
+        <th>Role of Signed <code>paxiom.receipt.v0</code></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>I. Deterministic Verification</strong></td>
+        <td>SAT/SMT witnesses, SNARK proofs, light-client Merkle/BLS proofs, code synthesis with local test suites, hash preimages</td>
+        <td><strong>Yes (Exact).</strong> Local verifier runs <code>P(request, output) == true</code> in milliseconds before releasing <code>capture()</code>.</td>
+        <td>Binds exact input/output pair to <code>paymentInfoHash</code> so a seller cannot replay a valid proof from a different query.</td>
+      </tr>
+      <tr>
+        <td><strong>II. Origin Provenance</strong></td>
+        <td>Paid relays of third-party TLS APIs, regulatory filings, enclave-hosted model inference</td>
+        <td><strong>Yes (Origin-bound).</strong> Verifier checks <code>zkTLS</code> transcript commitment or hardware TEE quote (Nitro/SGX PCRs).</td>
+        <td>Wraps provenance quote, request digest, and settlement terms under a single auditable seller receipt.</td>
+      </tr>
+      <tr>
+        <td><strong>III. Subjective / Open-Ended</strong></td>
+        <td>Unconstrained LLM synthesis, market commentary, heuristic lead enrichment</td>
+        <td><strong>Structural only.</strong> Schema, non-empty bounds, and latency SLAs are enforceable; factual quality is not decidable locally.</td>
+        <td><strong>Essential anti-framing primitive</strong> for reputation and stake slashing (see below).</td>
+      </tr>
+      <tr>
+        <td><strong>IV. Micro-Metered Streams</strong></td>
+        <td>Token-by-token inference, paginated crawls, per-second telemetry via <code>upto</code> or voucher channels</td>
+        <td><strong>Bounded loss (&Delta; &le; $0.001).</strong> Buyer halts incremental voucher signing on first bad chunk.</td>
+        <td>Pins cumulative voucher sequence to delivered byte digests for dispute &amp; reconciliation logs.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p style="margin:0;"><strong>Why Regime&nbsp;III still requires cryptographic seller signatures:</strong> When semantic quality cannot be proven before settlement, markets fall back on seller reputation or bonded stake slashing. Without a seller&rsquo;s Ed25519 signature over <code>(requestHash, txHash, outputHash)</code>, reputation systems are trivially gameable in both directions: a negligent seller can claim the buyer tampered with the response locally, while a malicious competitor can fabricate fake &ldquo;garbage responses&rdquo; to grief an honest seller&rsquo;s <code>did:web</code> score. Non-repudiable receipts make bad-output attribution unforgeable, turning subjective quality disputes from unprovable hearsay into signed historical records.</p>
+  </div>
+
+  <h2>4. Pre-Sign Buyer Exposure: Why Escrow Still Needs a Client Policy Firewall</h2>
+  <p>Focusing exclusively on post-delivery receipts overlooks how autonomous agents lose funds <em>before</em> a response is ever generated. Most early <code>x402</code> agent integrations wrap a standard HTTP client with an unconstrained wallet signer (<code>fetchWithPayment(url, wallet)</code>). Left unguarded inside a tool-calling loop, an agent is exposed to four pre-sign failure modes:</p>
+  <ol>
+    <li><strong>Dynamic <code>402</code> price escalation:</strong> An endpoint advertised at $0.005 during discovery returns a <code>PAYMENT-REQUIRED</code> challenge requesting $25.00 (`25000000` atomic USDC) on retry.</li>
+    <li><strong>Unpinned <code>payTo</code> / <code>operator</code> substitution:</strong> A compromised edge route rotates <code>payTo</code> or <code>PaymentInfo.operator</code> away from the origin&rsquo;s published <code>/.well-known/x402-keys.json</code> / <code>did:web</code> identity.</li>
+    <li><strong>Retry-loop budget bleed:</strong> When an upstream tool returns transient 5xx errors or empty responses after payment, naive agent loops re-invoke the tool dozens of times per minute, silently draining session USDC.</li>
+    <li><strong>Facilitator &amp; scheme downgrade:</strong> Accepting an <code>exact</code> irreversible challenge on a high-value call where buyer policy requires <code>auth-capture</code> escrow with a trusted operator and minimum <code>authorizationExpiry</code> window.</li>
+  </ol>
+
+  <h2>5. Two-Gate Architecture: Buyer Policy Firewall + Receipt-Gated Capture Arbiter</h2>
+  <p>Closing these failure modes without custodial bloat requires placing a thin, deterministic state machine at the seam between the agent&rsquo;s HTTP client, its signing wallet, and <code>AuthCaptureEscrow</code>:</p>
+
+<pre><code>Agent Tool Call (req)
+  │
+  ▼
+[Gate 1: Pre-Sign Buyer Policy Firewall]
+  ├─ Origin allowlist / denylist &amp; TLS origin sanity (preflightX402)
+  ├─ Per-call maxAmountAtomic, per-origin rolling cap, &amp; session budget ceiling
+  ├─ Scheme threshold: allow `exact` only if amount &le; microCap; else require `auth-capture`
+  └─ Pin `payTo`, `operator`, &amp; seller `did:web` / `x402-keys.json` signer set
+  │
+  ▼  (authorized within policy)
+Sign Payment / Escrow Hold &rarr; Execute HTTP Request &rarr; Receive (status, headers, bodyBytes)
+  │
+  ▼
+[Gate 2: Post-Delivery Receipt &amp; Content Arbiter]
+  ├─ Check HTTP status == 200 &amp; bounded body size
+  ├─ Run verifyReceipt(receipt, { output: bodyBytes, expectedRequest, expectedPayTo })
+  ├─ Run caller domain predicate: validateContent(parsedBody, req)  [Regime I/II/III checks]
+  └─ Emit deterministic settlement action:
+       ├─ All checks pass            &rarr; CAPTURE (release escrow + archive signed receipt)
+       ├─ Missing/invalid receipt    &rarr; VOID    (return escrowed USDC; trip origin circuit breaker)
+       └─ Predicate / schema failure &rarr; VOID    (log signed bogus payload under seller keyId)</code></pre>
+
+  <p>This separation keeps each layer honest about its own invariant. Wallets custody keys; <code>AuthCaptureEscrow</code> enforces on-chain collateral holds and expiry timeouts; <code>paxiom.receipt.v0</code> provides the non-repudiable binding between HTTP bytes and payment terms; and the buyer firewall enforces deterministic spend ceilings before signing while gating escrow capture on both cryptographic receipt validity and workload-specific output checks afterward.</p>
+
+  <div class="case-links">
+    <a href="/notes/canonical-json-and-trust-state-precedence.html">&larr; Technical Note 01 (JCS &amp; 15-State Precedence)</a>
+    <a href="/projects/paxiom.html">Paxiom Project Index</a>
+    <a href="https://paxiom.org/verify.html">Airgapped Browser Receipt Inspector &nearr;</a>
+    <a href="https://github.com/k-luecke/paxiom-static/blob/main/standards/receipts/v0/src/guard.mjs">@paxiom/receipts/guard (v0.3.0) &nearr;</a>
+    <a href="https://github.com/k-luecke/paxiom-static/tree/main/standards/receipts/v0">Reference SDKs &nearr;</a>
+  </div>
+</article>
+  </main>
+</div>
+
+<aside id="tb-feed-wrap" class="tb-feed-wrap" aria-label="Further reading">
+  <div class="tb-feed-head">
+    <span>Further reading (local TermBrow topic weights)</span>
+    <div>
+      <button id="tb-explore-btn" class="tb-pill-btn" type="button">Balanced (40%)</button>
+      <button id="tb-feed-toggle" class="tb-pill-btn" type="button">Hide</button>
+    </div>
+  </div>
+  <div id="tb-feed" class="tb-feed-strip">
+    <a class="feed-item" href="/notes/canonical-json-and-trust-state-precedence.html"><span class="feed-item-title">Deterministic JSON Canonicalization and Fifteen-State Verification Precedence in paxiom.receipt.v0</span><span class="feed-item-meta">11 min read</span></a>
+      <a class="feed-item" href="/notes/subspace-coherence-and-source-phase-wander.html"><span class="feed-item-title">Two-Axis Canonical Coherence and the Source-Phase Stationarity Gap Across a 3,002 km Magnetometer Baseline</span><span class="feed-item-meta">12 min read</span></a>
+      <a class="feed-item" href="/notes/intent-contracts-and-capability-isolation.html"><span class="feed-item-title">Separating Semantic Inference from Ring-0 Authority: Typed Intent Contracts and Capability Confinement in INOS</span><span class="feed-item-meta">11 min read</span></a>
+      <a class="feed-item" href="/notes/sovereign-telemetry-and-kaplan-meier-energization.html"><span class="feed-item-title">Point-in-Time Sovereign Telemetry, Right-Censored Energization Survival, and Export-First 811 Triage</span><span class="feed-item-meta">10 min read</span></a>
+  </div>
+</aside>
+<footer class="tb-footer">
+  <div class="tb-footer-inner">
+    <div>
+      <a href="https://driftboundlabs.com">Driftbound Labs LLC</a> &middot;
+      <a href="https://paxiom.org">Paxiom</a> &middot;
+      <a href="https://github.com/k-luecke">GitHub</a> &middot;
+      <a href="https://orcid.org/0009-0008-0202-7852">ORCID</a>
+    </div>
+    <div class="tb-shortcuts">
+      <button type="button" data-cmd=":library">saved</button>
+      <button type="button" data-cmd=":keywords">topic weights</button>
+      <button type="button" data-cmd=":install">termbrow cli</button>
+      <button type="button" data-cmd=":help">:help</button>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

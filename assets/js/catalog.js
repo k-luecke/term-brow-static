@@ -1,5 +1,22 @@
 window.TERMBROW_CATALOG = [
   {
+    "url": "/notes/non-repudiation-escrow-and-bogus-delivery-in-x402.html",
+    "title": "Why Signed Receipts Do Not Prevent Bogus Delivery in x402: Non-Repudiation Boundaries, AuthCaptureEscrow, and Buyer Policy Firewalls",
+    "kind": "note",
+    "meta": "Escrow \u00b7 x402 Policy",
+    "keywords": [
+      "x402",
+      "escrow",
+      "receipts",
+      "non-repudiation",
+      "cryptography",
+      "agents",
+      "verification",
+      "firewall"
+    ],
+    "summary": "Stating the exact limit of paxiom.receipt.v0: why Ed25519 payload binding proves non-repudiation without recovering unconditionally settled EIP-3009 funds or solving semantic fabrication, four decidability regimes for paid APIs, and how two-step AuthCaptureEscrow pairs with a deterministic pre-sign buyer firewall."
+  },
+  {
     "url": "/notes/canonical-json-and-trust-state-precedence.html",
     "title": "Deterministic JSON Canonicalization and Fifteen-State Verification Precedence in paxiom.receipt.v0",
     "kind": "note",

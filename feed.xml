@@ -5,11 +5,19 @@
   <link href="https://termbrow.org/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://termbrow.org/notes.html" rel="alternate" type="text/html"/>
   <id>https://termbrow.org/feed.xml</id>
-  <updated>2026-11-15T12:00:00Z</updated>
+  <updated>2026-11-17T12:00:00Z</updated>
   <author>
     <name>Kyle W. Luecke</name>
     <uri>https://termbrow.org/</uri>
   </author>
+  <entry>
+    <title>Why Signed Receipts Do Not Prevent Bogus Delivery in x402: Non-Repudiation Boundaries, AuthCaptureEscrow, and Buyer Policy Firewalls</title>
+    <link href="https://termbrow.org/notes/non-repudiation-escrow-and-bogus-delivery-in-x402.html" rel="alternate" type="text/html"/>
+    <id>https://termbrow.org/notes/non-repudiation-escrow-and-bogus-delivery-in-x402.html</id>
+    <updated>2026-11-17T12:00:00Z</updated>
+    <author><name>Kyle W. Luecke</name></author>
+    <summary type="text">Stating the exact limit of paxiom.receipt.v0: why Ed25519 payload binding proves non-repudiation without recovering unconditionally settled EIP-3009 funds or solving semantic fabrication, four decidability regimes for paid APIs, and how two-step AuthCaptureEscrow pairs with a deterministic pre-sign buyer firewall.</summary>
+  </entry>
   <entry>
     <title>Deterministic JSON Canonicalization and Fifteen-State Verification Precedence in paxiom.receipt.v0</title>
     <link href="https://termbrow.org/notes/canonical-json-and-trust-state-precedence.html" rel="alternate" type="text/html"/>
